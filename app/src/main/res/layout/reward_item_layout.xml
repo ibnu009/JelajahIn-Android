@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:elevation="4dp"
+    app:cardCornerRadius="10dp"
+    >
+
+    <LinearLayout
+        android:padding="16dp"
+        android:background="@drawable/bg_searchview"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_point"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRewardPoint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/JelajahinDescTextBold"
+                tools:text="500 pts"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imgPoint"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="36dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgXp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_xp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvRewardXp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/JelajahinDescTextBold"
+                tools:text="1500 xp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/imgPoint"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

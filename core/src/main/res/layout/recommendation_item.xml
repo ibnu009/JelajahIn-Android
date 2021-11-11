@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:paddingBottom="16dp"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_cover_movie"
+            android:layout_width="215dp"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/cardview_dark_background" />
+
+        <TextView
+            android:id="@+id/tv_title_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:singleLine="true"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_cover_movie"
+            tools:text="MOVIE NAME" />
+
+        <ImageView
+            android:id="@+id/imgLocation"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_movie" />
+
+        <TextView
+            android:id="@+id/tv_recommendation_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/imgLocation"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_movie"
+            tools:text="Bondowoso, Jawa Timur" />
+
+        <RatingBar
+            android:id="@+id/recommendationRating"
+            style="@style/customRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:numStars="5"
+            android:rating="4.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgLocation" />
+
+        <TextView
+            android:id="@+id/tvRecommendationRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="4.5"
+            android:textColor="@color/dusk_yellow"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/recommendationRating"
+            app:layout_constraintStart_toEndOf="@+id/recommendationRating"
+            app:layout_constraintTop_toTopOf="@+id/recommendationRating" />
+
+        <TextView
+            android:id="@+id/recommendationRatingTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(1,6k Reviews)"
+            android:textSize="12sp"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRecommendationRating"
+            app:layout_constraintStart_toEndOf="@+id/tvRecommendationRating"
+            app:layout_constraintTop_toTopOf="@+id/tvRecommendationRating" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

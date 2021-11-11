@@ -1,0 +1,19 @@
+package com.ibnu.jelajahin.core.data.repository
+
+import androidx.paging.PagingData
+import com.ibnu.jelajahin.core.data.model.Event
+import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
+import com.ibnu.jelajahin.core.data.remote.source.EventDataSource
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class EventRepository @Inject constructor(
+    private val eventDataSource: EventDataSource
+) {
+
+    fun getEventByProvinceAndCity(provinceId: Int, cityId: Int): Flow<PagingData<Event>>{
+        return eventDataSource.getStreamEventByProvinceAndCity(provinceId, cityId)
+    }
+}

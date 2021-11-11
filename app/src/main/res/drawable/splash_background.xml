@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque"> <!-- android:opacity="opaque" should be here -->
+    <item>
+        <color android:color="@color/base_color"/>
+<!--        <shape>-->
+<!--              <gradient-->
+<!--                   android:angle="315"-->
+<!--                   android:endColor="#1a82ff"-->
+<!--                   android:startColor="#2100d3"-->
+<!--                   android:type="linear"/>-->
+<!--        </shape>-->
+    </item>
+    <item>
+        <bitmap android:src="@drawable/jelajahin_logo"
+            android:gravity="center"/>
+    </item>
+</layer-list>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/cl_head"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:background="@color/green_button"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/sv_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_searchview"
+            app:defaultQueryHint="Mau cari apa?"
+            app:layout_constraintBottom_toTopOf="@+id/rvAdvertisement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="Mau cari apa?" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAdvertisement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            tools:listitem="@layout/banner_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/cl_head"
+            app:layout_constraintTop_toBottomOf="@+id/cl_head" />
+
+        <TextView
+            android:id="@+id/txWisataRekomendasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/wisata_rekomendasi"
+            app:layout_constraintTop_toBottomOf="@id/rvAdvertisement"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLihatLainnyaWisata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/green_button"
+            android:text="@string/lihat_lainnya"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvAdvertisement" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvWisataRecommendation"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/recommendation_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/txWisataRekomendasi" />
+
+        <TextView
+            android:id="@+id/txPenginapanRekomendasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/penginapan_rekomendasi"
+            app:layout_constraintTop_toBottomOf="@id/rvWisataRecommendation"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLihatLainnyaPenginapan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/green_button"
+            android:text="@string/lihat_lainnya"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvWisataRecommendation" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPenginapanRecommendation"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/recommendation_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi" />
+
+
+        <TextView
+            android:id="@+id/txRestaurantRekomendasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginTop="36dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/restaurant_rekomendasi"
+            app:layout_constraintTop_toBottomOf="@id/rvPenginapanRecommendation"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLihatLainnyaRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/green_button"
+            android:text="@string/lihat_lainnya"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvPenginapanRecommendation" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRestaurantRecommendation"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/recommendation_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

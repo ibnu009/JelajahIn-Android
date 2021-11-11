@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">JelajahIn</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="hint_email">Contoh : user@gmail.com</string>
+    <string name="hint_name">Contoh : Ibnu Batutah</string>
+    <string name="email_atau_username">Email atau Username</string>
+    <string name="password">Password</string>
+    <string name="hint_password">Harus memiliki angka dan karakter</string>
+    <string name="login">Masuk</string>
+    <string name="halo_adventurer">Halo Adventurer!</string>
+    <string name="register">Daftar Menjadi Adventurer</string>
+    <string name="full_name">Nama Lengkap</string>
+    <string name="email">Email</string>
+    <string name="hint_fullname">Contoh : Ibnu Batutah</string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Konfirmasi Password</string>
+    <string name="wisata_rekomendasi">Wisata Rekomendasi</string>
+    <string name="lihat_lainnya">Lihat Lainnya</string>
+    <string name="penginapan_rekomendasi">Penginapan Rekomendasi</string>
+    <string name="restaurant_rekomendasi">Restaurant Rekomendasi</string>
+    <string name="home">Home</string>
+    <string name="event">Event</string>
+    <string name="discover">Discover</string>
+    <string name="saved">Saved</string>
+    <string name="profile">Profile</string>
+    <string name="jelajahin_motto">Discover something new everyday</string>
+    <string name="event_notice_reward">Kamu bisa dapetin jika menghadiri event ini</string>
+    <string name="deskripsi_event">Deskripsi Event</string>
+</resources>
