@@ -7,6 +7,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.databinding.ActivityMainBinding
@@ -28,8 +29,11 @@ class MainActivity : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.statusBarColor = ContextCompat.getColor(this, R.color.dark_green);
 
-        binding?.bottomNav?.setupWithNavController(findNavController(R.id.nav_host_fragment))
-        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination, _ ->
+        val navHostBottomBar = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navControllerBottomBar = navHostBottomBar.navController
+
+        binding?.bottomNav?.setupWithNavController(navControllerBottomBar)
+        navControllerBottomBar.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.homeFragment || destination.id == R.id.eventFragment || destination.id == R.id.discoverFragment || destination.id == R.id.savedFragment || destination.id == R.id.profileFragment) {
                 binding?.bottomNav?.visibility = View.VISIBLE
             } else {

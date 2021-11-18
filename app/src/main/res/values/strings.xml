@@ -30,5 +30,9 @@
     <string name="deskripsi_event">Deskripsi Event</string>
     <string name="points">%1s pts</string>
     <string name="xp">%1s xp</string>
+    <string name="locked_message">Login terlebih dahulu agar dapat mengakses fitur ini</string>
+    <string name="to_login">ke halaman login</string>
+    <string name="join_jelajahin">Gabung ke keluarga JelajahIn!</string>
+    <string name="daftar">Daftar</string>
 
 </resources>

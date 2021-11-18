@@ -2,7 +2,10 @@ package com.ibnu.jelajahin.extention
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Context
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 
 
 fun View.popTap(){
@@ -31,4 +34,14 @@ fun View.popTap(){
     val scaleUp = AnimatorSet()
     scaleUp.play(scaleUpX).with(scaleUpY).after(scaleDown)
     scaleUp.start()
+}
+
+fun Context.showErrorDialog(message: String){
+    AlertDialog.Builder(this).apply {
+        setTitle("Oops Ada Kesalahan")
+        setMessage(message)
+        setPositiveButton("OK") { p0, _ ->
+            p0.dismiss()
+        }
+    }.create().show()
 }

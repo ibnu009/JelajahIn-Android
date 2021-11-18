@@ -1,5 +1,7 @@
 package com.ibnu.jelajahin.core.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.paging.PagingData
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse

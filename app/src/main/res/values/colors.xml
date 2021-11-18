@@ -28,7 +28,10 @@
     <color name="light_grey">#C6C6C6</color>
     <color name="divider">#F1F1F1</color>
     <color name="light_grey_2">#F5F9F9</color>
+    <color name="light_red_bg">#DD8391</color>
     <color name="red_button">#EC1132</color>
+    <color name="dark_red">#A30920</color>
+
 
     <color name="grey_50">#FAFAFA</color>
     <color name="grey_100">#F5F5F5</color>

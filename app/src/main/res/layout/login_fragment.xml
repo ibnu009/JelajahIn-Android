@@ -115,11 +115,14 @@
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
-            <TextView
+            <Button
+                android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:text="Gabung ke keluarga JelajahIn!"
+                android:text="@string/join_jelajahin"
+                android:textAllCaps="false"
+                android:background="@android:color/transparent"
                 android:textAlignment="center"
                 android:textColor="@color/green_button"
                 android:textSize="16sp"

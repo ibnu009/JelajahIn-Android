@@ -17,23 +17,8 @@ import java.util.concurrent.TimeUnit
 class NetworkModule {
 
     @Provides
-    fun provideRequestInterceptor() = Interceptor { chain ->
-        val url = chain.request()
-            .url
-            .newBuilder()
-            .addQueryParameter("api_key", "")
-            .build()
-        val request = chain.request()
-            .newBuilder()
-            .url(url)
-            .build()
-        return@Interceptor chain.proceed(request)
-    }
-
-    @Provides
-    fun provideOkHttpClient(interceptor: Interceptor): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(interceptor)
             .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .connectTimeout(150, TimeUnit.SECONDS)
             .readTimeout(150, TimeUnit.SECONDS)

@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.core.data.remote.network
 
+import com.ibnu.jelajahin.core.data.remote.request.HistoryPointBody
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.PointBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
@@ -35,7 +36,7 @@ interface UserService {
     @POST("api/user/history_point/insert")
     suspend fun insertPointToUserHistory(
         @Header("token") token: String,
-        @Body request: PointBody
+        @Body request: HistoryPointBody
     ): GenericResponse
 
     @PUT("api/user/add_points")
