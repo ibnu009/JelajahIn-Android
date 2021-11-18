@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--MARGIN & PADDING-->
+    <dimen name="space_quarter">2dp</dimen>
+    <dimen name="space_half">4dp</dimen>
+    <dimen name="space_xhalf">6dp</dimen>
+    <dimen name="space">8dp</dimen>
+    <dimen name="spacex">12dp</dimen>
+    <dimen name="spacexx">14dp</dimen>
+    <dimen name="space_double">16dp</dimen>
+    <dimen name="space_xdouble">20dp</dimen>
+    <dimen name="space_triple">24dp</dimen>
+    <dimen name="space_quadruple">32dp</dimen>
+    <dimen name="space_quintuple">40dp</dimen>
+    <dimen name="space_xtra">48dp</dimen>
+    <dimen name="space_xxtra">56dp</dimen>
+    <dimen name="space_xxxtra">64dp</dimen>
+    <dimen name="space_xtra_minus">-48dp</dimen>
+    <dimen name="margintop_xdpi">120dp</dimen>
+
+    <dimen name="logo_xxxdpi">120dp</dimen>
+
+    <!--FONT-->
+    <dimen name="font_moretiny">8sp</dimen>
+    <dimen name="font_tiny">10sp</dimen>
+    <dimen name="font_small">12sp</dimen>
+    <dimen name="font_reg">14sp</dimen>
+    <dimen name="font_medium">16sp</dimen>
+    <dimen name="font_xmedium">18sp</dimen>
+    <dimen name="font_big">20sp</dimen>
+    <dimen name="font_xbig">24sp</dimen>
+    <dimen name="font_xxbig">28sp</dimen>
+    <dimen name="font_xxxbig">32sp</dimen>
+    <dimen name="customTitle">14sp</dimen>
+    <dimen name="customEntry">18sp</dimen>
+
+    <!--SHIMMER-->
+    <dimen name="shimmer_font_width_small">60dp</dimen>
+    <dimen name="shimmer_font_width_medium">100dp</dimen>
+    <dimen name="shimmer_font_width_wide">140dp</dimen>
+
+    <!--RADIUS-->
+    <dimen name="radius">4dp</dimen>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dots_height">32dp</dimen>
+    <dimen name="dots_margin_bottom">20dp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">30sp</dimen>
+    <dimen name="slide_desc">16sp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+    <dimen name="qr_size">300dp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <!--
+    Because the window insets on round devices are larger than 15dp, this padding only applies
+    to square screens.
+    -->
+    <dimen name="box_inset_layout_padding">0dp</dimen>
+
+    <!--
+    This padding applies to both square and round screens. The total padding between the buttons
+    and the window insets is box_inset_layout_padding (above variable) on square screens and
+    inner_frame_layout_padding (below variable) on round screens.
+    -->
+    <dimen name="inner_frame_layout_padding">5dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+</resources>

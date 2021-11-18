@@ -1,4 +1,4 @@
-package com.ibnu.jelajahin.core.data.remote.source
+package com.ibnu.jelajahin.core.data.source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

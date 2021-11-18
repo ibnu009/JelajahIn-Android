@@ -14,13 +14,13 @@ data class Event(
     val imageURL: String,
 
     @field:SerializedName("province_id")
-    val provinceID: Long,
+    val provinceID: Int,
 
     @field:SerializedName("province_name")
     val provinceName: String,
 
     @field:SerializedName( "city_id")
-    val cityID: Long,
+    val cityID: Int,
 
     @field:SerializedName("city_name")
     val cityName: String,
@@ -31,14 +31,14 @@ data class Event(
     val ticketPrice: String,
 
     @field:SerializedName("point_reward")
-    val pointReward: Long,
+    val pointReward: Int,
 
     @field:SerializedName("xp_reward")
-    val xpReward: Long,
+    val xpReward: Int,
 
     val latitude: Double,
     val longtitude: Double,
 
     @field:SerializedName("is_free")
-    val isFree: Long
+    val isFree: Int
 )

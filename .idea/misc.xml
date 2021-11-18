@@ -3,20 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_button.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_input.xml" value="0.2169230769230769" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_rounded_corner_solid.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_searchview.xml" value="0.16666666666666666" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/circle.xml" value="0.2169230769230769" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/customprogress.xml" value="0.2169230769230769" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2169230769230769" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/ic_profile.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/ic_time.xml" value="0.19166666666666668" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/skeleton.xml" value="0.2169230769230769" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/skeleton_darker.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/splash_background.xml" value="0.17777777777777778" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/discovery_fragment.xml" value="0.20416666666666666" />
-        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/event_detail_fragment.xml" value="0.18" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/event_detail_fragment.xml" value="0.33" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/event_fragment.xml" value="0.2" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_splash_screen.xml" value="0.5" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/login_fragment.xml" value="0.21" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/profile_fragment.xml" value="0.25" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/register_fragment.xml" value="0.25" />
-        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/reward_item_layout.xml" value="0.35218508997429304" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/reward_item_layout.xml" value="0.25" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/smh_event_detail.xml" value="0.20416666666666666" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/smh_event_list.xml" value="0.20416666666666666" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/menu/bottom_nav_menu.xml" value="0.13518518518518519" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/bg_category.xml" value="0.16944444444444445" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/bg_category_selected.xml" value="0.16944444444444445" />

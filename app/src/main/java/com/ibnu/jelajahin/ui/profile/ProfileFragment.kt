@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
     private val viewModel: ProfileViewModel by viewModels()
@@ -22,7 +24,6 @@ class ProfileFragment : Fragment() {
         _binding = ProfileFragmentBinding.inflate(inflater, container, false)
         return _binding?.root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

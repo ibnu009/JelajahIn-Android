@@ -79,11 +79,15 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
     private fun showLoading(isLoading: Boolean){
         if (isLoading){
-            binding.bgDim.visibility = View.VISIBLE
-            binding.progressBar.visibility = View.VISIBLE
+            binding.shimmeringEventList.startShimmer()
+            binding.shimmeringEventList.showShimmer(true)
+            binding.shimmeringEventList.visibility = View.VISIBLE
+            binding.containerEventList.visibility = View.GONE
         } else {
-            binding.bgDim.visibility = View.GONE
-            binding.progressBar.visibility = View.GONE
+            binding.shimmeringEventList.startShimmer()
+            binding.shimmeringEventList.showShimmer(true)
+            binding.shimmeringEventList.visibility = View.GONE
+            binding.containerEventList.visibility = View.VISIBLE
         }
     }
 

@@ -1,14 +1,12 @@
-package com.ibnu.jelajahin.core.data.remote.source
+package com.ibnu.jelajahin.core.data.source
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import androidx.paging.PagingSource
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.network.EventService
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_EVENT_PAGE_SIZE
-import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_SIZE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

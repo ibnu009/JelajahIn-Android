@@ -1,8 +1,11 @@
 package com.ibnu.jelajahin.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ibnu.jelajahin.R
@@ -20,6 +23,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _bindingMainActivity = ActivityMainBinding.inflate(layoutInflater)
         setContentView(_bindingMainActivity?.root)
+
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.statusBarColor = ContextCompat.getColor(this, R.color.dark_green);
 
         binding?.bottomNav?.setupWithNavController(findNavController(R.id.nav_host_fragment))
         findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination, _ ->

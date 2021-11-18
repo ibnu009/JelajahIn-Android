@@ -28,4 +28,7 @@
     <string name="jelajahin_motto">Discover something new everyday</string>
     <string name="event_notice_reward">Kamu bisa dapetin jika menghadiri event ini</string>
     <string name="deskripsi_event">Deskripsi Event</string>
+    <string name="points">%1s pts</string>
+    <string name="xp">%1s xp</string>
+
 </resources>

@@ -58,6 +58,9 @@ dependencies {
     testImplementation "androidx.room:room-testing:$room_version"
     kapt("androidx.room:room-compiler:$room_version")
 
+    //Shimmering
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
     //  MVVM
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
