@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.core.data.repository
 
+import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
@@ -19,5 +20,9 @@ class UserRepository @Inject constructor(private val userDataSource: UserDataSou
 
     suspend fun register(request: RegisterBody): Flow<ApiResponse<String>> {
         return userDataSource.registerUser(request).flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getUserProfile(token: String): Flow<ApiResponse<User>> {
+        return userDataSource.fetchUserProfile(token).flowOn(Dispatchers.IO)
     }
 }

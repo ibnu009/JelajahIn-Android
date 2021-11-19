@@ -20,6 +20,12 @@ fun Int.getUserLevelProgressInPercent(): String{
     return "$percent%"
 }
 
+fun Int.getUserLevelProgressInPercentAsInt(): Int{
+    val currentProgress = this % 1000 //untuk selalu mendapatkan nilai antara 0 sampai 1000
+    val percent = (currentProgress.toDouble() / 1000) * 100
+    return percent.toInt()
+}
+
 fun Int.getUserLevel(): String{
     val level = this.toDouble() / 1000
     return "${level.toInt()}"

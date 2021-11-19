@@ -13,9 +13,14 @@ import retrofit2.http.*
 interface UserService {
 
     @GET("api/user/{uuid_user}")
-    suspend fun getUserProfile(
+    suspend fun getUserByUuid(
         @Header("token") token: String,
         @Path("uuid_user") uuidUser: String
+    ): UserResponse
+
+    @GET("api/profile")
+    suspend fun getUserProfile(
+        @Header("token") token: String
     ): UserResponse
 
     @POST("api/user/login")

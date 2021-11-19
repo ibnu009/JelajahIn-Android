@@ -1,9 +1,11 @@
 package com.ibnu.jelajahin.core.data.source
 
+import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.network.UserService
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
+import com.ibnu.jelajahin.core.data.remote.response.UserResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttp
@@ -38,6 +40,22 @@ class UserDataSource @Inject constructor(private val userService: UserService){
                 val response = userService.registerUser(request)
                 if (response.status == HttpURLConnection.HTTP_OK){
                     emit(ApiResponse.Success(response.token))
+                } else {
+                    emit(ApiResponse.Error(response.message))
+                }
+            } catch (e: Exception){
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }
+    }
+
+    suspend fun fetchUserProfile(token: String): Flow<ApiResponse<User>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = userService.getUserProfile(token)
+                if (response.status == HttpURLConnection.HTTP_OK){
+                    emit(ApiResponse.Success(response.user))
                 } else {
                     emit(ApiResponse.Error(response.message))
                 }

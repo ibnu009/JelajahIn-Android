@@ -34,5 +34,15 @@
     <string name="to_login">ke halaman login</string>
     <string name="join_jelajahin">Gabung ke keluarga JelajahIn!</string>
     <string name="daftar">Daftar</string>
+    <string name="total_appreciation">0 Apresiasi</string>
+    <string name="total_review">0 Ulasan</string>
+    <string name="total_event">0 Event dihadiri</string>
+    <string name="faq">FAQ</string>
+    <string name="syarat_dan_ketentuan">Syarat dan Ketentuan</string>
+    <string name="about_jelajahin">Tentang Jelajahin</string>
+    <string name="bantuan">Bantuan</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="shop">Penukaran Poin</string>
+    <string name="point_history">Riwayat Poin</string>
 
 </resources>

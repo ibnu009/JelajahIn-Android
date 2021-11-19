@@ -6,199 +6,216 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.profile.ProfileFragment">
 
-    <LinearLayout
+    <ScrollView
         android:id="@+id/contentProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_profile_overview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/dark_green_2"
-            android:paddingTop="@dimen/space_double">
-
-            <ImageView
-                android:id="@+id/img_photo_profile"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_margin="16dp"
-                android:layout_marginStart="@dimen/space_double"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@drawable/skeleton" />
-
-            <TextView
-                android:id="@+id/tv_name"
-                style="@style/JelajahinTitleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@id/img_photo_profile"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Bintang Putera" />
-
-            <TextView
-                android:id="@+id/tv_email"
-                style="@style/JelajahinDescText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:textColor="@color/white"
-                app:layout_constraintStart_toEndOf="@+id/img_photo_profile"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name"
-                tools:text="sangbintang917@gmail.com" />
-
-            <TextView
-                android:id="@+id/tv_poin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="@dimen/space"
-                android:drawablePadding="8dp"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_medium"
-                app:drawableStartCompat="@drawable/ic_point"
-                app:layout_constraintStart_toEndOf="@+id/img_photo_profile"
-                app:layout_constraintTop_toBottomOf="@+id/tv_email"
-                tools:text="200" />
-
-            <TextView
-                android:id="@+id/tvProgressPercent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/progressBarUser"
-                app:layout_constraintEnd_toEndOf="@+id/progressBarUser"
-                tools:text="50%" />
-
-            <ProgressBar
-                android:id="@+id/progressBarUser"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                android:layout_width="0dp"
-                android:layout_height="8dp"
-                android:layout_gravity="bottom"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_weight="19"
-                android:max="100"
-                android:progress="50"
-                android:progressDrawable="@drawable/customprogress"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_photo_profile"
-                app:layout_constraintWidth_percent="0.75" />
-
-            <TextView
-                android:id="@+id/tvUserLevel"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="@dimen/space_double"
-                android:background="@drawable/circle"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_big"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/progressBarUser"
-                app:layout_constraintTop_toBottomOf="@+id/img_photo_profile" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="@dimen/space_triple"
-            android:layout_marginTop="@dimen/space_double"
-            android:background="@drawable/bg_rounded_corner_solid"
-            android:paddingHorizontal="@dimen/space_triple"
-            android:paddingVertical="@dimen/space">
-
-            <ImageView
-                android:id="@+id/icThumb"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_thumb"
-                app:layout_constraintEnd_toEndOf="@+id/tvAppreciationTotal"
-                app:layout_constraintStart_toStartOf="@+id/tvAppreciationTotal"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvAppreciationTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_half"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/icThumb"
-                tools:text="100 Apresiasi" />
-
-            <ImageView
-                android:id="@+id/icUlasan"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_ulasan_profile"
-                app:layout_constraintEnd_toEndOf="@+id/tvUlasanTotal"
-                app:layout_constraintStart_toStartOf="@+id/tvUlasanTotal"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvUlasanTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_half"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/tvAppreciationTotal"
-                app:layout_constraintTop_toBottomOf="@id/icThumb"
-                tools:text="16 Ulasan" />
-
-            <ImageView
-                android:id="@+id/icEventProfile"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_event_profile"
-                app:layout_constraintEnd_toEndOf="@+id/tvEventTotal"
-                app:layout_constraintStart_toStartOf="@+id/tvEventTotal"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvEventTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_triple"
-                android:layout_marginTop="@dimen/space_half"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/tvUlasanTotal"
-                app:layout_constraintTop_toBottomOf="@id/icThumb"
-                tools:text="2 Event dihadiri" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_triple"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/profileComponent"
-                layout="@layout/profile_fragment_menu_component" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_profile_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_green_2"
+                android:paddingTop="@dimen/space_double">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvPhoto"
+                    android:layout_margin="16dp"
+                    app:cardCornerRadius="@dimen/space"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="@dimen/space_double"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_photo_profile"
+                        android:layout_width="75dp"
+                        android:layout_height="75dp"
+                        android:src="@drawable/img_person"
+                        android:scaleType="centerCrop"
+                        tools:background="@drawable/skeleton" />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    style="@style/JelajahinTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toEndOf="@id/cvPhoto"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="ibnu batutah" />
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    style="@style/JelajahinDescText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/cvPhoto"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:text="ibnubatutah001@gmail.com" />
+
+                <TextView
+                    android:id="@+id/tv_poin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/space"
+                    android:drawablePadding="8dp"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_medium"
+                    app:drawableStartCompat="@drawable/ic_point"
+                    app:layout_constraintStart_toEndOf="@+id/cvPhoto"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_email"
+                    tools:text="200" />
+
+                <TextView
+                    android:id="@+id/tvProgressPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/progressBarUser"
+                    app:layout_constraintEnd_toEndOf="@+id/progressBarUser"
+                    tools:text="50%" />
+
+                <ProgressBar
+                    android:id="@+id/progressBarUser"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginHorizontal="@dimen/space_double"
+                    android:layout_weight="19"
+                    android:max="100"
+                    android:progress="50"
+                    android:progressDrawable="@drawable/customprogress"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cvPhoto"
+                    app:layout_constraintWidth_percent="0.75" />
+
+                <TextView
+                    android:id="@+id/tvUserLevel"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="@dimen/space_double"
+                    android:background="@drawable/circle"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_big"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/progressBarUser"
+                    app:layout_constraintTop_toBottomOf="@+id/cvPhoto" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/space_triple"
+                android:layout_marginTop="@dimen/space_double"
+                android:background="@drawable/bg_rounded_corner_solid"
+                android:paddingHorizontal="@dimen/space_triple"
+                android:paddingVertical="@dimen/space">
+
+                <ImageView
+                    android:id="@+id/icThumb"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_thumb"
+                    app:layout_constraintEnd_toEndOf="@+id/tvAppreciationTotal"
+                    app:layout_constraintStart_toStartOf="@+id/tvAppreciationTotal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAppreciationTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_half"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/icThumb"
+                    android:text="@string/total_appreciation" />
+
+                <ImageView
+                    android:id="@+id/icUlasan"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_ulasan_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/tvUlasanTotal"
+                    app:layout_constraintStart_toStartOf="@+id/tvUlasanTotal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvUlasanTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_double"
+                    android:layout_marginTop="@dimen/space_half"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/tvAppreciationTotal"
+                    app:layout_constraintTop_toBottomOf="@id/icThumb"
+                    android:text="@string/total_review" />
+
+                <ImageView
+                    android:id="@+id/icEventProfile"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_event_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/tvEventTotal"
+                    app:layout_constraintStart_toStartOf="@+id/tvEventTotal"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvEventTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_triple"
+                    android:layout_marginTop="@dimen/space_half"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/tvUlasanTotal"
+                    app:layout_constraintTop_toBottomOf="@id/icThumb"
+                    android:text="@string/total_event" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:orientation="vertical">
+
+                <include
+                    android:id="@+id/profileComponent"
+                    layout="@layout/profile_fragment_menu_component" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/contentNotUser"
