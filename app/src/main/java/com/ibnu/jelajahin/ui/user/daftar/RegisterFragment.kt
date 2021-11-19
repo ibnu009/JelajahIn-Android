@@ -83,6 +83,11 @@ class RegisterFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.edtEmail.isClickable = !isLoading
+        binding.edtPassword.isClickable = !isLoading
+        binding.edtFullname.isClickable = !isLoading
+        binding.edtConfirmPassword.isClickable = !isLoading
+        binding.btnRegister.isClickable = !isLoading
     }
 
     private fun showSuccessDialog(){

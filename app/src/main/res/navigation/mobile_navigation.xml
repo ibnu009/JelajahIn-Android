@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_profileFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_pointHistoryFragment"
+            app:destination="@id/pointHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/eventFragment"
@@ -65,5 +68,10 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/pointHistoryFragment"
+        android:name="com.ibnu.jelajahin.ui.profile.history.PointHistoryFragment"
+        android:label="fragment_point_history"
+        tools:layout="@layout/fragment_point_history" />
 
 </navigation>

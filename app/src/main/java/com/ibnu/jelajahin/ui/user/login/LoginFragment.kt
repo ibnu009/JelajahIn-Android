@@ -22,6 +22,7 @@ import com.ibnu.jelajahin.extention.showErrorDialog
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -30,6 +31,9 @@ class LoginFragment : Fragment() {
 
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var pref: SharedPreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -85,8 +89,7 @@ class LoginFragment : Fragment() {
                 is ApiResponse.Success -> {
                     Timber.d("token is ${response.data}")
                     showLoading(false)
-                    val prefHelper = SharedPreferenceManager(requireContext())
-                    prefHelper.setStringPreference(JelajahinConstValues.KEY_TOKEN, response.data)
+                    pref.setStringPreference(JelajahinConstValues.KEY_TOKEN, response.data)
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
                 else -> {
@@ -99,6 +102,9 @@ class LoginFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.edtEmail.isClickable = !isLoading
+        binding.edtPassword.isClickable = !isLoading
+        binding.btnLogin.isClickable = !isLoading
     }
 
     override fun onDestroyView() {

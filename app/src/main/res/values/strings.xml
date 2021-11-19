@@ -44,5 +44,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="shop">Penukaran Poin</string>
     <string name="point_history">Riwayat Poin</string>
+    <string name="empty_poin_history_text">Belum ada riwayat poin, yuk ikutin event supaya kamu dapet Jelajahin Poin</string>
 
 </resources>

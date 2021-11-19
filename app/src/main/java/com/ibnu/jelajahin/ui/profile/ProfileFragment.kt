@@ -23,6 +23,7 @@ import com.ibnu.jelajahin.extention.popTap
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(), View.OnClickListener {
@@ -32,7 +33,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var preference: SharedPreferenceManager
+    @Inject
+    lateinit var pref: SharedPreferenceManager
+
+    private var token: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +48,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        preference = SharedPreferenceManager(requireContext())
-        val token = preference.getToken ?: ""
+        token = pref.getToken ?: ""
+        Timber.d("Token is $token")
         if (token == "") {
             initiateNotLoggedUser()
         } else {
@@ -53,7 +57,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.contentNotUser.visibility = View.GONE
 
             viewModel.getUserProfile(token).observe(viewLifecycleOwner, Observer { response ->
-                when(response){
+                when (response) {
                     is ApiResponse.Loading -> {
                         Timber.d("Loading")
                     }
@@ -105,18 +109,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
     }
 
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onClick(p0: View?) {
         when(p0) {
             binding.profileComponent.layoutLogout -> {
                 p0.popTap()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    preference.clearPreferenceByKey(KEY_TOKEN)
+                    pref.clearPreferenceByKey(KEY_TOKEN)
                     findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
                 }, FAST_ANIMATION_TIME)
             }
@@ -138,7 +136,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             binding.profileComponent.layoutHistoryPoint -> {
                 p0.popTap()
-                Timber.d("Menekan layout history")
+                Handler(Looper.getMainLooper()).postDelayed({
+                    findNavController().navigate(R.id.action_profileFragment_to_pointHistoryFragment)
+                }, FAST_ANIMATION_TIME)
             }
             binding.profileComponent.layoutShop -> {
                 p0.popTap()
@@ -149,6 +149,11 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 Timber.d("Menekan layout syarat dan ketentuan")
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

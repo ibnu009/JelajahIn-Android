@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.data.remote.network.EventService
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_INDEX
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_SIZE
 
 class EventPagingFactory(
     private val service: EventService,
@@ -15,10 +16,9 @@ class EventPagingFactory(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Event> {
         val result = service.getEventByProvinceAndCity(provinceId, cityId)
         val page = params.key ?: DEFAULT_PAGE_INDEX
-        val limiter = 10 //meaning 100 data
         return LoadResult.Page(
             data = result.events,
-            nextKey = if ((result.rowCount / 10) < limiter) null else page + 1,
+            nextKey = if ((result.rowCount / DEFAULT_PAGE_SIZE) < page) null else page + 1,
             prevKey = if (page == DEFAULT_PAGE_INDEX) null else page - 1,
         )
     }

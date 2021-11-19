@@ -1,11 +1,18 @@
 package com.ibnu.jelajahin.core.data.source
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.ibnu.jelajahin.core.data.model.PointHistory
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.network.UserService
+import com.ibnu.jelajahin.core.data.remote.request.HistoryPointBody
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
 import com.ibnu.jelajahin.core.data.remote.response.UserResponse
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_SIZE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.OkHttp
@@ -63,6 +70,16 @@ class UserDataSource @Inject constructor(private val userService: UserService){
                 emit(ApiResponse.Error(e.message.toString()))
             }
         }
+    }
+
+    fun fetchListPointHistory(token: String): Flow<PagingData<PointHistory>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = DEFAULT_PAGE_SIZE,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = {HistoryPointPagingFactory(userService, token)}
+        ).flow
     }
 
 }

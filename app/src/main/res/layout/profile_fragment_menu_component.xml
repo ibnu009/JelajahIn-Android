@@ -152,7 +152,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/img_person"
+                    android:src="@drawable/ic_person"
                     app:tint="@color/dark_green" />
 
             </LinearLayout>

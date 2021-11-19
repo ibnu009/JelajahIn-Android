@@ -10,5 +10,5 @@ data class PointHistoryResponse(
     val rowCount: Int,
     val message: String,
     @field:SerializedName( "data")
-    val histories: List<PointHistory>
+    val histories: List<PointHistory>?
 )
