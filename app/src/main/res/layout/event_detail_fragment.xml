@@ -188,11 +188,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/txStatisLokasi"
                 tools:layout_editor_absoluteX="24dp">
 
-                <FrameLayout
+                <fragment
                     android:id="@+id/containerMap"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:touchscreenBlocksFocus="true" />
+
+                <ImageView
+                    android:id="@+id/touchMap"
+                    android:src="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
             </androidx.cardview.widget.CardView>
 
