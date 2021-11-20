@@ -1,4 +1,4 @@
-package com.ibnu.jelajahin.extention
+package com.ibnu.jelajahin.core.extention
 
 import android.text.TextUtils
 import java.security.MessageDigest

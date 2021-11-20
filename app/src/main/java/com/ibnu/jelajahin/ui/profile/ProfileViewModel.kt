@@ -10,6 +10,7 @@ import com.ibnu.jelajahin.core.data.model.PointHistory
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.repository.UserRepository
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -17,16 +18,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+) : ViewModel() {
 
     private var currenHistory: Flow<PagingData<PointHistory>>? = null
 
-    fun getUserPointHistory(): Flow<PagingData<PointHistory>> {
+    fun getUserPointHistory(token: String): Flow<PagingData<PointHistory>> {
         val lastResult = currenHistory
         if (lastResult != null) {
             return lastResult
         }
-        val newResult: Flow<PagingData<PointHistory>> = userRepository.getUserPointHistory()
+        val newResult: Flow<PagingData<PointHistory>> = userRepository.getUserPointHistory(token)
             .cachedIn(viewModelScope)
         currenHistory = newResult
         return newResult

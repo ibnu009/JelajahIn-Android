@@ -17,7 +17,6 @@ import javax.inject.Singleton
 @Singleton
 class UserRepository @Inject constructor(
     private val userDataSource: UserDataSource,
-    private val sharedPreferenceManager: SharedPreferenceManager
 ) {
 
     suspend fun login(request: LoginBody): Flow<ApiResponse<String>> {
@@ -32,7 +31,7 @@ class UserRepository @Inject constructor(
         return userDataSource.fetchUserProfile(token).flowOn(Dispatchers.IO)
     }
 
-    fun getUserPointHistory(): Flow<PagingData<PointHistory>> {
-        return userDataSource.fetchListPointHistory(sharedPreferenceManager.getToken ?: "")
+    fun getUserPointHistory(token: String): Flow<PagingData<PointHistory>> {
+        return userDataSource.fetchListPointHistory(token)
     }
 }

@@ -45,5 +45,7 @@
     <string name="shop">Penukaran Poin</string>
     <string name="point_history">Riwayat Poin</string>
     <string name="empty_poin_history_text">Belum ada riwayat poin, yuk ikutin event supaya kamu dapet Jelajahin Poin</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="hadiri_event">Hadiri Event</string>
 
 </resources>

@@ -12,9 +12,10 @@ import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
 import com.ibnu.jelajahin.databinding.RegisterFragmentBinding
-import com.ibnu.jelajahin.extention.isEmailValid
-import com.ibnu.jelajahin.extention.sha256
-import com.ibnu.jelajahin.extention.showErrorDialog
+import com.ibnu.jelajahin.core.extention.isEmailValid
+import com.ibnu.jelajahin.core.extention.sha256
+import com.ibnu.jelajahin.core.extention.showOKDialog
+import com.ibnu.jelajahin.utils.UiConstValue.ERROR_TITLE
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -67,7 +68,7 @@ class RegisterFragment : Fragment() {
                 is ApiResponse.Error -> {
                     Timber.d("Error ${response.errorMessage}")
                     showLoading(false)
-                    requireContext().showErrorDialog(response.errorMessage)
+                    requireContext().showOKDialog(ERROR_TITLE,response.errorMessage)
                 }
                 is ApiResponse.Success -> {
                     showLoading(false)

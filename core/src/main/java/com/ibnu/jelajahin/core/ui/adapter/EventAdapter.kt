@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.databinding.EventItemBinding
+import com.ibnu.jelajahin.core.extention.parseDateMonthAndYear
 
 class EventAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Event, EventAdapter.EventViewHolder>(
@@ -34,8 +35,8 @@ class EventAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event) {
             binding.tvEventName.text = event.name
-            binding.tvEventDate.text = event.schedule
-            binding.tvEventLocation.text = "${event.provinceName} ${event.cityName}"
+            binding.tvEventDate.text = event.schedule.parseDateMonthAndYear()
+            binding.tvEventLocation.text = "${event.cityName}, ${event.provinceName}"
 
             Glide.with(itemView)
                 .load(event.imageURL)

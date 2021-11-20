@@ -8,8 +8,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class SharedPreferenceManager @Inject constructor(@ApplicationContext context: Context) {
-    private var prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+class SharedPreferenceManager(context: Context) {
+    private var prefs: SharedPreferences = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val editor = prefs.edit()
 
     fun setStringPreference(prefKey: String, value:String){

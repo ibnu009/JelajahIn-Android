@@ -15,14 +15,14 @@ import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.LoginFragmentBinding
-import com.ibnu.jelajahin.extention.isEmailValid
-import com.ibnu.jelajahin.extention.popTap
-import com.ibnu.jelajahin.extention.sha256
-import com.ibnu.jelajahin.extention.showErrorDialog
+import com.ibnu.jelajahin.core.extention.isEmailValid
+import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.extention.sha256
+import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.utils.UiConstValue
+import com.ibnu.jelajahin.utils.UiConstValue.ERROR_TITLE
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -32,8 +32,7 @@ class LoginFragment : Fragment() {
     private var _binding: LoginFragmentBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
-    lateinit var pref: SharedPreferenceManager
+    private lateinit var pref: SharedPreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +44,7 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pref = SharedPreferenceManager(requireContext())
 
         binding.btnLogin.setOnClickListener {
             it.popTap()
@@ -84,7 +84,7 @@ class LoginFragment : Fragment() {
                 is ApiResponse.Error -> {
                     Timber.d("Error ${response.errorMessage}")
                     showLoading(false)
-                    requireContext().showErrorDialog(response.errorMessage)
+                    requireContext().showOKDialog(ERROR_TITLE, response.errorMessage)
                 }
                 is ApiResponse.Success -> {
                     Timber.d("token is ${response.data}")

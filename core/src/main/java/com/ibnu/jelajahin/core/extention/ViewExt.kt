@@ -1,11 +1,10 @@
-package com.ibnu.jelajahin.extention
+package com.ibnu.jelajahin.core.extention
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContentProviderCompat.requireContext
 
 
 fun View.popTap(){
@@ -36,9 +35,9 @@ fun View.popTap(){
     scaleUp.start()
 }
 
-fun Context.showErrorDialog(message: String){
+fun Context.showOKDialog(title: String, message: String){
     AlertDialog.Builder(this).apply {
-        setTitle("Oops Ada Kesalahan")
+        setTitle(title)
         setMessage(message)
         setPositiveButton("OK") { p0, _ ->
             p0.dismiss()

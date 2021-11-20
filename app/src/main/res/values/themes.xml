@@ -35,6 +35,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="JelajahinPrimaryButton">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/bg_rounded_corner_solid</item>
+    </style>
+
 
 
 </resources>

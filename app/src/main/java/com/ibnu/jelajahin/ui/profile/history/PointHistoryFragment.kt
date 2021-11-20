@@ -13,11 +13,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ibnu.jelajahin.core.data.model.PointHistory
-import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.ui.adapter.HistoryPointAdapter
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentPointHistoryBinding
-import com.ibnu.jelajahin.extention.popTap
+import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.ui.profile.ProfileViewModel
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +34,7 @@ class PointHistoryFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var mAdapter: HistoryPointAdapter
+    private lateinit var pref: SharedPreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +46,8 @@ class PointHistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pref = SharedPreferenceManager(requireContext())
+        val token: String = pref.getToken ?: ""
         binding.appBar.imgBack.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
@@ -56,7 +58,7 @@ class PointHistoryFragment : Fragment() {
 
         initiateRecyclerview()
         lifecycleScope.launch {
-            viewModel.getUserPointHistory().collect { points ->
+            viewModel.getUserPointHistory(token).collect { points ->
                mAdapter.submitData(points)
             }
         }

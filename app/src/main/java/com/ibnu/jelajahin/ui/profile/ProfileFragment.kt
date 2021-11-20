@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,14 +17,13 @@ import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
-import com.ibnu.jelajahin.extention.getUserLevel
-import com.ibnu.jelajahin.extention.getUserLevelProgressInPercent
-import com.ibnu.jelajahin.extention.getUserLevelProgressInPercentAsInt
-import com.ibnu.jelajahin.extention.popTap
+import com.ibnu.jelajahin.core.extention.getUserLevel
+import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercent
+import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercentAsInt
+import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(), View.OnClickListener {
@@ -33,7 +33,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private var _binding: ProfileFragmentBinding? = null
     private val binding get() = _binding!!
 
-    @Inject
     lateinit var pref: SharedPreferenceManager
 
     private var token: String = ""
@@ -48,6 +47,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        pref = SharedPreferenceManager(requireContext())
         token = pref.getToken ?: ""
         Timber.d("Token is $token")
         if (token == "") {
@@ -114,8 +114,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutLogout -> {
                 p0.popTap()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    pref.clearPreferenceByKey(KEY_TOKEN)
-                    findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+                    logoutDialog()
                 }, FAST_ANIMATION_TIME)
             }
             binding.profileComponent.layoutAbout -> {
@@ -149,6 +148,25 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 Timber.d("Menekan layout syarat dan ketentuan")
             }
         }
+    }
+
+    private fun logoutDialog() {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Logout")
+            setMessage("Apakah Anda yakin untuk logout?")
+            setNegativeButton("Tidak") { p0, _ ->
+                p0.dismiss()
+            }
+            setPositiveButton("IYA") { _, _ ->
+                try {
+                    pref.clearPreferenceByKey(KEY_TOKEN)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                } finally {
+                    findNavController().navigate(R.id.action_profileFragment_to_loginFragment)
+                }
+            }
+        }.create().show()
     }
 
     override fun onDestroyView() {
