@@ -1,5 +1,7 @@
 package com.ibnu.jelajahin.core.utils
 
+import android.Manifest
+
 object JelajahinConstValues {
 
     const val BASE_URL = "http://192.168.1.9:8000/"
@@ -10,4 +12,6 @@ object JelajahinConstValues {
     const val PREFS_NAME = "jelajahin.pref"
     const val KEY_TOKEN = "key.token"
 
+    val LOCATION_PERMISSION = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+    const val RC_LOCATION = 123
 }

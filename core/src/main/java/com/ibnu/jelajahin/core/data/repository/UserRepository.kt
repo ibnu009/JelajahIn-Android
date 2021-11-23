@@ -5,6 +5,7 @@ import com.ibnu.jelajahin.core.data.model.PointHistory
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
+import com.ibnu.jelajahin.core.data.remote.request.PointBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
 import com.ibnu.jelajahin.core.data.source.UserDataSource
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
@@ -33,5 +34,13 @@ class UserRepository @Inject constructor(
 
     fun getUserPointHistory(token: String): Flow<PagingData<PointHistory>> {
         return userDataSource.fetchListPointHistory(token)
+    }
+
+    suspend fun addUserPoint(token: String, request: PointBody): Flow<ApiResponse<String>> {
+        return userDataSource.addUserPoint(token, request).flowOn(Dispatchers.IO)
+    }
+
+    suspend fun insertPointToHistory(token: String, request: PointBody): Flow<ApiResponse<String>> {
+        return userDataSource.postHistoryPoints(token, request).flowOn(Dispatchers.IO)
     }
 }

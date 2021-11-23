@@ -8,5 +8,7 @@ data class PointBody(
     @field:SerializedName("quantity_xp")
     val xpQuantity: Int,
     @field:SerializedName("type")
-    val transactionType: Int
+    val transactionType: Int,
+    @field:SerializedName("created_date")
+val createdDate: String,
 )

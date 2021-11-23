@@ -14,3 +14,9 @@ fun String.parseHour(): String {
     val formatter = SimpleDateFormat("HH:mm", Locale.ROOT)
     return formatter.format(parser.parse(this) ?: Date())
 }
+
+fun Date.parseToString(): String {
+    val format = "dd MMMM yyyy HH:mm:ss"
+    val formatter = SimpleDateFormat(format, Locale.getDefault())
+    return formatter.format(this)
+}

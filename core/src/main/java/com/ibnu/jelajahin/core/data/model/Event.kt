@@ -1,7 +1,10 @@
 package com.ibnu.jelajahin.core.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Event(
 
     @field:SerializedName("uuid_event")
@@ -41,4 +44,4 @@ data class Event(
 
     @field:SerializedName("is_free")
     val isFree: Int
-)
+): Parcelable

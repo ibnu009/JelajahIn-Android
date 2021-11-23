@@ -29,7 +29,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-
 @AndroidEntryPoint
 class EventDetailFragment : Fragment() {
 
@@ -117,7 +116,7 @@ class EventDetailFragment : Fragment() {
 
         binding.btnHadiriEvent.setOnClickListener {
             it.popTap()
-            compareCurrentTimeWithEventTime(event.schedule)
+            compareCurrentTimeWithEventTime(event)
         }
 
     }
@@ -136,10 +135,10 @@ class EventDetailFragment : Fragment() {
         }
     }
 
-    private fun compareCurrentTimeWithEventTime(eventSchedule: String) {
+    private fun compareCurrentTimeWithEventTime(event: Event) {
 
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ROOT)
-        val eventDate = parser.parse(eventSchedule) ?: Date()
+        val eventDate = parser.parse(event.schedule) ?: Date()
 
         val milliSeconds = eventDate.time - Calendar.getInstance().timeInMillis
         val days = TimeUnit.DAYS.convert(milliSeconds, TimeUnit.MILLISECONDS)
@@ -159,7 +158,8 @@ class EventDetailFragment : Fragment() {
                 )
             }
             hours > -3 -> {
-                Timber.d("Udah mulai!")
+                val action = EventDetailFragmentDirections.actionEventDetailFragmentToAttendEventFragment(event)
+                findNavController().navigate(action)
             }
             else -> {
                 requireContext().showOKDialog(

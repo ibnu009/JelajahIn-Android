@@ -67,11 +67,25 @@
             android:name="uuidEvent"
             app:argType="string"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_eventDetailFragment_to_attendEventFragment"
+            app:destination="@id/attendEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/pointHistoryFragment"
         android:name="com.ibnu.jelajahin.ui.profile.history.PointHistoryFragment"
         android:label="fragment_point_history"
         tools:layout="@layout/fragment_point_history" />
+    <fragment
+        android:id="@+id/attendEventFragment"
+        android:name="com.ibnu.jelajahin.ui.event.attend.AttendEventFragment"
+        android:label="fragment_attend_event"
+        tools:layout="@layout/fragment_attend_event" >
+
+
+        <argument
+            android:name="event"
+            app:argType="com.ibnu.jelajahin.core.data.model.Event" />
+    </fragment>
 
 </navigation>

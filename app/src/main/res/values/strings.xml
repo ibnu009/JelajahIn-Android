@@ -47,5 +47,7 @@
     <string name="empty_poin_history_text">Belum ada riwayat poin, yuk ikutin event supaya kamu dapet Jelajahin Poin</string>
     <string name="lokasi">Lokasi</string>
     <string name="hadiri_event">Hadiri Event</string>
+    <string name="guide_event_confirmation">Tekan tombol konfirmasi kehadiran untuk mengkonfirmasi bahwa kamu beneran hadir di event ini</string>
+    <string name="konfirmasi_kehadiran">Konfirmasi Kehadiran</string>
 
 </resources>

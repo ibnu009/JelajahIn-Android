@@ -7,16 +7,12 @@ import com.ibnu.jelajahin.core.data.model.PointHistory
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.network.UserService
-import com.ibnu.jelajahin.core.data.remote.request.HistoryPointBody
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
+import com.ibnu.jelajahin.core.data.remote.request.PointBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
-import com.ibnu.jelajahin.core.data.remote.response.UserResponse
-import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_SIZE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import okhttp3.OkHttp
-import retrofit2.http.HTTP
 import java.net.HttpURLConnection
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -78,8 +74,40 @@ class UserDataSource @Inject constructor(private val userService: UserService){
                 pageSize = DEFAULT_PAGE_SIZE,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = {HistoryPointPagingFactory(userService, token)}
+            pagingSourceFactory = { HistoryPointPagingFactory(userService, token) }
         ).flow
+    }
+
+    suspend fun addUserPoint(token: String, request: PointBody): Flow<ApiResponse<String>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = userService.addPointToUser(token, request)
+                if (response.status == HttpURLConnection.HTTP_CREATED) {
+                    emit(ApiResponse.Success(response.message))
+                } else {
+                    emit(ApiResponse.Error(response.message))
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }
+    }
+
+    suspend fun postHistoryPoints(token: String, request: PointBody): Flow<ApiResponse<String>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = userService.insertPointToUserHistory(token, request)
+                if (response.status == HttpURLConnection.HTTP_CREATED || response.status == HttpURLConnection.HTTP_OK) {
+                    emit(ApiResponse.Success(response.message))
+                } else {
+                    emit(ApiResponse.Error(response.message))
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+            }
+        }
     }
 
 }
