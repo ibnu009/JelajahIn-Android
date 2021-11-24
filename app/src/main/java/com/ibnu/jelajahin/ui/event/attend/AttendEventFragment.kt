@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.switchMap
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -98,12 +99,11 @@ class AttendEventFragment : Fragment() {
             val pointBody = PointBody(
                 xpQuantity = event?.xpReward ?: 0,
                 createdDate = currentTime,
-                pointQuantity = event?.xpReward ?: 0,
+                pointQuantity = event?.pointReward ?: 0,
                 transactionType = 1
             )
-            viewModel.addUserPoint(token, pointBody).switchMap { _ ->
-                viewModel.insertIntoPointHistory(token, pointBody)
-            }.observe(viewLifecycleOwner, { response ->
+            viewModel.addUserPoint(token, pointBody).observe(viewLifecycleOwner, {
+                    response ->
                 when (response) {
                     is ApiResponse.Loading -> {
                         Timber.d("Loading")
@@ -113,6 +113,8 @@ class AttendEventFragment : Fragment() {
                     }
                     is ApiResponse.Success -> {
                         Timber.d("Success ${response.data}")
+                        val action = event?.let { AttendEventFragmentDirections.actionAttendEventFragmentToSuccessAttendFragment(it) }
+                        action?.let { findNavController().navigate(it) }
                     }
                     else -> {
                         Timber.d("Unknown Error")

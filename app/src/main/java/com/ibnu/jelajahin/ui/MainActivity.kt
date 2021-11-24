@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         binding?.bottomNav?.setupWithNavController(navControllerBottomBar)
         navControllerBottomBar.addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.homeFragment || destination.id == R.id.eventFragment || destination.id == R.id.discoverFragment || destination.id == R.id.savedFragment || destination.id == R.id.profileFragment) {
+            if (destination.id == R.id.homeFragment || destination.id == R.id.eventFragment || destination.id == R.id.discoveryFragment || destination.id == R.id.savedFragment || destination.id == R.id.profileFragment) {
                 binding?.bottomNav?.visibility = View.VISIBLE
             } else {
                 binding?.bottomNav?.visibility = View.GONE

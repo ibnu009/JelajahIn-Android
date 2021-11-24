@@ -7,6 +7,7 @@
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_button.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_input.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_rounded_corner_solid.xml" value="0.2169230769230769" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_rounded_corner_stroke.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/bg_searchview.xml" value="0.16666666666666666" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/circle.xml" value="0.2169230769230769" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/drawable/customprogress.xml" value="0.2169230769230769" />
@@ -26,7 +27,9 @@
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_point_history.xml" value="0.14" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_splash_screen.xml" value="0.5" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_success_attend.xml" value="0.25" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/login_fragment.xml" value="0.33" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/penginapan_fragment.xml" value="0.25" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/profile_fragment.xml" value="0.2475795297372061" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/profile_fragment_menu_component.xml" value="0.33" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/register_fragment.xml" value="0.25" />

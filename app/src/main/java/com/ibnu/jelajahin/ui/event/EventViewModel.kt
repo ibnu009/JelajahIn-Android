@@ -44,15 +44,4 @@ class EventViewModel @Inject constructor(
         }
         return result
     }
-
-    fun insertIntoPointHistory(token: String, request: PointBody): LiveData<ApiResponse<String>> {
-        val result = MutableLiveData<ApiResponse<String>>()
-        viewModelScope.launch {
-            userRepository.insertPointToHistory(token, request).collect {
-                result.postValue(it)
-            }
-        }
-        return result
-    }
-
 }

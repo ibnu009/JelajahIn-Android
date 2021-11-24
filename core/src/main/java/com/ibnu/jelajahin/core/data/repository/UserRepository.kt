@@ -12,6 +12,7 @@ import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -37,10 +38,6 @@ class UserRepository @Inject constructor(
     }
 
     suspend fun addUserPoint(token: String, request: PointBody): Flow<ApiResponse<String>> {
-        return userDataSource.addUserPoint(token, request).flowOn(Dispatchers.IO)
-    }
-
-    suspend fun insertPointToHistory(token: String, request: PointBody): Flow<ApiResponse<String>> {
-        return userDataSource.postHistoryPoints(token, request).flowOn(Dispatchers.IO)
+        return userDataSource.addUserPoint(token, request)
     }
 }

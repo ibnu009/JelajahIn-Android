@@ -83,7 +83,8 @@ class UserDataSource @Inject constructor(private val userService: UserService){
             try {
                 emit(ApiResponse.Loading)
                 val response = userService.addPointToUser(token, request)
-                if (response.status == HttpURLConnection.HTTP_CREATED) {
+                val responseHistory = userService.insertPointToUserHistory(token, request)
+                if (response.status == HttpURLConnection.HTTP_CREATED && responseHistory.status == HttpURLConnection.HTTP_CREATED) {
                     emit(ApiResponse.Success(response.message))
                 } else {
                     emit(ApiResponse.Error(response.message))
@@ -93,21 +94,4 @@ class UserDataSource @Inject constructor(private val userService: UserService){
             }
         }
     }
-
-    suspend fun postHistoryPoints(token: String, request: PointBody): Flow<ApiResponse<String>> {
-        return flow {
-            try {
-                emit(ApiResponse.Loading)
-                val response = userService.insertPointToUserHistory(token, request)
-                if (response.status == HttpURLConnection.HTTP_CREATED || response.status == HttpURLConnection.HTTP_OK) {
-                    emit(ApiResponse.Success(response.message))
-                } else {
-                    emit(ApiResponse.Error(response.message))
-                }
-            } catch (e: Exception) {
-                emit(ApiResponse.Error(e.message.toString()))
-            }
-        }
-    }
-
 }

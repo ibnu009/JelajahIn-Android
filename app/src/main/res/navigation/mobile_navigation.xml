@@ -82,10 +82,31 @@
         android:label="fragment_attend_event"
         tools:layout="@layout/fragment_attend_event" >
 
-
         <argument
             android:name="event"
             app:argType="com.ibnu.jelajahin.core.data.model.Event" />
+        <action
+            android:id="@+id/action_attendEventFragment_to_successAttendFragment"
+            app:destination="@id/successAttendFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/eventFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/successAttendFragment"
+        android:name="com.ibnu.jelajahin.ui.event.attend.SuccessAttendFragment"
+        android:label="fragment_success_attend"
+        tools:layout="@layout/fragment_success_attend" >
+        <argument
+            android:name="event"
+            app:argType="com.ibnu.jelajahin.core.data.model.Event" />
+        <action
+            android:id="@+id/action_successAttendFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+        <action
+            android:id="@+id/action_successAttendFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:popUpToInclusive="false" />
     </fragment>
 
 </navigation>

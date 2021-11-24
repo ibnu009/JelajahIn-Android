@@ -1,6 +1,7 @@
 package com.ibnu.jelajahin.ui.event.detail
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -14,14 +15,11 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
-import com.ibnu.jelajahin.core.extention.parseDateMonthAndYear
-import com.ibnu.jelajahin.core.extention.parseHour
-import com.ibnu.jelajahin.core.extention.popTap
-import com.ibnu.jelajahin.core.extention.showOKDialog
+import com.ibnu.jelajahin.core.extention.*
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.EVENT_MARKER
 import com.ibnu.jelajahin.databinding.EventDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -51,6 +49,7 @@ class EventDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.appBar.tvToolbarTitle.text = "Detail Event"
+        binding.appBar.root.setBackgroundColor(Color.parseColor("#ffffff"))
         binding.appBar.imgBack.setOnClickListener {
             it.popTap()
             findNavController().popBackStack()
@@ -107,7 +106,7 @@ class EventDetailFragment : Fragment() {
             mMap = googleMap
             // Add a marker to event location and move the camera
             val eventLocation = LatLng(event.latitude, event.longtitude)
-            mMap.addMarker(MarkerOptions().position(eventLocation).title(event.name))
+            mMap.addSingleMarker(eventLocation, event.name, EVENT_MARKER, event.uuidEvent)
 
             val zoomLevel = 18.0f
             val cu = CameraUpdateFactory.newLatLngZoom(eventLocation, zoomLevel)
@@ -118,7 +117,6 @@ class EventDetailFragment : Fragment() {
             it.popTap()
             compareCurrentTimeWithEventTime(event)
         }
-
     }
 
     private fun showLoading(isLoading: Boolean){

@@ -40,6 +40,11 @@
         <item name="android:background">@drawable/bg_rounded_corner_solid</item>
     </style>
 
+    <style name="JelajahinPrimaryButtonBorder">
+        <item name="android:textColor">@color/dark_green_2</item>
+        <item name="android:background">@drawable/bg_rounded_corner_stroke</item>
+    </style>
+
 
 
 </resources>

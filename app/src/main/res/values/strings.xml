@@ -49,5 +49,8 @@
     <string name="hadiri_event">Hadiri Event</string>
     <string name="guide_event_confirmation">Tekan tombol konfirmasi kehadiran untuk mengkonfirmasi bahwa kamu beneran hadir di event ini</string>
     <string name="konfirmasi_kehadiran">Konfirmasi Kehadiran</string>
+    <string name="congrat">Wih siap! Selamat ya. Kini kamu berhak buat dapetin</string>
+    <string name="findmorevent">Cari event lagi</string>
+    <string name="toprofile">Kembali ke profile</string>
 
 </resources>

@@ -16,7 +16,7 @@ fun String.parseHour(): String {
 }
 
 fun Date.parseToString(): String {
-    val format = "dd MMMM yyyy HH:mm:ss"
-    val formatter = SimpleDateFormat(format, Locale.getDefault())
+    val format = "dd MMMM yyyy"
+    val formatter = SimpleDateFormat(format, Locale.ROOT)
     return formatter.format(this)
 }

@@ -9,6 +9,9 @@ object JelajahinConstValues {
     const val DEFAULT_PAGE_INDEX = 1
     const val DEFAULT_PAGE_SIZE = 10
 
+    const val RESTAURANT_MARKER = "restaurant.marker.map"
+    const val EVENT_MARKER = "event.marker.map"
+
     const val PREFS_NAME = "jelajahin.pref"
     const val KEY_TOKEN = "key.token"
 

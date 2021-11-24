@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.event.attend.SuccessAttendFragment">
+
+    <ImageView
+        android:id="@+id/winnerImage"
+        android:src="@drawable/winner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/space_xxxtra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/congratsText"
+        android:text="@string/congrat"
+        style="@style/JelajahinTitleText"
+        android:textColor="@color/green"
+        android:layout_marginTop="@dimen/space_xxxtra"
+        android:textAlignment="center"
+        android:layout_marginHorizontal="@dimen/space_triple"
+        android:layout_below="@id/winnerImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/llEventReward"
+        android:layout_below="@id/congratsText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/space_xxxtra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/cvReward"
+            layout="@layout/reward_item_layout" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_quadruple"
+        android:layout_below="@id/llEventReward"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackToProfile"
+            android:layout_width="wrap_content"
+            android:text="@string/toprofile"
+            android:textAllCaps="false"
+            android:layout_marginHorizontal="@dimen/space"
+            style="@style/JelajahinPrimaryButton"
+            android:paddingHorizontal="@dimen/space_quadruple"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBackToEvent"
+            android:layout_width="wrap_content"
+            android:text="@string/findmorevent"
+            android:layout_marginHorizontal="@dimen/space"
+            android:textAllCaps="false"
+            style="@style/JelajahinPrimaryButtonBorder"
+            android:paddingHorizontal="@dimen/space_quadruple"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+</RelativeLayout>
