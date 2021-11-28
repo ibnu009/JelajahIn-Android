@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/space_double"
+    android:layout_marginTop="@dimen/space_double"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgPersonUlasan"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvUlasanTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Test Judul" />
+
+    <TextView
+        android:id="@+id/tvUlasanContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUlasanTitle"
+        android:layout_marginStart="@dimen/space"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:maxLines="3"
+        tools:text="@tools:sample/lorem/random" />
+
+</RelativeLayout>

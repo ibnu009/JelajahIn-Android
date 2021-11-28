@@ -6,14 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
+import com.ibnu.jelajahin.core.data.model.Wisata
+import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
+import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
+import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
 import com.ibnu.jelajahin.databinding.WisataFragmentBinding
+import com.ibnu.jelajahin.ui.event.detail.EventDetailFragmentArgs
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
+@AndroidEntryPoint
 class WisataDetailFragment : Fragment() {
 
     private val viewModel: WisataViewModel by viewModels()
 
-    private var _binding: WisataFragmentBinding? = null
+    private var _binding: FragmentWisataDetailBinding? = null
     private val binding get() = _binding!!
 
 
@@ -21,7 +32,72 @@ class WisataDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = WisataFragmentBinding.inflate(inflater, container, false)
-        return _binding?.root    }
+        _binding = FragmentWisataDetailBinding.inflate(inflater, container, false)
+        return _binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initiateAppbar()
+        val safeArgs = arguments?.let { WisataDetailFragmentArgs.fromBundle(it) }
+        val uuidWisata = safeArgs?.uuidWisata ?: ""
+
+        viewModel.getWisataDetail(uuidWisata).observe(viewLifecycleOwner, { response ->
+            when(response){
+                is ApiResponse.Loading -> {
+                    Timber.d("Loading")
+                    showLoading(true)
+                }
+                is ApiResponse.Error -> {
+                    Timber.d("Error ${response.errorMessage}")
+                    showLoading(false)
+                }
+                is ApiResponse.Success -> {
+                    loadUiDetailWisata(response.data)
+                    showLoading(false)
+                }
+                else -> {
+                    Timber.d("Unknown Error")
+                }
+            }
+        })
+    }
+
+    private fun initiateAppbar(){
+//        binding.appB.imgBack.setOnClickListener {
+//            it.popTap()
+//            findNavController().popBackStack()
+//        }
+    }
+
+    private fun loadUiDetailWisata(wisata: Wisata) {
+        binding.tvWisataName.text = wisata.name
+        binding.tvWisataLocation.text = wisata.address
+        binding.tvWisataDescription.text = wisata.description
+        binding.tvTicketPrice.text = wisata.ticketPrice
+        binding.tvTicketPriceWeekend.text = wisata.ticketPrice
+        binding.wisataStar.rating = wisata.ratingAverage.toFloat()
+        binding.tvWisataAccreditation.text = wisata.ratingAverage.toJelajahinAccreditation()
+        binding.tvWisataRating.text = if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
+        view?.let {
+            Glide.with(it)
+                .load(wisata.imageUrl)
+                .into(binding.imgWisata)
+        }
+
+    }
+
+    private fun showLoading(isLoading: Boolean){
+        if (isLoading){
+
+        } else {
+
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
 }

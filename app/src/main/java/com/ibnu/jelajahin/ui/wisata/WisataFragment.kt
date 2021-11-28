@@ -51,13 +51,12 @@ class WisataFragment : Fragment(), RecyclerviewItemClickHandler {
         }
 
         binding.btnMap.setOnClickListener {
-
+            it.popTap()
         }
     }
 
     private fun initiateAppbar(cityName: String){
         binding.appBar.tvToolbarTitle.text = "Wisata di $cityName"
-        binding.appBar.root.setBackgroundColor(Color.parseColor("#ffffff"))
         binding.appBar.imgBack.setOnClickListener {
             it.popTap()
             findNavController().popBackStack()

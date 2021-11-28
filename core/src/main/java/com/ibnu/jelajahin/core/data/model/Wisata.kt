@@ -7,7 +7,9 @@ data class Wisata(
     val uuidWisata: String,
     val name: String,
     val description: String,
+    @field:SerializedName("image_url")
     val imageUrl: String,
+    @field:SerializedName("ticket_price")
     val ticketPrice: String,
     val address: String,
     val latitude: Double,
