@@ -89,6 +89,10 @@ class RegisterFragment : Fragment() {
         binding.edtFullname.isClickable = !isLoading
         binding.edtConfirmPassword.isClickable = !isLoading
         binding.btnRegister.isClickable = !isLoading
+        binding.edtEmail.isEnabled = !isLoading
+        binding.edtConfirmPassword.isEnabled = !isLoading
+        binding.edtFullname.isEnabled = !isLoading
+        binding.edtPassword.isEnabled = !isLoading
     }
 
     private fun showSuccessDialog(){

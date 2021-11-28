@@ -103,7 +103,9 @@ class LoginFragment : Fragment() {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.edtEmail.isClickable = !isLoading
+        binding.edtEmail.isEnabled = !isLoading
         binding.edtPassword.isClickable = !isLoading
+        binding.edtPassword.isEnabled = !isLoading
         binding.btnLogin.isClickable = !isLoading
     }
 

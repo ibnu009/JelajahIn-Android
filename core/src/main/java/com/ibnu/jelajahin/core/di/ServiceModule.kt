@@ -2,6 +2,7 @@ package com.ibnu.jelajahin.core.di
 
 import com.ibnu.jelajahin.core.data.remote.network.EventService
 import com.ibnu.jelajahin.core.data.remote.network.UserService
+import com.ibnu.jelajahin.core.data.remote.network.WisataService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,5 +23,9 @@ class ServiceModule {
         return retrofit.create(UserService::class.java)
     }
 
+    @Provides
+    fun provideWisataService(retrofit: Retrofit): WisataService {
+        return retrofit.create(WisataService::class.java)
+    }
 
 }

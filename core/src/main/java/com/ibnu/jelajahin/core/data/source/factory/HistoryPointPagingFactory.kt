@@ -1,4 +1,4 @@
-package com.ibnu.jelajahin.core.data.source
+package com.ibnu.jelajahin.core.data.source.factory
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

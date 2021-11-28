@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.wisata.WisataDetailFragment">
+
+   <ImageView
+       android:id="@+id/imgWisata"
+       android:scaleType="fitXY"
+       tools:background="@drawable/winner"
+       android:layout_width="match_parent"
+       android:layout_height="300dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/llContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/bg_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvWisataName"
+                style="@style/JelajahinTitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_double"
+                android:layout_marginTop="@dimen/space_quintuple"
+                tools:text="Kawah Ijen" />
+
+            <TextView
+                android:id="@+id/tvWisataLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_double"
+                android:layout_marginTop="@dimen/space"
+                app:drawableStartCompat="@drawable/ic_location"
+                tools:text="Bondowoso, Jawa Timur" />
+
+            <TextView
+                android:id="@+id/tvWisataDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_double"
+                android:layout_marginTop="@dimen/space_double"
+                android:ellipsize="end"
+                android:maxLines="4"
+                tools:text="@tools:sample/lorem/random" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="@dimen/space_double"
+                android:showDividers="middle"
+                android:divider="@drawable/vertical_divider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_marginStart="@dimen/space_double"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvWisataRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/green_button"
+                        android:textSize="@dimen/font_xxbig"
+                        android:textStyle="bold"
+                        tools:text="4,2" />
+
+                    <TextView
+                        android:id="@+id/tvWisataAccreditation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_toEndOf="@id/tvWisataRating"
+                        android:textStyle="bold"
+                        android:textColor="@color/blackTitle"
+                        tools:text="Luar Biasa" />
+
+                    <RatingBar
+                        android:id="@+id/wisataStar"
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvWisataAccreditation"
+                        android:layout_marginStart="6dp"
+                        android:layout_toEndOf="@id/tvWisataRating"
+                        android:numStars="5"
+                        android:rating="4.5" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:text="@string/harga_tiket"
+                        android:layout_marginStart="@dimen/space"
+                        android:textStyle="bold"
+                        android:textColor="@color/blackTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTicketPrice"
+                        tools:text="Rp 20.000"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:text="@string/harga_tiket_weekend"
+                        android:layout_marginStart="@dimen/space"
+                        android:textStyle="bold"
+                        android:textColor="@color/blackTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/tvTicketPriceWeekend"
+                        tools:text="Rp 25.000"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iconChat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/space_double"
+                        android:src="@drawable/ic_chat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_toEndOf="@id/iconChat"
+                        android:text="@string/pendapat_pengunjung"
+                        android:textColor="@color/blackTitle"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnLihatWisata"
+                        style="@style/JelajahinTextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/space_double"
+                        android:text="@string/semua_ulasan"
+                        android:textAllCaps="false"
+                        android:textColor="@color/green_button"
+                        android:textSize="@dimen/font_medium"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvUlasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_double" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/btnBookmark"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginEnd="@dimen/space_triple"
+            android:background="@drawable/circle"
+            app:cardCornerRadius="100dp"
+            app:cardElevation="@dimen/space"
+            app:layout_constraintBottom_toTopOf="@+id/llContent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/llContent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_bookmark" />
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</RelativeLayout>

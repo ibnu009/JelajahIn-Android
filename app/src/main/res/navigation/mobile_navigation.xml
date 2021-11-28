@@ -31,7 +31,17 @@
         android:id="@+id/homeFragment"
         android:name="com.ibnu.jelajahin.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_wisataFragment"
+            app:destination="@id/wisataFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_penginapanFragment"
+            app:destination="@id/penginapanFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantFragment"
+            app:destination="@id/restaurantFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ibnu.jelajahin.ui.profile.ProfileFragment"
@@ -107,6 +117,45 @@
             android:id="@+id/action_successAttendFragment_to_profileFragment"
             app:destination="@id/profileFragment"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/wisataFragment"
+        android:name="com.ibnu.jelajahin.ui.wisata.WisataFragment"
+        android:label="wisata_fragment"
+        tools:layout="@layout/wisata_fragment" >
+        <action
+            android:id="@+id/action_wisataFragment_to_wisataDetailFragment"
+            app:destination="@id/wisataDetailFragment" />
+        <action
+            android:id="@+id/action_wisataFragment_to_discoveryFragment"
+            app:destination="@id/discoveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantFragment"
+        android:name="com.ibnu.jelajahin.ui.restaurant.RestaurantFragment"
+        android:label="restaurant_fragment"
+        tools:layout="@layout/restaurant_fragment" >
+        <action
+            android:id="@+id/action_restaurantFragment_to_discoveryFragment"
+            app:destination="@id/discoveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/penginapanFragment"
+        android:name="com.ibnu.jelajahin.ui.penginapan.PenginapanFragment"
+        android:label="penginapan_fragment"
+        tools:layout="@layout/penginapan_fragment" >
+        <action
+            android:id="@+id/action_penginapanFragment_to_discoveryFragment"
+            app:destination="@id/discoveryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wisataDetailFragment"
+        android:name="com.ibnu.jelajahin.ui.wisata.WisataDetailFragment"
+        android:label="fragment_wisata_detail"
+        tools:layout="@layout/fragment_wisata_detail" >
+        <argument
+            android:name="uuidWisata"
+            app:argType="string" />
     </fragment>
 
 </navigation>

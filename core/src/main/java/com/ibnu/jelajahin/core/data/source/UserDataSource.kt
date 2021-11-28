@@ -10,6 +10,7 @@ import com.ibnu.jelajahin.core.data.remote.network.UserService
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.PointBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
+import com.ibnu.jelajahin.core.data.source.factory.HistoryPointPagingFactory
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_SIZE
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

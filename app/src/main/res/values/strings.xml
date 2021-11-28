@@ -52,5 +52,8 @@
     <string name="congrat">Wih siap! Selamat ya. Kini kamu berhak buat dapetin</string>
     <string name="findmorevent">Cari event lagi</string>
     <string name="toprofile">Kembali ke profile</string>
+    <string name="semua_ulasan">Semua ulasan</string>
+    <string name="harga_tiket">Harga Tiket</string>
+    <string name="harga_tiket_weekend">Harga Tiket Weekend</string>
 
 </resources>
