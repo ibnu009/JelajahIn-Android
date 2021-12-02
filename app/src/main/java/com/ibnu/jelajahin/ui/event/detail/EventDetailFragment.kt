@@ -107,10 +107,7 @@ class EventDetailFragment : Fragment() {
             // Add a marker to event location and move the camera
             val eventLocation = LatLng(event.latitude, event.longtitude)
             mMap.addSingleMarker(eventLocation, event.name, EVENT_MARKER, event.uuidEvent)
-
-            val zoomLevel = 18.0f
-            val cu = CameraUpdateFactory.newLatLngZoom(eventLocation, zoomLevel)
-            mMap.animateCamera(cu, 1000, null)
+            mMap.animateCameraToSingleMarker(eventLocation)
         }
 
         binding.btnHadiriEvent.setOnClickListener {

@@ -67,7 +67,17 @@
         android:id="@+id/discoveryFragment"
         android:name="com.ibnu.jelajahin.ui.discovery.DiscoveryFragment"
         android:label="discovery_fragment"
-        tools:layout="@layout/discovery_fragment" />
+        tools:layout="@layout/discovery_fragment" >
+        <argument
+            android:name="mapType"
+            app:argType="string" />
+        <argument
+            android:name="cityId"
+            app:argType="integer" />
+        <argument
+            android:name="provinceId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/eventDetailFragment"
         android:name="com.ibnu.jelajahin.ui.event.detail.EventDetailFragment"
@@ -125,7 +135,11 @@
         tools:layout="@layout/wisata_fragment" >
         <action
             android:id="@+id/action_wisataFragment_to_wisataDetailFragment"
-            app:destination="@id/wisataDetailFragment" />
+            app:destination="@id/wisataDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
         <action
             android:id="@+id/action_wisataFragment_to_discoveryFragment"
             app:destination="@id/discoveryFragment" />

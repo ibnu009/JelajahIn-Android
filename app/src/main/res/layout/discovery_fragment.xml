@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.discovery.DiscoveryFragment">
 
     <fragment
@@ -12,4 +13,24 @@
         android:layout_height="match_parent"
         android:touchscreenBlocksFocus="true" />
 
-</FrameLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnBounds"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/space_double"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="@dimen/font_xxbig"
+        app:cardElevation="@dimen/space">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_open_with" />
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,20 +1,26 @@
 package com.ibnu.jelajahin.ui.wisata
 
-import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ibnu.jelajahin.R
+import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.ui.adapter.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.ui.adapter.WisataAdapter
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.REQUEST_OPEN_MAP_WISATA
 import com.ibnu.jelajahin.databinding.WisataFragmentBinding
+import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -45,13 +51,21 @@ class WisataFragment : Fragment(), RecyclerviewItemClickHandler {
         initiateAppbar("Bondowoso")
         initiateAdapter()
         lifecycleScope.launch {
-            viewModel.getListWisata(1,1).collect { events ->
-                adapter.submitData(events)
+            viewModel.getListWisata(1,1).collect { wisata ->
+                adapter.submitData(wisata)
             }
         }
 
         binding.btnMap.setOnClickListener {
             it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                val action = WisataFragmentDirections.actionWisataFragmentToDiscoveryFragment(
+                    mapType = REQUEST_OPEN_MAP_WISATA,
+                    cityId = 1,
+                    provinceId = 1
+                )
+                findNavController().navigate(action)
+            }, UiConstValue.FAST_ANIMATION_TIME)
         }
     }
 
@@ -109,5 +123,8 @@ class WisataFragment : Fragment(), RecyclerviewItemClickHandler {
         findNavController().navigate(action)
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

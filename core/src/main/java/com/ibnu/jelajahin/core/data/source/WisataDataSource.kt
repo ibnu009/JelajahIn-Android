@@ -27,8 +27,35 @@ class WisataDataSource@Inject constructor(
                 pageSize = JelajahinConstValues.DEFAULT_PAGE_SIZE,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { WisataPagingFactory(wisataService, provinceId, cityId) }
+            pagingSourceFactory = { WisataPagingFactory(wisataService, provinceId, cityId, null) }
         ).flow
+    }
+
+    fun getStreamWisataSearch(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Wisata>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = JelajahinConstValues.DEFAULT_PAGE_SIZE,
+                enablePlaceholders = true
+            ),
+            pagingSourceFactory = { WisataPagingFactory(wisataService, provinceId, cityId, searchQuery) }
+        ).flow
+    }
+
+    suspend fun getWisataLocations(provinceId: Int, cityId: Int): Flow<ApiResponse<List<Wisata>>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = wisataService.getWisataLocations(provinceId, cityId)
+                if (response.rowCount > 0){
+                    emit(ApiResponse.Success(response.wisata))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception){
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e("Error Event $e")
+            }
+        }.flowOn(Dispatchers.IO)
     }
 
     suspend fun getWisataById(wisataUuid: String): Flow<ApiResponse<Wisata>> {

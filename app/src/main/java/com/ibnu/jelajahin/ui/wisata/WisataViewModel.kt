@@ -27,6 +27,11 @@ class WisataViewModel @Inject constructor(
             .cachedIn(viewModelScope)
     }
 
+    fun getSearchWisata(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Wisata>> {
+        return wisataRepository.searchWisata(provinceId, cityId, searchQuery)
+            .cachedIn(viewModelScope)
+    }
+
     fun getWisataDetail(wisataUuid: String): LiveData<ApiResponse<Wisata>> {
         val result = MutableLiveData<ApiResponse<Wisata>>()
         viewModelScope.launch {
