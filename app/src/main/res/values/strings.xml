@@ -56,4 +56,15 @@
     <string name="harga_tiket">Harga Tiket</string>
     <string name="harga_tiket_weekend">Harga Tiket Weekend</string>
 
+    <string name="onboarding_first_title">Ready To Travel</string>
+    <string name="onboarding_second_title">Select the date</string>
+    <string name="onboarding_third_title">Feels like home</string>
+
+    <string name="onboarding_first_desc">Choose your destinations, plan your trip. pick the best place for your holiday.</string>
+    <string name="onboarding_second_desc">Select the day, pick your ticket. we give you the best price, we guaranteed!</string>
+    <string name="onboarding_third_desc">Enjoy your holiday! Don\'t forget to take camera and take a photo!</string>
+
+    <string name="next">Next</string>
+    <string name="start_journey">Mulai Petualangan!</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.ibnu.jelajahin.core.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_IS_ALREADY_INTRODUCED
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.PREFS_NAME
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -17,10 +18,16 @@ class SharedPreferenceManager(context: Context) {
         editor.apply()
     }
 
+    fun setBooleanPreference(prefKey: String, value: Boolean){
+        editor.putBoolean(prefKey, value)
+        editor.apply()
+    }
+
     fun clearPreferenceByKey(prefKey: String){
         editor.remove(prefKey)
         editor.apply()
     }
 
     val getToken = prefs.getString(KEY_TOKEN, "")
+    val isAlreadyIntroduced = prefs.getBoolean(KEY_IS_ALREADY_INTRODUCED, false)
 }

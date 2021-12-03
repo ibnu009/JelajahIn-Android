@@ -248,12 +248,16 @@
             android:layout_marginTop="@dimen/space_triple"
             android:layout_marginHorizontal="@dimen/space_quintuple"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
 
-
-
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

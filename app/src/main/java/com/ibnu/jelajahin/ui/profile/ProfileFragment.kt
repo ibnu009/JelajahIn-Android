@@ -53,21 +53,28 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         if (token == "") {
             initiateNotLoggedUser()
         } else {
-            binding.contentProfile.visibility = View.VISIBLE
-            binding.contentNotUser.visibility = View.GONE
+
 
             viewModel.getUserProfile(token).observe(viewLifecycleOwner, Observer { response ->
                 when (response) {
                     is ApiResponse.Loading -> {
                         Timber.d("Loading")
+                        binding.progressBarUser.visibility = View.VISIBLE
+                        binding.contentProfile.visibility = View.GONE
+                        binding.contentNotUser.visibility = View.GONE
                     }
                     is ApiResponse.Error -> {
+                        binding.progressBarUser.visibility = View.GONE
                         Timber.d("Error ${response.errorMessage}")
                     }
                     is ApiResponse.Success -> {
+                        binding.progressBarUser.visibility = View.GONE
+                        binding.contentProfile.visibility = View.VISIBLE
+                        binding.contentNotUser.visibility = View.GONE
                         initiateProfileView(response.data)
                     }
                     else -> {
+                        binding.progressBarUser.visibility = View.GONE
                         Timber.d("Unknown Error")
                     }
                 }

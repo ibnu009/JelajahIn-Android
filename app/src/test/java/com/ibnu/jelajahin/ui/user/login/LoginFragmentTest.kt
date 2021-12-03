@@ -6,8 +6,6 @@ import java.util.regex.Pattern
 
 class LoginFragmentTest {
 
-    //1. annotation "@Test"
-
     @Test
     fun testEmailIsNotEmpty() {
         val mockCorrectEmail = "ibnubatutah001@gmail.com"

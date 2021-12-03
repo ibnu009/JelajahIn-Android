@@ -105,11 +105,21 @@
                 android:textSize="16sp"
                 app:backgroundTint="@null" />
 
+            <Button
+                android:id="@+id/btnLanjut"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/space"
+                android:text="Lanjut Tanpa Login"
+                android:textColor="@color/green_button"
+                android:background="@android:color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginTop="@dimen/space_quintuple"
                 android:text="temukan hal baru disekitarmu!"
                 android:textAlignment="center"
                 android:textColor="@color/black"

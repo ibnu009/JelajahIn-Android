@@ -18,6 +18,7 @@ object JelajahinConstValues {
 
     const val PREFS_NAME = "jelajahin.pref"
     const val KEY_TOKEN = "key.token"
+    const val KEY_IS_ALREADY_INTRODUCED = "key.is.already.introduced"
 
     val LOCATION_PERMISSION = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
     const val RC_LOCATION = 123

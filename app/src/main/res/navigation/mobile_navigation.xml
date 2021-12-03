@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -170,6 +170,47 @@
         <argument
             android:name="uuidWisata"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ibnu.jelajahin.ui.onboarding.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFirstFragment"
+            app:destination="@id/onBoardingFirstFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFirstFragment"
+        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingFirstFragment"
+        android:label="fragment_on_boarding_first"
+        tools:layout="@layout/fragment_on_boarding_first" >
+        <action
+            android:id="@+id/action_onBoardingFirstFragment_to_onBoardingSecondFragment"
+            app:destination="@id/onBoardingSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingSecondFragment"
+        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingSecondFragment"
+        android:label="fragment_on_boarding_second"
+        tools:layout="@layout/fragment_on_boarding_second" >
+        <action
+            android:id="@+id/action_onBoardingSecondFragment_to_onBoardingThirdFragment"
+            app:destination="@id/onBoardingThirdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingThirdFragment"
+        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingThirdFragment"
+        android:label="fragment_on_boarding_third"
+        tools:layout="@layout/fragment_on_boarding_third" >
+        <action
+            android:id="@+id/action_onBoardingThirdFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
 </navigation>

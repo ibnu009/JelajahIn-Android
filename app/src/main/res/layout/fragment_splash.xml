@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboarding.SplashFragment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/jelajahin_logo" />
+
+    <TextView
+        android:id="@+id/tvVersion"
+        tools:text="1.0.0"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:textSize="@dimen/font_big"
+        android:textStyle="bold"
+        android:textColor="@color/green_button"
+        android:layout_marginBottom="@dimen/space_triple"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
