@@ -44,15 +44,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="NAMA MAKANAN" />
 
+            <ImageView
+                android:id="@+id/iconPosition"
+                android:layout_below="@id/tvWisataName"
+                android:src="@drawable/ic_location"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="@dimen/space"
+                android:layout_height="wrap_content"/>
+
             <TextView
                 android:id="@+id/tvWisataLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/tvWisataName"
                 android:layout_marginStart="@dimen/space"
                 android:layout_marginTop="6dp"
-                android:layout_below="@id/tvWisataName"
-                android:drawableStart="@drawable/ic_location"
-                 tools:text="NAMA PEMILIK" />
+                android:layout_toEndOf="@id/iconPosition"
+                android:gravity="top"
+                tools:text="NAMA PEMILIK" />
 
             <LinearLayout
                 android:layout_alignParentBottom="true"

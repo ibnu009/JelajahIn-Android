@@ -44,7 +44,7 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
         initiateAdapter()
         lifecycleScope.launch {
-            viewModel.getEvents(1,1).collect { events ->
+            viewModel.getEvents(15,229).collect { events ->
                 adapter.submitData(events)
             }
         }

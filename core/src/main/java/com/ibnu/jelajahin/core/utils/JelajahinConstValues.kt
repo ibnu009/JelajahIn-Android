@@ -4,7 +4,7 @@ import android.Manifest
 
 object JelajahinConstValues {
 
-    const val BASE_URL = "http://192.168.1.12:8000/"
+    const val BASE_URL = "http://192.168.1.10:8000/"
 
     const val DEFAULT_PAGE_INDEX = 1
     const val DEFAULT_PAGE_SIZE = 10

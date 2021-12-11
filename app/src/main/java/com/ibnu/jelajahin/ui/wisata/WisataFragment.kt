@@ -6,15 +6,13 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ibnu.jelajahin.R
-import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.ui.adapter.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.ui.adapter.WisataAdapter
@@ -35,6 +33,7 @@ class WisataFragment : Fragment(), RecyclerviewItemClickHandler {
     private val binding get() = _binding!!
 
     private lateinit var adapter: WisataAdapter
+    private var isSearching = false
 
 
     override fun onCreateView(
@@ -50,22 +49,43 @@ class WisataFragment : Fragment(), RecyclerviewItemClickHandler {
 
         initiateAppbar("Bondowoso")
         initiateAdapter()
-        lifecycleScope.launch {
-            viewModel.getListWisata(1,1).collect { wisata ->
-                adapter.submitData(wisata)
+        initiateData("")
+
+
+        binding.svWisata.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                initiateData(query ?: "")
+                isSearching = true
+                return false
             }
-        }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText?.isBlank() == true && isSearching){
+                    initiateData("")
+                    isSearching = false
+                }
+                return false
+            }
+        })
+
 
         binding.btnMap.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 val action = WisataFragmentDirections.actionWisataFragmentToDiscoveryFragment(
                     mapType = REQUEST_OPEN_MAP_WISATA,
-                    cityId = 1,
-                    provinceId = 1
+                    cityId = 229,
+                    provinceId = 15
                 )
                 findNavController().navigate(action)
             }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+    }
+
+    private fun initiateData(searchQuery: String){
+        lifecycleScope.launch {
+            viewModel.getListWisata(15, 229, searchQuery = searchQuery).collect { wisata ->
+                adapter.submitData(wisata)
+            }
         }
     }
 

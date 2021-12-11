@@ -179,11 +179,22 @@
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_onBoardingFirstFragment"
             app:destination="@id/onBoardingFirstFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFirstFragment"
@@ -192,7 +203,11 @@
         tools:layout="@layout/fragment_on_boarding_first" >
         <action
             android:id="@+id/action_onBoardingFirstFragment_to_onBoardingSecondFragment"
-            app:destination="@id/onBoardingSecondFragment" />
+            app:destination="@id/onBoardingSecondFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingSecondFragment"
@@ -201,7 +216,11 @@
         tools:layout="@layout/fragment_on_boarding_second" >
         <action
             android:id="@+id/action_onBoardingSecondFragment_to_onBoardingThirdFragment"
-            app:destination="@id/onBoardingThirdFragment" />
+            app:destination="@id/onBoardingThirdFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingThirdFragment"
@@ -210,7 +229,11 @@
         tools:layout="@layout/fragment_on_boarding_third" >
         <action
             android:id="@+id/action_onBoardingThirdFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
 
 </navigation>

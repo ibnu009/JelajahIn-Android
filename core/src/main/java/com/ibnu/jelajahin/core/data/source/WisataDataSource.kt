@@ -21,13 +21,13 @@ class WisataDataSource@Inject constructor(
     private val wisataService: WisataService
 ) {
 
-    fun getStreamWisataByProvinceAndCity(provinceId: Int, cityId: Int): Flow<PagingData<Wisata>> {
+    fun getStreamWisataByProvinceAndCity(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Wisata>> {
         return Pager(
             config = PagingConfig(
                 pageSize = JelajahinConstValues.DEFAULT_PAGE_SIZE,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { WisataPagingFactory(wisataService, provinceId, cityId, null) }
+            pagingSourceFactory = { WisataPagingFactory(wisataService, provinceId, cityId, searchQuery) }
         ).flow
     }
 

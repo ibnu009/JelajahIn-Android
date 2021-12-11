@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
@@ -21,6 +22,7 @@ import com.ibnu.jelajahin.core.extention.getUserLevel
 import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercent
 import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercentAsInt
 import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -53,22 +55,20 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         if (token == "") {
             initiateNotLoggedUser()
         } else {
-
-
             viewModel.getUserProfile(token).observe(viewLifecycleOwner, Observer { response ->
                 when (response) {
                     is ApiResponse.Loading -> {
                         Timber.d("Loading")
-                        binding.progressBarUser.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.VISIBLE
                         binding.contentProfile.visibility = View.GONE
                         binding.contentNotUser.visibility = View.GONE
                     }
                     is ApiResponse.Error -> {
-                        binding.progressBarUser.visibility = View.GONE
+                        binding.progressBar.visibility = View.GONE
                         Timber.d("Error ${response.errorMessage}")
                     }
                     is ApiResponse.Success -> {
-                        binding.progressBarUser.visibility = View.GONE
+                        binding.progressBar.visibility = View.GONE
                         binding.contentProfile.visibility = View.VISIBLE
                         binding.contentNotUser.visibility = View.GONE
                         initiateProfileView(response.data)
@@ -94,6 +94,11 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun initiateProfileView(user: User) {
         binding.tvName.text = user.fullName
         binding.tvEmail.text = user.email
+
+        Glide.with(binding.root)
+            .load(BASE_URL+user.imageUrl)
+            .placeholder(R.drawable.img_person)
+            .into(binding.imgPhotoProfile)
 
         binding.tvAppreciationTotal.text = "${user.totalAppreciations} Apresiasi"
         binding.tvEventTotal.text = "${user.totalEvents} Event dihadiri"

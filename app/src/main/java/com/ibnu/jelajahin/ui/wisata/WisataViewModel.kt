@@ -22,8 +22,8 @@ class WisataViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    fun getListWisata(provinceId: Int, cityId: Int): Flow<PagingData<Wisata>> {
-        return wisataRepository.getWisataByProvinceAndCity(provinceId, cityId)
+    fun getListWisata(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Wisata>> {
+        return wisataRepository.getWisataByProvinceAndCity(provinceId, cityId, searchQuery)
             .cachedIn(viewModelScope)
     }
 

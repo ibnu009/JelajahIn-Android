@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@+id/tvVersion"
-        tools:text="1.0.0"
+        android:text="1.0.0"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"

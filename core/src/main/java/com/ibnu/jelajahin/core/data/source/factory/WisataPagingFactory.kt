@@ -22,9 +22,7 @@ class WisataPagingFactory(
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Wisata> {
-        val result =
-            if (searchQuery == null) service.getWisataByProvinceAndCity(provinceId, cityId) else
-                service.searchWisata(provinceId, cityId, searchQuery)
+        val result = service.getWisataByProvinceAndCity(provinceId, cityId, searchQuery)
 
         val page = params.key ?: JelajahinConstValues.DEFAULT_PAGE_INDEX
         return LoadResult.Page(

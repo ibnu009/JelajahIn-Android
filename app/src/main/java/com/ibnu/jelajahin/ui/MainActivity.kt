@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _bindingMainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.SplashTheme)
         super.onCreate(savedInstanceState)
+
         _bindingMainActivity = ActivityMainBinding.inflate(layoutInflater)
         setContentView(_bindingMainActivity?.root)
 

@@ -42,10 +42,10 @@ class SplashFragment : Fragment() {
                     findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 }
                 else -> {
-                    Timber.d("WOW WHAT?")
+                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
                 }
             }
-        }, UiConstValue.FAST_ANIMATION_TIME)
+        }, UiConstValue.LONG_ANIMATION_TIME)
     }
 
     override fun onDestroyView() {

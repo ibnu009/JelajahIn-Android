@@ -15,8 +15,8 @@ class WisataRepository @Inject constructor(
     private val wisataDataSource: WisataDataSource
 ) {
 
-    fun getWisataByProvinceAndCity(provinceId: Int, cityId: Int): Flow<PagingData<Wisata>> {
-        return wisataDataSource.getStreamWisataByProvinceAndCity(provinceId, cityId)
+    fun getWisataByProvinceAndCity(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Wisata>> {
+        return wisataDataSource.getStreamWisataByProvinceAndCity(provinceId, cityId, searchQuery)
     }
 
     fun searchWisata(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Wisata>> {
