@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.ui.adapter.EventAdapter
-import com.ibnu.jelajahin.core.ui.adapter.RecyclerviewItemClickHandler
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.databinding.EventFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -24,12 +22,13 @@ import timber.log.Timber
 @AndroidEntryPoint
 class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
-    private val viewModel: EventViewModel by viewModels();
+    private val viewModel: EventViewModel by viewModels()
 
     private var _binding: EventFragmentBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var adapter: EventAdapter
+    private var isSearching = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +42,28 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
         super.onViewCreated(view, savedInstanceState)
 
         initiateAdapter()
+        initiateData(null)
+
+        binding.svEvent.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                initiateData(query ?: "")
+                isSearching = true
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText?.isBlank() == true && isSearching) {
+                    initiateData("")
+                    isSearching = false
+                }
+                return false
+            }
+        })
+    }
+
+    private fun initiateData(searchQuery: String?) {
         lifecycleScope.launch {
-            viewModel.getEvents(15,229).collect { events ->
+            viewModel.getEvents(15, 229, searchQuery ?: "").collect { events ->
                 adapter.submitData(events)
             }
         }

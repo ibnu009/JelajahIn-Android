@@ -21,13 +21,13 @@ class EventDataSource @Inject constructor(
 private val eventService: EventService
 )  {
 
-    fun getStreamEventByProvinceAndCity(provinceId: Int, cityId: Int): Flow<PagingData<Event>> {
+    fun getStreamEventByProvinceAndCity(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Event>> {
         return Pager(
             config = PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { EventPagingFactory(eventService, provinceId, cityId) }
+            pagingSourceFactory = { EventPagingFactory(eventService, provinceId, cityId, searchQuery) }
         ).flow
     }
 

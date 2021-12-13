@@ -17,8 +17,8 @@ class EventRepository @Inject constructor(
     private val eventDataSource: EventDataSource
 ) {
 
-    fun getEventByProvinceAndCity(provinceId: Int, cityId: Int): Flow<PagingData<Event>>{
-        return eventDataSource.getStreamEventByProvinceAndCity(provinceId, cityId)
+    fun getEventByProvinceAndCity(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Event>>{
+        return eventDataSource.getStreamEventByProvinceAndCity(provinceId, cityId, searchQuery)
     }
 
     suspend fun getEventDetail(eventUuid: String): Flow<ApiResponse<Event>>{

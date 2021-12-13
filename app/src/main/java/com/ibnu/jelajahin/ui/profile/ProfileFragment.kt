@@ -9,20 +9,19 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
-import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
-import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
-import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
 import com.ibnu.jelajahin.core.extention.getUserLevel
 import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercent
 import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercentAsInt
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
+import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -55,7 +54,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         if (token == "") {
             initiateNotLoggedUser()
         } else {
-            viewModel.getUserProfile(token).observe(viewLifecycleOwner, Observer { response ->
+            viewModel.getUserProfile(token).observe(viewLifecycleOwner, { response ->
                 when (response) {
                     is ApiResponse.Loading -> {
                         Timber.d("Loading")

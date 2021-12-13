@@ -11,7 +11,8 @@ interface EventService {
     @GET("api/event")
     suspend fun getEventByProvinceAndCity(
         @Query("provinceId") provinceId: Int,
-        @Query("cityId") cityId: Int
+        @Query("cityId") cityId: Int,
+        @Query("search") searchQuery: String
     ): EventResponse
 
     @GET("api/event/{uuidEvent}")

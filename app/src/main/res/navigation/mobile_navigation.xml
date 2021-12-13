@@ -41,6 +41,20 @@
         <action
             android:id="@+id/action_homeFragment_to_restaurantFragment"
             app:destination="@id/restaurantFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_wisataDetailFragment"
+            app:destination="@id/wisataDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -166,7 +180,7 @@
         android:id="@+id/wisataDetailFragment"
         android:name="com.ibnu.jelajahin.ui.wisata.WisataDetailFragment"
         android:label="fragment_wisata_detail"
-        tools:layout="@layout/fragment_wisata_detail" >
+        tools:layout="@layout/fragment_wisata_detail">
         <argument
             android:name="uuidWisata"
             app:argType="string" />

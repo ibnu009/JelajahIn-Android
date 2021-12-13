@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibnu.jelajahin.core.extention.popTap
-import com.ibnu.jelajahin.core.ui.adapter.RecyclerviewItemClickHandler
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.ui.adapter.WisataAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.REQUEST_OPEN_MAP_WISATA
 import com.ibnu.jelajahin.databinding.WisataFragmentBinding

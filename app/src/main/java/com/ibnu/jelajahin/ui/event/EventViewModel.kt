@@ -24,12 +24,12 @@ class EventViewModel @Inject constructor(
 
     private var currentEvent: Flow<PagingData<Event>>? = null
 
-    fun getEvents(provinceId: Int, cityId: Int): Flow<PagingData<Event>> {
+    fun getEvents(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Event>> {
         val lastResult = currentEvent
         if (lastResult != null){
             return lastResult
         }
-        val newResult : Flow<PagingData<Event>> = eventRepository.getEventByProvinceAndCity(provinceId, cityId)
+        val newResult : Flow<PagingData<Event>> = eventRepository.getEventByProvinceAndCity(provinceId, cityId, searchQuery)
             .cachedIn(viewModelScope)
         currentEvent = newResult
         return newResult

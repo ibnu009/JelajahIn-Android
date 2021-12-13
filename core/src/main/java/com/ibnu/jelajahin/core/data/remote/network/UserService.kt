@@ -3,10 +3,7 @@ package com.ibnu.jelajahin.core.data.remote.network
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.PointBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
-import com.ibnu.jelajahin.core.data.remote.response.GenericResponse
-import com.ibnu.jelajahin.core.data.remote.response.PointHistoryResponse
-import com.ibnu.jelajahin.core.data.remote.response.UserLoginResponse
-import com.ibnu.jelajahin.core.data.remote.response.UserResponse
+import com.ibnu.jelajahin.core.data.remote.response.*
 import retrofit2.http.*
 
 interface UserService {
@@ -49,5 +46,9 @@ interface UserService {
         @Body request: PointBody
     ):GenericResponse
 
+    @GET("api/ads")
+    suspend fun getAds(
+        @Query("provinceId") provinceId: Int
+    ): AdsResponse
 
 }

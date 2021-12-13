@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.databinding.EventItemBinding
 import com.ibnu.jelajahin.core.extention.parseDateMonthAndYear
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 
 class EventAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Event, EventAdapter.EventViewHolder>(

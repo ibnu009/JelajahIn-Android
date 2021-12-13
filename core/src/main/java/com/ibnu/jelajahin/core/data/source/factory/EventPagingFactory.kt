@@ -10,11 +10,12 @@ import com.ibnu.jelajahin.core.utils.JelajahinConstValues.DEFAULT_PAGE_SIZE
 class EventPagingFactory(
     private val service: EventService,
     private val provinceId: Int,
-    private val cityId: Int
+    private val cityId: Int,
+    private val searchQuery: String
 ) : PagingSource<Int, Event>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Event> {
-        val result = service.getEventByProvinceAndCity(provinceId, cityId)
+        val result = service.getEventByProvinceAndCity(provinceId, cityId, searchQuery)
         val page = params.key ?: DEFAULT_PAGE_INDEX
         return LoadResult.Page(
             data = result.events,

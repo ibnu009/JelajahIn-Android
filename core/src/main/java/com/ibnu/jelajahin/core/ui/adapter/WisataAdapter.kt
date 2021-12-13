@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.databinding.WisataItemBinding
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 
 class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Wisata, WisataAdapter.WisataViewHolder>(DIFF_CALLBACK) {

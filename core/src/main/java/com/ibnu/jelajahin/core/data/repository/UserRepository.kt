@@ -1,6 +1,7 @@
 package com.ibnu.jelajahin.core.data.repository
 
 import androidx.paging.PagingData
+import com.ibnu.jelajahin.core.data.model.Ads
 import com.ibnu.jelajahin.core.data.model.PointHistory
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
@@ -39,5 +40,9 @@ class UserRepository @Inject constructor(
 
     suspend fun addUserPoint(token: String, request: PointBody): Flow<ApiResponse<String>> {
         return userDataSource.addUserPoint(token, request)
+    }
+
+    suspend fun getAds(provinceId: Int): Flow<ApiResponse<List<Ads>>> {
+        return userDataSource.getStreamAds(provinceId)
     }
 }
