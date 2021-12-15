@@ -14,9 +14,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibnu.jelajahin.core.extention.popTap
-import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.ui.adapter.WisataAdapter
-import com.ibnu.jelajahin.core.utils.JelajahinConstValues.REQUEST_OPEN_MAP_WISATA
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.databinding.WisataFragmentBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,8 +70,7 @@ class WisataFragment : Fragment(), RecyclerviewItemClickHandler {
         binding.btnMap.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                val action = WisataFragmentDirections.actionWisataFragmentToDiscoveryFragment(
-                    mapType = REQUEST_OPEN_MAP_WISATA,
+                val action = WisataFragmentDirections.actionWisataFragmentToWisataMapFragment(
                     cityId = 229,
                     provinceId = 15
                 )

@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.core.di
 
+import com.ibnu.jelajahin.core.data.remote.network.DiscoveryService
 import com.ibnu.jelajahin.core.data.remote.network.EventService
 import com.ibnu.jelajahin.core.data.remote.network.UserService
 import com.ibnu.jelajahin.core.data.remote.network.WisataService
@@ -26,6 +27,11 @@ class ServiceModule {
     @Provides
     fun provideWisataService(retrofit: Retrofit): WisataService {
         return retrofit.create(WisataService::class.java)
+    }
+
+    @Provides
+    fun provideGemService(retrofit: Retrofit): DiscoveryService {
+        return retrofit.create(DiscoveryService::class.java)
     }
 
 }

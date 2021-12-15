@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -19,6 +18,8 @@ import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.model.Event
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.*
+import com.ibnu.jelajahin.core.extention.map.addSingleMarker
+import com.ibnu.jelajahin.core.extention.map.animateCameraToSingleMarker
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.EVENT_MARKER
 import com.ibnu.jelajahin.databinding.EventDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -1,6 +1,7 @@
 package com.ibnu.jelajahin.ui.event
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
         binding.svEvent.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                Timber.d("search submit called")
                 initiateData(query ?: "")
                 isSearching = true
                 return false
@@ -53,6 +55,7 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText?.isBlank() == true && isSearching) {
+                    Timber.d("query changed called")
                     initiateData("")
                     isSearching = false
                 }
@@ -63,6 +66,7 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
     private fun initiateData(searchQuery: String?) {
         lifecycleScope.launch {
+            Timber.d("launch search")
             viewModel.getEvents(15, 229, searchQuery ?: "").collect { events ->
                 adapter.submitData(events)
             }

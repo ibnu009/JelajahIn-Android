@@ -12,6 +12,11 @@
         android:title="@string/event"/>
 
     <item
+        android:id="@+id/discoveryFragment"
+        android:icon="@drawable/ic_compass"
+        android:title="@string/discover" />
+
+    <item
         android:id="@+id/savedFragment"
         android:icon="@drawable/ic_love"
         android:title="@string/saved"/>

@@ -22,6 +22,7 @@ object JelajahinConstValues {
 
     const val RESTAURANT_MARKER = "restaurant.marker.map"
     const val EVENT_MARKER = "event.marker.map"
+    const val GEM_MARKER = "gem.marker.map"
 
     const val PREFS_NAME = "jelajahin.pref"
     const val KEY_TOKEN = "key.token"

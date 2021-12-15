@@ -20,6 +20,4 @@ interface EventService {
         @Path("uuidEvent") uuidEvent: String,
     ): EventDetailResponse
 
-
-
 }

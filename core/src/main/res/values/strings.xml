@@ -2,4 +2,6 @@
 <resources>
     <string name="pendapat_pengunjung"> Pendapat Pengunjung</string>
     <string name="all_ulasan">Semua Ulasan</string>
+    <string name="map_box_key">pk.eyJ1IjoiaWJudTAwMiIsImEiOiJja3g2dXExYmswOTNoMm9tbmE0cHI4dTFlIn0.kyKaPWMR7dLqfko2p6HKfQ</string>
+
 </resources>

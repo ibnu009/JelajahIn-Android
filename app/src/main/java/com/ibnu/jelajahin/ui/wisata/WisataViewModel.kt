@@ -41,4 +41,14 @@ class WisataViewModel @Inject constructor(
         }
         return result
     }
+
+    fun getWisataLocations(provinceId: Int, cityId: Int): LiveData<ApiResponse<List<Wisata>>> {
+        val result = MutableLiveData<ApiResponse<List<Wisata>>>()
+        viewModelScope.launch {
+            wisataRepository.getWisataLocations(provinceId, cityId).collect {
+                result.postValue(it)
+            }
+        }
+        return result
+    }
 }
