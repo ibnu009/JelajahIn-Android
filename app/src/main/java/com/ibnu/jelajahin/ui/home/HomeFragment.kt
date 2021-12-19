@@ -49,6 +49,11 @@ class HomeFragment : Fragment(), AdsItemHandler {
             findNavController().navigate(R.id.action_homeFragment_to_wisataFragment)
         }
 
+        binding.btnLihatRestaurant.setOnClickListener {
+            it.popTap()
+            findNavController().navigate(R.id.action_homeFragment_to_restaurantFragment)
+        }
+
         initiateRecyclerViews()
         initiateAds()
     }
