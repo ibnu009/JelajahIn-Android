@@ -153,7 +153,15 @@
         android:id="@+id/restaurantFragment"
         android:name="com.ibnu.jelajahin.ui.restaurant.RestaurantFragment"
         android:label="restaurant_fragment"
-        tools:layout="@layout/restaurant_fragment" />
+        tools:layout="@layout/restaurant_fragment" >
+        <action
+            android:id="@+id/action_restaurantFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
     <fragment
         android:id="@+id/penginapanFragment"
         android:name="com.ibnu.jelajahin.ui.penginapan.PenginapanFragment"
@@ -244,6 +252,14 @@
             android:name="provinceId"
             app:argType="integer" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.ibnu.jelajahin.ui.restaurant.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" >
+        <argument
+            android:name="uuidRestaurant"
+            app:argType="string" />
     </fragment>
 
 </navigation>

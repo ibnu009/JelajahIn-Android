@@ -66,5 +66,7 @@
 
     <string name="next">Next</string>
     <string name="start_journey">Mulai Petualangan!</string>
+    <string name="business_schedule">Jadwal Bisnis</string>
+    <string name="diet">Diet Khusus</string>
 
 </resources>

@@ -15,6 +15,7 @@ import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.ui.adapter.RestaurantAdapter
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.databinding.RestaurantFragmentBinding
+import com.ibnu.jelajahin.ui.wisata.WisataFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -126,7 +127,8 @@ class RestaurantFragment : Fragment(), RecyclerviewItemClickHandler {
     }
 
     override fun onItemClicked(uuid: String) {
-        TODO("Not yet implemented")
+        val action = RestaurantFragmentDirections.actionRestaurantFragmentToRestaurantDetailFragment(uuid)
+        findNavController().navigate(action)
     }
 
 }

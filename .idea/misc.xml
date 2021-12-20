@@ -30,6 +30,7 @@
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_on_boarding_second.xml" value="0.20416666666666666" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_on_boarding_third.xml" value="0.2" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_point_history.xml" value="0.14" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_restaurant_detail.xml" value="0.22" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_splash.xml" value="0.22" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_splash_screen.xml" value="0.5" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_success_attend.xml" value="0.25" />
@@ -54,6 +55,7 @@
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_bookmark.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_bookmarked.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_calendar.xml" value="0.19166666666666668" />
+        <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_email.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_location.xml" value="0.18611111111111112" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_logout.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_open_book.xml" value="0.2203125" />
@@ -65,9 +67,11 @@
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_show_path.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_thumb.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_ticket.xml" value="0.2203125" />
+        <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/ic_web.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/drawable/vertical_divider.xml" value="0.2203125" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/banner_item.xml" value="0.20416666666666666" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/category_event_item.xml" value="0.5" />
+        <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/component_detail_contact.xml" value="0.25" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/component_ulasan.xml" value="0.33" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/event_item.xml" value="0.33" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/history_point_item.xml" value="0.5" />

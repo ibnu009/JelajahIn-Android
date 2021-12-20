@@ -23,11 +23,15 @@ data class Restaurant(
     val CloseTime: String,
     @field:SerializedName("image")
     val imageUrl: String,
-    @field:SerializedName("ticket_price")
-    val ticketPrice: String,
     val address: String,
     @field:SerializedName("rating_avg")
     val ratingAverage: Double?,
+    @field:SerializedName("rating_service")
+    val ratingService: Double?,
+    @field:SerializedName("rating_food")
+    val ratingFood: Double?,
+    @field:SerializedName("rating_clean")
+    val ratingClean: Double?,
     @field:SerializedName("rating_count")
     val ratingCount: Int?,
     @field:SerializedName("provinsi_id")

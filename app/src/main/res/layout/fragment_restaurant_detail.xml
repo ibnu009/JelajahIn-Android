@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.wisata.WisataDetailFragment">
+    android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarCoor"
@@ -16,13 +15,13 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/green"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/green"
-            android:background="@color/green"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView
-                android:id="@+id/imgWisata"
+                android:id="@+id/imgRestaurant"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
@@ -30,10 +29,10 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolBar"
-                app:navigationIcon="@drawable/ic_arrow_back"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_arrow_back" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -41,9 +40,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/content"
-        android:layout_marginTop="-25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="-25dp"
         android:background="@drawable/bg_content"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -55,7 +54,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tvWisataName"
+                android:id="@+id/tvRestaurantName"
                 style="@style/JelajahinTitleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,7 +63,7 @@
                 tools:text="Kawah Ijen" />
 
             <TextView
-                android:id="@+id/tvWisataLocation"
+                android:id="@+id/tvRestaurantLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/space_double"
@@ -73,7 +72,7 @@
                 tools:text="Bondowoso, Jawa Timur" />
 
             <TextView
-                android:id="@+id/tvWisataDescription"
+                android:id="@+id/tvRestaurantDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/space_double"
@@ -83,23 +82,22 @@
                 tools:text="@tools:sample/lorem/random" />
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:layout_marginTop="@dimen/space_double"
-                android:showDividers="middle"
-                android:divider="@drawable/vertical_divider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_double"
+                android:divider="@drawable/vertical_divider"
+                android:orientation="horizontal"
+                android:showDividers="middle"
+                android:weightSum="2">
 
                 <RelativeLayout
-                    android:layout_marginStart="@dimen/space_double"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_double"
+                    android:layout_weight="1">
 
                     <TextView
-                        android:id="@+id/tvWisataRating"
+                        android:id="@+id/tvRestaurantRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/green_button"
@@ -108,23 +106,83 @@
                         tools:text="4,2" />
 
                     <TextView
-                        android:id="@+id/tvWisataAccreditation"
+                        android:id="@+id/tvRestaurantAccreditation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space"
-                        android:layout_toEndOf="@id/tvWisataRating"
-                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/tvRestaurantRating"
                         android:textColor="@color/blackTitle"
+                        android:textStyle="bold"
                         tools:text="Luar Biasa" />
 
                     <RatingBar
-                        android:id="@+id/wisataStar"
+                        android:id="@+id/restaurantStar"
                         style="@style/customRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvWisataAccreditation"
+                        android:layout_below="@id/tvRestaurantAccreditation"
                         android:layout_marginStart="6dp"
-                        android:layout_toEndOf="@id/tvWisataRating"
+                        android:layout_toEndOf="@id/tvRestaurantRating"
+                        android:numStars="5"
+                        android:rating="4.5" />
+
+                    <TextView
+                        android:id="@+id/tvRestaurantServiceRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/restaurantStar"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_toEndOf="@id/restaurantServiceStar"
+                        android:text="Pelayanan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+
+                    <RatingBar
+                        android:id="@+id/restaurantServiceStar"
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvRestaurantRating"
+                        android:numStars="5"
+                        android:rating="4.5" />
+
+                    <TextView
+                        android:id="@+id/tvRestaurantFoodRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvRestaurantServiceRate"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_toEndOf="@id/restaurantServiceStar"
+                        android:text="Makanan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+
+                    <RatingBar
+                        android:id="@+id/restaurantFoodStar"
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvRestaurantServiceRate"
+                        android:numStars="5"
+                        android:rating="4.5" />
+
+                    <TextView
+                        android:id="@+id/tvRestaurantCleanRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvRestaurantFoodRate"
+                        android:layout_marginStart="@dimen/space"
+                        android:layout_toEndOf="@id/restaurantServiceStar"
+                        android:text="Kebersihan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_small" />
+
+                    <RatingBar
+                        android:id="@+id/restaurantCleanStar"
+                        style="@style/customRatingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tvRestaurantFoodRate"
                         android:numStars="5"
                         android:rating="4.5" />
 
@@ -132,43 +190,67 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space"
+                            android:text="@string/business_schedule"
+                            android:textColor="@color/blackTitle"
+                            android:textStyle="bold" />
+
+                        <ImageButton
+                            android:id="@+id/btnInfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_info" />
+                    </LinearLayout>
 
                     <TextView
-                        android:text="@string/harga_tiket"
+                        android:id="@+id/tvBusinessTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space"
-                        android:textStyle="bold"
+                        tools:text="12:00 PM - 09:00 PM" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space"
+                        android:text="@string/diet"
                         android:textColor="@color/blackTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tvTicketPrice"
-                        tools:text="Rp 20.000"
-                        android:layout_marginStart="@dimen/space"
+                        android:id="@+id/tvDiet"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:text="@string/harga_tiket_weekend"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space"
-                        android:textStyle="bold"
-                        android:textColor="@color/blackTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/tvTicketPriceWeekend"
-                        tools:text="Rp 25.000"
-                        android:layout_marginStart="@dimen/space"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        tools:text="Vegan" />
                 </LinearLayout>
 
             </LinearLayout>
+
+
+            <include
+                android:id="@+id/contactComponent"
+                android:layout_marginVertical="@dimen/space_double"
+                layout="@layout/component_detail_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -199,7 +281,7 @@
                         android:textStyle="bold" />
 
                     <Button
-                        android:id="@+id/btnLihatWisata"
+                        android:id="@+id/btnLihatRestaurant"
                         style="@style/JelajahinTextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -214,11 +296,11 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvUlasan"
-                    tools:listitem="@layout/ulasan_item"
-                    tools:itemCount="4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_double" />
+                    android:layout_marginTop="@dimen/space_double"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/ulasan_item" />
 
             </LinearLayout>
 
@@ -229,18 +311,18 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginTop="@dimen/space"
         android:layout_marginEnd="@dimen/space_triple"
         android:backgroundTint="@color/white"
         android:baselineAlignBottom="false"
         android:clickable="true"
         android:contentDescription="aweaw"
-        android:layout_gravity="top"
-        android:layout_marginTop="@dimen/space"
-        app:layout_anchorGravity="end|bottom"
         android:focusable="true"
         android:src="@drawable/ic_bookmark"
         app:fabSize="normal"
         app:layout_anchor="@id/appBarCoor"
+        app:layout_anchorGravity="end|bottom"
         app:tint="#989898" />
 
     <View
