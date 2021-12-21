@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="6dp"
@@ -10,15 +10,14 @@
     app:cardCornerRadius="6dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
         android:paddingTop="12dp"
-        android:paddingRight="16dp"
         android:paddingBottom="12dp">
 
         <ImageView
+            android:layout_marginStart="@dimen/space"
             android:id="@+id/imvWindow"
             android:layout_width="90dp"
             android:layout_height="110dp"
@@ -28,8 +27,9 @@
             tools:background="#DFDFDF" />
 
         <LinearLayout
+            android:layout_marginEnd="@dimen/space_quintuple"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintStart_toEndOf="@+id/imvEvent">
 
@@ -78,23 +78,23 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imgLocation" />
 
-
-                <TextView
-                    android:id="@+id/tvPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space"
-                    android:layout_gravity="center_vertical"
-                    tools:text="Rp 30.000 - Rp 150.000"
-                    android:textColor="@color/red_button"
-                    android:textSize="12sp"/>
-
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space"
+                android:layout_marginStart="@dimen/space"
+                android:layout_gravity="center_vertical"
+                tools:text="Rp 30.000 - Rp 150.000"
+                android:textColor="@color/red_button"
+                android:textSize="12sp"/>
 
 
             <TextView
                 android:id="@+id/tvAddress"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space"
                 android:layout_marginTop="6dp"

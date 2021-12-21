@@ -57,7 +57,7 @@ class RestaurantMapFragment : Fragment() {
                             googleMap.boundsCameraToMarkers(listLocations)
                             setButtonViews(googleMap, listLocations)
 
-                            val infoWindow = InfoWindowsRestaurant(requireContext())
+                            val infoWindow = InfoWindowsRestaurant(requireActivity(),requireContext())
                             googleMap.setInfoWindowAdapter(infoWindow)
                         }
                         else -> {

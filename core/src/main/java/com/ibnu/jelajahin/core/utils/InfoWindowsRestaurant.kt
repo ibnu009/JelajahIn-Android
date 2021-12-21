@@ -13,11 +13,11 @@ import com.google.android.gms.maps.model.Marker
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Restaurant
 
-class InfoWindowsRestaurant(private val context: Context) : GoogleMap.InfoWindowAdapter {
+class InfoWindowsRestaurant(private val activity: Activity, private val context: Context) : GoogleMap.InfoWindowAdapter {
 
     @SuppressLint("SetTextI18n")
     override fun getInfoContents(p0: Marker): View {
-        val view: View = (context as Activity).layoutInflater
+        val view: View = activity.layoutInflater
             .inflate(R.layout.info_window_jelajahin, null)
 
         val img = view.findViewById<ImageView>(R.id.imvWindow)

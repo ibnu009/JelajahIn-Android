@@ -1,6 +1,8 @@
 package com.ibnu.jelajahin.ui.restaurant
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.ui.adapter.RestaurantAdapter
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.databinding.RestaurantFragmentBinding
-import com.ibnu.jelajahin.ui.wisata.WisataFragmentDirections
+import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -62,6 +65,12 @@ class RestaurantFragment : Fragment(), RecyclerviewItemClickHandler {
                 return false
             }
         })
+        binding.btnMap.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_restaurantFragment_to_restaurantMapFragment)
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
     }
 
     private fun initiateData(searchQuery: String) {
