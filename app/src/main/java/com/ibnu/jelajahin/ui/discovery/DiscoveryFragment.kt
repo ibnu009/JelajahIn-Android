@@ -78,7 +78,7 @@ class DiscoveryFragment : Fragment(), GoogleMap.OnMarkerClickListener {
                             Timber.d("Error ${response.errorMessage}")
                         }
                         is ApiResponse.Success -> {
-                            googleMap.addMultipleMarkersForGem(response.data)
+                            googleMap.addMultipleMarkersForGem(response.data, requireContext())
                             val listLocations = response.data.convertGemToLatLng()
                             googleMap.boundsCameraToMarkers(listLocations)
                             setBoundBetweenLocations(googleMap, listLocations)

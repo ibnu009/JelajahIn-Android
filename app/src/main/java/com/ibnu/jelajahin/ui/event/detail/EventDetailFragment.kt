@@ -107,7 +107,7 @@ class EventDetailFragment : Fragment() {
             mMap = googleMap
             // Add a marker to event location and move the camera
             val eventLocation = LatLng(event.latitude, event.longtitude)
-            mMap.addSingleMarker(eventLocation, event.name, EVENT_MARKER, event.uuidEvent)
+            mMap.addSingleMarker(eventLocation, event.name, EVENT_MARKER, event.uuidEvent, requireContext())
             mMap.animateCameraToSingleMarker(eventLocation)
         }
 

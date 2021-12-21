@@ -161,6 +161,9 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_restaurantFragment_to_restaurantMapFragment"
+            app:destination="@id/restaurantMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/penginapanFragment"
@@ -261,5 +264,9 @@
             android:name="uuidRestaurant"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantMapFragment"
+        android:name="com.ibnu.jelajahin.ui.restaurant.RestaurantMapFragment"
+        android:label="RestaurantMapFragment" />
 
 </navigation>

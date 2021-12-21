@@ -34,10 +34,7 @@ class RestaurantViewModel @Inject constructor(private val repository: Restaurant
         return result
     }
 
-    fun getRestaurantLocations(
-        provinceId: Int,
-        cityId: Int
-    ): LiveData<ApiResponse<List<Restaurant>>> {
+    fun getRestaurantLocations(provinceId: Int): LiveData<ApiResponse<List<Restaurant>>> {
         val result = MutableLiveData<ApiResponse<List<Restaurant>>>()
         viewModelScope.launch {
             repository.getRestaurantLocations(provinceId).collect {

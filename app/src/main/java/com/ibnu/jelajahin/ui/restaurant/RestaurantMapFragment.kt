@@ -1,5 +1,6 @@
-package com.ibnu.jelajahin.ui.wisata
+package com.ibnu.jelajahin.ui.restaurant
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,42 +12,37 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
-import com.ibnu.jelajahin.core.extention.map.addMultipleMarkersForWisata
-import com.ibnu.jelajahin.core.extention.map.boundsCameraToMarkers
-import com.ibnu.jelajahin.core.extention.map.convertWisataToLatLng
-import com.ibnu.jelajahin.databinding.FragmentWisataMapBinding
+import com.ibnu.jelajahin.core.extention.map.*
+import com.ibnu.jelajahin.core.utils.InfoWindowsRestaurant
+import com.ibnu.jelajahin.databinding.FragmentRestaurantMapBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class WisataMapFragment : Fragment() {
+class RestaurantMapFragment : Fragment() {
 
-    private val viewModel: WisataViewModel by viewModels();
+    private val viewModel: RestaurantViewModel by viewModels();
 
-    private var _binding: FragmentWisataMapBinding? = null
+    private var _binding: FragmentRestaurantMapBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var mMap: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentWisataMapBinding.inflate(inflater, container, false)
+        _binding = FragmentRestaurantMapBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 
+    @SuppressLint("PotentialBehaviorOverride")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val safeArgs = arguments?.let { WisataMapFragmentArgs.fromBundle(it) }
-        val provinceId = safeArgs?.provinceId ?: 0
-        val cityId = safeArgs?.cityId ?: 0
 
         val mapFragment =
             childFragmentManager.findFragmentById(R.id.containerMap) as SupportMapFragment?
 
         mapFragment?.getMapAsync { googleMap ->
-            viewModel.getWisataLocations(provinceId, cityId)
+            viewModel.getRestaurantLocations(0)
                 .observe(viewLifecycleOwner, { response ->
                     when (response) {
                         is ApiResponse.Loading -> {
@@ -56,10 +52,13 @@ class WisataMapFragment : Fragment() {
                             Timber.d("Error ${response.errorMessage}")
                         }
                         is ApiResponse.Success -> {
-                            googleMap.addMultipleMarkersForWisata(response.data, requireContext())
-                            val listLocations = response.data.convertWisataToLatLng()
+                            googleMap.addMultipleMarkersForRestaurant(response.data, requireContext())
+                            val listLocations = response.data.convertRestaurantToLatLng()
                             googleMap.boundsCameraToMarkers(listLocations)
                             setButtonViews(googleMap, listLocations)
+
+                            val infoWindow = InfoWindowsRestaurant(requireContext())
+                            googleMap.setInfoWindowAdapter(infoWindow)
                         }
                         else -> {
                             Timber.d("Unknown Error")
@@ -67,7 +66,6 @@ class WisataMapFragment : Fragment() {
                     }
                 })
         }
-
     }
 
     private fun setButtonViews(googleMap: GoogleMap, listLocation: List<LatLng>) {
