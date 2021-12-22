@@ -5,7 +5,19 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.snackbar.Snackbar
 
+fun View.snackBar(message: String) {
+    Snackbar.make(
+        this,
+        message,
+        Snackbar.LENGTH_LONG
+    ).also { snackbar ->
+        snackbar.setAction("Ok") {
+            snackbar.dismiss()
+        }
+    }.show()
+}
 
 fun View.popTap(){
     this.visibility = View.VISIBLE

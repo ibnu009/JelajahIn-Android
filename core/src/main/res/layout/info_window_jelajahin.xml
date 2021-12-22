@@ -91,7 +91,6 @@
                 android:textColor="@color/red_button"
                 android:textSize="12sp"/>
 
-
             <TextView
                 android:id="@+id/tvAddress"
                 android:layout_width="180dp"

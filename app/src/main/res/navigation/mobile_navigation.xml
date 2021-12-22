@@ -67,6 +67,13 @@
         <action
             android:id="@+id/action_profileFragment_to_pointHistoryFragment"
             app:destination="@id/pointHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/eventFragment"
@@ -268,5 +275,14 @@
         android:id="@+id/restaurantMapFragment"
         android:name="com.ibnu.jelajahin.ui.restaurant.RestaurantMapFragment"
         android:label="RestaurantMapFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.ibnu.jelajahin.ui.profile.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="user"
+            app:argType="com.ibnu.jelajahin.core.data.model.User" />
+    </fragment>
 
 </navigation>

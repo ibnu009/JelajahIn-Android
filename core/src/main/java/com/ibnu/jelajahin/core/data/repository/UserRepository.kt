@@ -9,11 +9,9 @@ import com.ibnu.jelajahin.core.data.remote.request.LoginBody
 import com.ibnu.jelajahin.core.data.remote.request.PointBody
 import com.ibnu.jelajahin.core.data.remote.request.RegisterBody
 import com.ibnu.jelajahin.core.data.source.UserDataSource
-import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 

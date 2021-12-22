@@ -1,7 +1,10 @@
 package com.ibnu.jelajahin.core.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class User(
     @field:SerializedName( "uuid_user ")
     val uuidUser: String,
@@ -11,14 +14,14 @@ data class User(
     @field:SerializedName( "image_url")
     val imageUrl: String,
     val origin: String,
-    @field:SerializedName( "total_appreciation")
+    @field:SerializedName("total_appreciation")
     val totalAppreciations: Int,
-    @field:SerializedName( "total_reviews")
+    @field:SerializedName("total_reviews")
     val totalReviews: Int,
-    @field:SerializedName( "total_events")
+    @field:SerializedName("total_events")
     val totalEvents: Int,
-    @field:SerializedName( "total_points")
+    @field:SerializedName("total_points")
     val totalPoints: Int,
-    @field:SerializedName( "total_xp")
+    @field:SerializedName("total_xp")
     val totalXp: Int
-)
+) : Parcelable

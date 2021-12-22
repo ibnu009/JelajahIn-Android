@@ -7,4 +7,9 @@
     <string name="web">web</string>
     <string name="email">email</string>
 
+    <string-array name="pictures">
+        <item>Ambil foto</item>
+        <item>Dari galeri</item>
+    </string-array>
+
 </resources>

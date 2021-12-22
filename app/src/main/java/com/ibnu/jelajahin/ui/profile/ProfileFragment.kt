@@ -22,6 +22,7 @@ import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
+import com.ibnu.jelajahin.ui.event.detail.EventDetailFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -37,6 +38,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     lateinit var pref: SharedPreferenceManager
 
     private var token: String = ""
+    private lateinit var user: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +73,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                         binding.contentProfile.visibility = View.VISIBLE
                         binding.contentNotUser.visibility = View.GONE
                         initiateProfileView(response.data)
+                        user = response.data
                     }
                     else -> {
                         binding.progressBarUser.visibility = View.GONE
@@ -135,6 +138,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutEditProfile -> {
                 p0.popTap()
                 Timber.d("Menekan layout edit profile")
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val action = ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(user)
+                    findNavController().navigate(action)
+                }, FAST_ANIMATION_TIME)
             }
             binding.profileComponent.layoutFaq -> {
                 p0.popTap()

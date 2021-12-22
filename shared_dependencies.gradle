@@ -19,7 +19,12 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
-    implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.karumi:dexter:6.2.3'
+
+    //    upload Service
+    def uploadServiceVersion = '4.5.2'
+    implementation "net.gotev:uploadservice:$uploadServiceVersion"
+    implementation "net.gotev:uploadservice-okhttp:$uploadServiceVersion"
 
     implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.5'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'

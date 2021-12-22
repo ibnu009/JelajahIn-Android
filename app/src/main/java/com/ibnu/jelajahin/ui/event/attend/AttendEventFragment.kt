@@ -69,6 +69,7 @@ class AttendEventFragment : Fragment() {
         permReqLauncher.launch(LOCATION_PERMISSION)
         pref = SharedPreferenceManager(requireContext())
         token = pref.getToken ?: ""
+
         val safeArgs = arguments?.let { AttendEventFragmentArgs.fromBundle(it) }
         event = safeArgs?.event
 
