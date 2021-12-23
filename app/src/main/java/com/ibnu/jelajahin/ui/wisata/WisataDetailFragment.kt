@@ -1,17 +1,22 @@
 package com.ibnu.jelajahin.ui.wisata
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
 import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
+import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -22,7 +27,7 @@ class WisataDetailFragment : Fragment() {
 
     private var _binding: FragmentWisataDetailBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var wisata: Wisata
     var isFavorite = false
 
     override fun onCreateView(
@@ -39,8 +44,17 @@ class WisataDetailFragment : Fragment() {
         val safeArgs = arguments?.let { WisataDetailFragmentArgs.fromBundle(it) }
         val uuidWisata = safeArgs?.uuidWisata ?: ""
 
+        initiateDetailData(uuidWisata)
+
+        binding.refresh.setOnRefreshListener {
+            initiateDetailData(uuidWisata)
+        }
+
+    }
+
+    private fun initiateDetailData(uuidWisata: String) {
         viewModel.getWisataDetail(uuidWisata).observe(viewLifecycleOwner, { response ->
-            when(response){
+            when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
                     showLoading(true)
@@ -48,10 +62,13 @@ class WisataDetailFragment : Fragment() {
                 is ApiResponse.Error -> {
                     Timber.d("Error ${response.errorMessage}")
                     showLoading(false)
+                    binding.refresh.isRefreshing = false
                 }
                 is ApiResponse.Success -> {
                     loadUiDetailWisata(response.data)
+                    wisata = response.data
                     showLoading(false)
+                    binding.refresh.isRefreshing = false
                 }
                 else -> {
                     Timber.d("Unknown Error")
@@ -60,10 +77,13 @@ class WisataDetailFragment : Fragment() {
         })
     }
 
-    private fun initiateAppbar(){
+    private fun initiateAppbar() {
         binding.toolBar.setNavigationOnClickListener {
             it.popTap()
         }
+        binding.appBarCoor.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            binding.refresh.isEnabled = verticalOffset == 0
+        })
     }
 
     private fun loadUiDetailWisata(wisata: Wisata) {
@@ -74,11 +94,19 @@ class WisataDetailFragment : Fragment() {
         binding.tvTicketPriceWeekend.text = wisata.ticketPrice
         binding.wisataStar.rating = wisata.ratingAverage.toFloat()
         binding.tvWisataAccreditation.text = wisata.ratingAverage.toJelajahinAccreditation()
-        binding.tvWisataRating.text = if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
+        binding.tvWisataRating.text =
+            if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
         view?.let {
             Glide.with(it)
                 .load(wisata.imageUrl)
                 .into(binding.imgWisata)
+        }
+
+        binding.btnTambahUlasan.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                navigateToAddUlasan()
+            }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
 //        binding.btnBookmark.setOnClickListener {
@@ -99,6 +127,12 @@ class WisataDetailFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun navigateToAddUlasan() {
+        val action =
+            WisataDetailFragmentDirections.actionWisataDetailFragmentToUlasanWisataFragment(wisata)
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {

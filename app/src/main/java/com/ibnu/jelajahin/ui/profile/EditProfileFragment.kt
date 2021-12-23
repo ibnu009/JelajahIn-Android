@@ -1,7 +1,6 @@
 package com.ibnu.jelajahin.ui.profile
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -69,14 +68,14 @@ class EditProfileFragment : Fragment() {
         binding.imgProfile.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                sendProfileEdit(token)
+                showImageMenu()
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
         binding.btnSend.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                showImageMenu()
+                sendProfileEdit(token)
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
     }
@@ -84,6 +83,7 @@ class EditProfileFragment : Fragment() {
     private fun sendProfileEdit(token: String) {
         val name = binding.edtFullName.text.toString()
         val address = binding.edtAddress.text.toString()
+        val email = binding.edtEmail.text.toString()
 
         if (imagePath.isNullOrEmpty()) {
             requireContext().showOKDialog(
@@ -98,6 +98,7 @@ class EditProfileFragment : Fragment() {
             viewLifecycleOwner,
             token,
             name,
+            email,
             address,
             imagePath ?: ""
         )
@@ -107,9 +108,7 @@ class EditProfileFragment : Fragment() {
     private fun showImageMenu() {
         AlertDialog.Builder(requireActivity())
             .setTitle("Pilih metode pengambilan Gambar")
-            .setItems(
-                Resources.getSystem().getStringArray(R.array.pictures)
-            ) { _, p1 ->
+            .setItems(R.array.pictures) { _, p1 ->
                 if (p1 == 0) {
                     takePictureRegistration.launch()
                 } else {

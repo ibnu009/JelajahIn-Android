@@ -1,7 +1,10 @@
 package com.ibnu.jelajahin.core.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Wisata(
     @field:SerializedName("uuid_wisata")
     val uuidWisata: String,
@@ -26,4 +29,4 @@ data class Wisata(
     val cityID: Int,
     @field:SerializedName("city_name")
     val cityName: String,
-)
+) : Parcelable

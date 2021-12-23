@@ -51,12 +51,13 @@ class ProfileViewModel @Inject constructor(
 
     fun editUserProfile(
         context: Context, lifecycleOwner: LifecycleOwner,
-        token: String, name: String, address: String?, path: String
+        token: String, name: String, email: String, address: String?, path: String
     ) {
         MultipartUploadRequest(context, JelajahinConstValues.EDIT_PROFILE_URL)
             .setMethod("PUT")
             .addHeader("token", token)
             .addParameter("name", name)
+            .addParameter("email", email)
             .addParameter("origin", address ?: "")
             .setMaxRetries(2)
             .addFileToUpload(path, "image", contentType = "image/*")

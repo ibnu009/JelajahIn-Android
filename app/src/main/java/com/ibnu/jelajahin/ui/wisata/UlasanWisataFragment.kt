@@ -1,7 +1,6 @@
 package com.ibnu.jelajahin.ui.wisata
 
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,11 +12,15 @@ import androidx.activity.result.launch
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
-import com.ibnu.jelajahin.core.extention.getFilePathFromUri
-import com.ibnu.jelajahin.core.extention.getImageUri
-import com.ibnu.jelajahin.core.extention.popTap
-import com.ibnu.jelajahin.core.extention.snackBar
+import com.ibnu.jelajahin.core.data.model.Wisata
+import com.ibnu.jelajahin.core.extention.*
+import com.ibnu.jelajahin.core.ui.state.PostStateHandler
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentUlasanWisataBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import com.karumi.dexter.Dexter
@@ -28,14 +31,16 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UlasanWisataFragment : Fragment() {
+class UlasanWisataFragment : Fragment(), PostStateHandler {
 
-    private val viewModel: WisataViewModel by viewModels();
+    private val viewModel: WisataViewModel by viewModels()
 
     private var _binding: FragmentUlasanWisataBinding? = null
     private val binding get() = _binding!!
 
     private var imagePath: String? = null
+    private lateinit var pref: SharedPreferenceManager
+    private lateinit var wisata: Wisata
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,8 +52,21 @@ class UlasanWisataFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         initiatePermission(requireActivity())
+
+        val safeArgs = arguments?.let { UlasanWisataFragmentArgs.fromBundle(it) }
+        wisata = safeArgs?.wisata!!
+
+        pref = SharedPreferenceManager(requireContext())
+        val token: String = pref.getToken ?: ""
+
+        viewModel.postState = this
+
+        binding.tvUlasanName.text = wisata.name
+        Glide.with(binding.root)
+            .load(JelajahinConstValues.BASE_URL + wisata.imageUrl)
+            .placeholder(R.drawable.skeleton)
+            .into(binding.ivUlasan)
 
         binding.imgUlasan.setOnClickListener {
             it.popTap()
@@ -60,15 +78,41 @@ class UlasanWisataFragment : Fragment() {
         binding.btnSend.setOnClickListener {
             val title = binding.edtUlasanTitle.text.toString()
             val content = binding.edtUlasanContent.text.toString()
+            val rating = binding.rbUlasan.rating.toInt()
+
+            when {
+                title.isEmpty() -> {
+                    binding.edtUlasanTitle.error = "Tidak boleh kosong"
+                }
+                content.isEmpty() -> {
+                    binding.edtUlasanContent.error = "Tidak boleh kosong"
+                }
+                rating == 0 -> {
+                    binding.root.snackBar("Rating tidak boleh kosong!")
+                }
+                imagePath.isNullOrEmpty() -> {
+                    binding.root.snackBar("Image tidak boleh kosong!")
+                }
+                else -> {
+                    viewModel.uploadUlasan(
+                        requireContext(),
+                        viewLifecycleOwner,
+                        token,
+                        title,
+                        content,
+                        rating,
+                        wisata.uuidWisata,
+                        imagePath ?: ""
+                    )
+                }
+            }
         }
     }
 
     private fun showImageMenu() {
         AlertDialog.Builder(requireActivity())
             .setTitle("Pilih metode pengambilan Gambar")
-            .setItems(
-                Resources.getSystem().getStringArray(R.array.pictures)
-            ) { _, p1 ->
+            .setItems(R.array.pictures) { _, p1 ->
                 if (p1 == 0) {
                     takePictureRegistration.launch()
                 } else {
@@ -77,16 +121,21 @@ class UlasanWisataFragment : Fragment() {
             }.create().show()
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
     private val takePictureRegistration =
         registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
-            val uri = requireActivity().getImageUri(bitmap)
-            imagePath = requireActivity().getFilePathFromUri(uri)
+            val uri = requireContext().getImageUri(bitmap)
+            imagePath = requireContext().getFilePathFromUri(uri)
             binding.imgUlasan.setImageBitmap(bitmap)
         }
 
     private val pickFileImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            imagePath = requireActivity().getFilePathFromUri(uri)
+            imagePath = requireContext().getFilePathFromUri(uri)
             binding.imgUlasan.setImageURI(uri)
         }
 
@@ -114,5 +163,31 @@ class UlasanWisataFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+    override fun onInitiating() {
+        showLoading(true)
+    }
+
+    override fun onSuccess(message: String) {
+        showLoading(false)
+        showSuccessDialog(message)
+    }
+
+    private fun showSuccessDialog(message: String) {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Success!")
+            setMessage(message)
+            setPositiveButton("Ok") { p0, _ ->
+                p0.dismiss()
+                findNavController().popBackStack()
+            }
+        }.create().show()
+    }
+
+    override fun onFailure(message: String) {
+        showLoading(false)
+        requireContext().showOKDialog("Gagal", message)
+    }
+
 
 }

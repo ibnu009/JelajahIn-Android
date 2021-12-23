@@ -185,6 +185,9 @@
         <argument
             android:name="uuidWisata"
             app:argType="string" />
+        <action
+            android:id="@+id/action_wisataDetailFragment_to_ulasanWisataFragment"
+            app:destination="@id/ulasanWisataFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -283,6 +286,15 @@
         <argument
             android:name="user"
             app:argType="com.ibnu.jelajahin.core.data.model.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/ulasanWisataFragment"
+        android:name="com.ibnu.jelajahin.ui.wisata.UlasanWisataFragment"
+        android:label="fragment_ulasan_wisata"
+        tools:layout="@layout/fragment_ulasan_wisata" >
+        <argument
+            android:name="wisata"
+            app:argType="com.ibnu.jelajahin.core.data.model.Wisata" />
     </fragment>
 
 </navigation>
