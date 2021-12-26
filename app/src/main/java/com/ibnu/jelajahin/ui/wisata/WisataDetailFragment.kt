@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
+import com.ibnu.jelajahin.core.ui.adapter.AdsAdapter
+import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
 import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +33,8 @@ class WisataDetailFragment : Fragment() {
     private lateinit var wisata: Wisata
     var isFavorite = false
 
+    private lateinit var reviewAdapter: ReviewWisataAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +49,9 @@ class WisataDetailFragment : Fragment() {
         val safeArgs = arguments?.let { WisataDetailFragmentArgs.fromBundle(it) }
         val uuidWisata = safeArgs?.uuidWisata ?: ""
 
+        initiateRecyclerViews()
         initiateDetailData(uuidWisata)
+        initiateUlasanData(uuidWisata)
 
         binding.refresh.setOnRefreshListener {
             initiateDetailData(uuidWisata)
@@ -75,6 +82,35 @@ class WisataDetailFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun initiateUlasanData(uuidWisata: String) {
+        viewModel.getListReview(uuidWisata).observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is ApiResponse.Loading -> {
+                    Timber.d("Loading")
+                }
+                is ApiResponse.Success -> {
+                    binding.tvEmptyUlasan.visibility = View.GONE
+                    showLoading(false)
+                    reviewAdapter.setData(response.data)
+                }
+                is ApiResponse.Empty -> {
+                    binding.tvEmptyUlasan.visibility = View.VISIBLE
+                }
+                else -> {
+                    Timber.d("Unknown Error")
+                }
+            }
+
+        })
+    }
+
+    private fun initiateRecyclerViews() {
+        reviewAdapter = ReviewWisataAdapter()
+        binding.rvUlasan.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvUlasan.adapter = reviewAdapter
     }
 
     private fun initiateAppbar() {

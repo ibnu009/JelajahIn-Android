@@ -217,6 +217,15 @@
                             android:textStyle="bold" />
                     </RelativeLayout>
 
+                    <TextView
+                        android:id="@+id/tvEmptyUlasan"
+                        android:visibility="gone"
+                        android:text="@string/belum_ada_ulasan"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/space_quintuple"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rvUlasan"
                         android:layout_width="match_parent"

@@ -64,7 +64,7 @@ class UlasanWisataFragment : Fragment(), PostStateHandler {
 
         binding.tvUlasanName.text = wisata.name
         Glide.with(binding.root)
-            .load(JelajahinConstValues.BASE_URL + wisata.imageUrl)
+            .load( wisata.imageUrl)
             .placeholder(R.drawable.skeleton)
             .into(binding.ivUlasan)
 

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.ibnu.jelajahin.core.data.model.Review
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.repository.WisataRepository
@@ -51,6 +52,16 @@ class WisataViewModel @Inject constructor(
         val result = MutableLiveData<ApiResponse<List<Wisata>>>()
         viewModelScope.launch {
             wisataRepository.getWisataLocations(provinceId, cityId).collect {
+                result.postValue(it)
+            }
+        }
+        return result
+    }
+
+    fun getListReview(uuidWisata: String): LiveData<ApiResponse<List<Review>>> {
+        val result = MutableLiveData<ApiResponse<List<Review>>>()
+        viewModelScope.launch {
+            wisataRepository.getReviewWisata(uuidWisata).collect {
                 result.postValue(it)
             }
         }

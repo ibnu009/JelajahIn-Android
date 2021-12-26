@@ -3,6 +3,7 @@ package com.ibnu.jelajahin.core.data.source
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.ibnu.jelajahin.core.data.model.Review
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.network.WisataService
@@ -65,6 +66,23 @@ class WisataDataSource@Inject constructor(
                 val response = wisataService.getWisataDetail(wisataUuid)
                 if (response.rowCount > 0){
                     emit(ApiResponse.Success(response.wisata))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception){
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e("Error Event $e")
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getReviewWisata(uuid: String): Flow<ApiResponse<List<Review>>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = wisataService.getUlasanWisata(uuid)
+                if (response.rowCount > 0){
+                    emit(ApiResponse.Success(response.reviews))
                 } else {
                     emit(ApiResponse.Empty)
                 }

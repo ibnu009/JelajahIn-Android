@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.core.data.remote.network
 
+import com.ibnu.jelajahin.core.data.remote.response.ReviewResponse
 import com.ibnu.jelajahin.core.data.remote.response.WisataDetailResponse
 import com.ibnu.jelajahin.core.data.remote.response.WisataResponse
 import retrofit2.http.GET
@@ -33,4 +34,9 @@ interface WisataService {
     suspend fun getWisataDetail(
         @Path("uuidWisata") uuidWisata: String,
     ): WisataDetailResponse
+
+    @GET("api/wisata/ulasan/{uuidWisata}")
+    suspend fun getUlasanWisata(
+        @Path("uuidWisata") uuidWisata: String,
+    ): ReviewResponse
 }
