@@ -13,11 +13,35 @@
         android:layout_height="50dp"
         tools:src="@tools:sample/avatars" />
 
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/customRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/space_double"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:numStars="5"
+        android:rating="4.5" />
+
+
+    <TextView
+        android:id="@+id/tvReviewerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_double"
+        android:layout_alignParentEnd="true"
+        android:gravity="end"
+        android:layout_toEndOf="@id/ratingBar"
+        android:textStyle="bold"
+        tools:text="- ibnu batutah" />
+
     <TextView
         android:id="@+id/tvUlasanTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space"
+        android:layout_below="@id/ratingBar"
+        android:layout_marginHorizontal="@dimen/space_double"
         android:layout_toEndOf="@id/imgPersonUlasan"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -28,9 +52,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvUlasanTitle"
-        android:layout_marginStart="@dimen/space"
+        android:layout_marginHorizontal="@dimen/space_double"
         android:layout_toEndOf="@id/imgPersonUlasan"
         android:maxLines="3"
         tools:text="@tools:sample/lorem/random" />
+
+    <ImageView
+        android:id="@+id/imgReview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:layout_below="@id/tvUlasanContent"
+        android:layout_marginStart="@dimen/space_double"
+        android:layout_marginTop="@dimen/space"
+        android:layout_toEndOf="@id/imgPersonUlasan" />
 
 </RelativeLayout>

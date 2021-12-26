@@ -46,7 +46,7 @@ fun GoogleMap.addMultipleMarkersForRestaurant(listRestaurant: List<Restaurant>, 
         val marker = this.addMarker(
             createMarkerOptions(
                 LatLng(restaurant.latitude, restaurant.longtitude),
-                restaurant.name,
+                "Rp ${restaurant.priceMin} - Rp ${restaurant.priceMax}",
                 "wisata",
                 context
             )

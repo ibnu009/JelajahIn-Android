@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.ui.wisata
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.map.addMultipleMarkersForWisata
 import com.ibnu.jelajahin.core.extention.map.boundsCameraToMarkers
 import com.ibnu.jelajahin.core.extention.map.convertWisataToLatLng
+import com.ibnu.jelajahin.core.ui.gwindow.InfoWindowsWisata
 import com.ibnu.jelajahin.databinding.FragmentWisataMapBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -21,12 +23,10 @@ import timber.log.Timber
 @AndroidEntryPoint
 class WisataMapFragment : Fragment() {
 
-    private val viewModel: WisataViewModel by viewModels();
+    private val viewModel: WisataViewModel by viewModels()
 
     private var _binding: FragmentWisataMapBinding? = null
     private val binding get() = _binding!!
-
-    private lateinit var mMap: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +36,7 @@ class WisataMapFragment : Fragment() {
         return _binding?.root
     }
 
+    @SuppressLint("PotentialBehaviorOverride")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val safeArgs = arguments?.let { WisataMapFragmentArgs.fromBundle(it) }
@@ -60,6 +61,9 @@ class WisataMapFragment : Fragment() {
                             val listLocations = response.data.convertWisataToLatLng()
                             googleMap.boundsCameraToMarkers(listLocations)
                             setButtonViews(googleMap, listLocations)
+
+                            val infoWindow = InfoWindowsWisata(requireActivity(), requireContext())
+                            googleMap.setInfoWindowAdapter(infoWindow)
                         }
                         else -> {
                             Timber.d("Unknown Error")
@@ -67,7 +71,6 @@ class WisataMapFragment : Fragment() {
                     }
                 })
         }
-
     }
 
     private fun setButtonViews(googleMap: GoogleMap, listLocation: List<LatLng>) {

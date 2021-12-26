@@ -37,7 +37,7 @@
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_splash_screen.xml" value="0.5" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_success_attend.xml" value="0.25" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_ulasan_wisata.xml" value="0.33" />
-        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_wisata_detail.xml" value="0.22" />
+        <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_wisata_detail.xml" value="0.33883058470764615" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/fragment_wisata_map.xml" value="0.20416666666666666" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/login_fragment.xml" value="0.22" />
         <entry key="..\:/2. On Going Project/JelajahIn/app/src/main/res/layout/penginapan_fragment.xml" value="0.25" />
@@ -81,7 +81,7 @@
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/info_window_jelajahin.xml" value="0.33" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/recommendation_item.xml" value="0.41005291005291006" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/restaurant_item.xml" value="0.25" />
-        <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/ulasan_item.xml" value="0.22" />
+        <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/ulasan_item.xml" value="0.33" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/wisata_item.xml" value="0.33" />
       </map>
     </option>

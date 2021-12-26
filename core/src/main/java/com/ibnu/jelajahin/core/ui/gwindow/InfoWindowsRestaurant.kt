@@ -1,4 +1,4 @@
-package com.ibnu.jelajahin.core.utils
+package com.ibnu.jelajahin.core.ui.gwindow
 
 import android.annotation.SuppressLint
 import android.app.Activity

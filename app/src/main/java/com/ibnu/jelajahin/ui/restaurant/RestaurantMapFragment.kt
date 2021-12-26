@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.map.*
-import com.ibnu.jelajahin.core.utils.InfoWindowsRestaurant
+import com.ibnu.jelajahin.core.ui.gwindow.InfoWindowsRestaurant
 import com.ibnu.jelajahin.databinding.FragmentRestaurantMapBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -21,7 +21,7 @@ import timber.log.Timber
 @AndroidEntryPoint
 class RestaurantMapFragment : Fragment() {
 
-    private val viewModel: RestaurantViewModel by viewModels();
+    private val viewModel: RestaurantViewModel by viewModels()
 
     private var _binding: FragmentRestaurantMapBinding? = null
     private val binding get() = _binding!!

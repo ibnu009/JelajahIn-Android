@@ -72,6 +72,17 @@
                 tools:text="Bondowoso, Jawa Timur" />
 
             <TextView
+                android:id="@+id/tvPriceRange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/red_button"
+                android:textSize="@dimen/font_medium"
+                android:layout_marginHorizontal="@dimen/space_double"
+                android:layout_marginTop="@dimen/space"
+                tools:text="Bondowoso, Jawa Timur" />
+
+            <TextView
                 android:id="@+id/tvRestaurantDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -246,8 +257,9 @@
             <include
                 android:id="@+id/contactComponent"
                 android:layout_marginVertical="@dimen/space_double"
+                android:layout_marginHorizontal="@dimen/space_triple"
                 layout="@layout/component_detail_contact"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal" />
 
@@ -317,7 +329,7 @@
         android:backgroundTint="@color/white"
         android:baselineAlignBottom="false"
         android:clickable="true"
-        android:contentDescription="aweaw"
+        android:contentDescription="@string/discover"
         android:focusable="true"
         android:src="@drawable/ic_bookmark"
         app:fabSize="normal"

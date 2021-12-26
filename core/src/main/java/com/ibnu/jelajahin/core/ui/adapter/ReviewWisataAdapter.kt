@@ -10,7 +10,7 @@ import com.ibnu.jelajahin.core.data.model.Review
 import com.ibnu.jelajahin.core.databinding.UlasanItemBinding
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 
-class ReviewWisataAdapter() :
+class ReviewWisataAdapter :
     RecyclerView.Adapter<ReviewWisataAdapter.UlasanViewHolder>() {
 
     private val listReview = ArrayList<Review>()
@@ -33,17 +33,27 @@ class ReviewWisataAdapter() :
 
     override fun getItemCount(): Int = listReview.size
 
+    @SuppressLint("SetTextI18n")
     inner class UlasanViewHolder(val binding: UlasanItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(review: Review) {
 
+            binding.ratingBar.rating = review.rating.toFloat()
             binding.tvUlasanTitle.text = review.title
             binding.tvUlasanContent.text = review.content
+            binding.tvReviewerName.text = "-" + review.reviewerName
+
+
+            Glide.with(binding.root.context)
+                .load("${JelajahinConstValues.BASE_URL}${review.reviewerProfileImage}")
+                .placeholder(R.color.input_color)
+                .into(binding.imgPersonUlasan)
 
             Glide.with(binding.root.context)
                 .load("${JelajahinConstValues.BASE_URL}${review.imageUrl}")
                 .placeholder(R.color.input_color)
-                .into(binding.imgPersonUlasan)
+                .into(binding.imgReview)
+
         }
     }
 

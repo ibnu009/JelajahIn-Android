@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.ui.restaurant
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -59,12 +60,14 @@ class RestaurantDetailFragment : Fragment() {
         })
     }
 
+    @SuppressLint("SetTextI18n")
     private fun loadUiDetailRestaurant(restaurant: Restaurant) {
         binding.tvRestaurantName.text = restaurant.name
         binding.tvRestaurantLocation.text = restaurant.address
         binding.tvRestaurantDescription.text = restaurant.description
         binding.tvBusinessTime.text = "${restaurant.OpenTime} - ${restaurant.CloseTime}"
         binding.tvDiet.text = restaurant.foodType
+        binding.tvPriceRange.text = "Rp ${restaurant.priceMin} - Rp ${restaurant.priceMax}"
         binding.restaurantStar.rating = restaurant.ratingAverage?.toFloat() ?: 0f
         binding.restaurantServiceStar.rating = restaurant.ratingService?.toFloat() ?: 0f
         binding.restaurantFoodStar.rating = restaurant.ratingFood?.toFloat() ?: 0f
