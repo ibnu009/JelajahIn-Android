@@ -65,7 +65,7 @@ class RestaurantViewModel @Inject constructor(private val repository: Restaurant
         context: Context, lifecycleOwner: LifecycleOwner,
         token: String, title: String, content: String, ratingService: Int, ratingFood: Int, ratingClean: Int, uuidRestaurant: String, path: String
     ) {
-        MultipartUploadRequest(context, JelajahinConstValues.POST_WISATA_ULASAN_URL)
+        MultipartUploadRequest(context, JelajahinConstValues.POST_RESTAURANT_ULASAN_URL)
             .setMethod("POST")
             .addHeader("token", token)
             .addParameter("title", title)

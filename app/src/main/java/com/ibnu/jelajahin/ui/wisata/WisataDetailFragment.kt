@@ -23,6 +23,7 @@ import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import kotlin.math.min
 
 @AndroidEntryPoint
 class WisataDetailFragment : Fragment() {
@@ -131,8 +132,18 @@ class WisataDetailFragment : Fragment() {
         binding.tvTicketPriceWeekend.text = wisata.ticketPrice
         binding.wisataStar.rating = wisata.ratingAverage.toFloat()
         binding.tvWisataAccreditation.text = wisata.ratingAverage.toJelajahinAccreditation()
-        binding.tvWisataRating.text =
-            if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
+
+
+        if (wisata.ratingAverage.toString().length > 3) {
+            val maxLength: Int = min(wisata.ratingAverage.toString().length, 3)
+            binding.tvWisataRating.text =
+                if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString().substring(0, maxLength)
+        } else {
+            binding.tvWisataRating.text =
+                if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
+        }
+
+
         view?.let {
             Glide.with(it)
                 .load(BASE_URL+wisata.imageUrl)

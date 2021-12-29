@@ -10,6 +10,7 @@ import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.databinding.RestaurantItemBinding
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import kotlin.math.min
 
 class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(DIFF_CALLBACK) {
@@ -36,7 +37,15 @@ class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler)
             binding.tvRestaurantLocation.text = restaurant.address
             binding.tvRestaurantType.text = restaurant.restaurantType
             binding.rbRestaurant.rating = restaurant.ratingAverage?.toFloat() ?: 0f
-            binding.tvRestaurantRating.text = if (restaurant.ratingAverage != null) restaurant.ratingAverage.toString() else "0.0"
+
+            if (restaurant.ratingAverage.toString().length > 3) {
+                val maxLength: Int = min(restaurant.ratingAverage.toString().length, 3)
+                binding.tvRestaurantRating.text = if (restaurant.ratingAverage != null) restaurant.ratingAverage.toString().substring(0, maxLength) else "0.0"
+            } else {
+                binding.tvRestaurantRating.text =
+                    if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString()
+            }
+
 
             Glide.with(itemView)
                 .load(BASE_URL+restaurant.imageUrl)

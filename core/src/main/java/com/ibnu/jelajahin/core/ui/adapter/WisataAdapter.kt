@@ -10,6 +10,7 @@ import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.databinding.WisataItemBinding
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import kotlin.math.min
 
 class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Wisata, WisataAdapter.WisataViewHolder>(DIFF_CALLBACK) {
@@ -34,7 +35,13 @@ class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
             binding.tvWisataName.text = wisata.name
             binding.tvWisataLocation.text = wisata.address
             binding.rbRestaurant.rating = wisata.ratingAverage.toFloat()
-            binding.tvWisataRating.text = wisata.ratingAverage.toString()
+
+            if (wisata.ratingAverage.toString().length > 3) {
+                val maxLength: Int = min(wisata.ratingAverage.toString().length, 3)
+                binding.tvWisataRating.text = wisata.ratingAverage.toString().substring(maxLength)
+            } else {
+                binding.tvWisataRating.text = wisata.ratingAverage.toString()
+            }
 
             Glide.with(itemView)
                 .load(BASE_URL+wisata.imageUrl)

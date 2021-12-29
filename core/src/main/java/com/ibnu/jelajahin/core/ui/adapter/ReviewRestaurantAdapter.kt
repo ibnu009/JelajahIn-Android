@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Review
-import com.ibnu.jelajahin.core.databinding.UlasanItemBinding
 import com.ibnu.jelajahin.core.databinding.UlasanRestaurantItemBinding
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 

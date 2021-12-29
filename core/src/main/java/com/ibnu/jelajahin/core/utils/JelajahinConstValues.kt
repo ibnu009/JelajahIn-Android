@@ -6,6 +6,8 @@ object JelajahinConstValues {
 
     const val BASE_URL = "http://192.168.1.4:8000/"
     const val POST_WISATA_ULASAN_URL = "${BASE_URL}api/wisata/add_ulasan"
+    const val POST_RESTAURANT_ULASAN_URL = "${BASE_URL}api/restaurant/add_ulasan"
+
     const val EDIT_PROFILE_URL = "${BASE_URL}api/profile/edit"
 
     const val DEFAULT_PAGE_INDEX = 1

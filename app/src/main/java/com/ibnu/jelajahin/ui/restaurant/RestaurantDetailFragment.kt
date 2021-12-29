@@ -22,6 +22,7 @@ import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import kotlin.math.min
 
 @AndroidEntryPoint
 class RestaurantDetailFragment : Fragment() {
@@ -96,8 +97,15 @@ class RestaurantDetailFragment : Fragment() {
         binding.tvRestaurantAccreditation.text =
             if (restaurant.ratingAverage != null) restaurant.ratingAverage?.toJelajahinAccreditation() else (0.0).toJelajahinAccreditation()
 
-        binding.tvRestaurantRating.text =
-            if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString()
+        if (restaurant.ratingAverage.toString().length > 3) {
+            val maxLength: Int = min(restaurant.ratingAverage.toString().length, 3)
+            binding.tvRestaurantRating.text =
+                if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString().substring(0, maxLength)
+        } else {
+            binding.tvRestaurantRating.text =
+                if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString()
+        }
+
 
         view?.let {
             Glide.with(it)
