@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/space_double"
+    android:layout_marginTop="@dimen/space_double"
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgPersonUlasan"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        tools:src="@tools:sample/avatars" />
+
+    <LinearLayout
+        android:id="@+id/ratingServiceContainer"
+        android:orientation="horizontal"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/ratingBarService"
+            style="@style/customRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/space_double"
+            android:numStars="5"
+            android:rating="4.5" />
+
+        <TextView
+            android:text="@string/service"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/font_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_half"
+        android:id="@+id/ratingFoodContainer"
+        android:orientation="horizontal"
+        android:layout_below="@id/ratingServiceContainer"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/ratingBarFood"
+            style="@style/customRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/space_double"
+            android:numStars="5"
+            android:rating="4.5" />
+
+        <TextView
+            android:text="@string/food"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/font_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/space_half"
+        android:id="@+id/ratingCleanContainer"
+        android:orientation="horizontal"
+        android:layout_below="@id/ratingFoodContainer"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RatingBar
+            android:id="@+id/ratingBarClean"
+            style="@style/customRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/space_double"
+            android:numStars="5"
+            android:rating="4.5" />
+
+        <TextView
+            android:text="@string/clean"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"
+            android:textSize="@dimen/font_small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/tvReviewerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/space_double"
+        android:layout_marginHorizontal="@dimen/space_double"
+        android:layout_toEndOf="@id/ratingServiceContainer"
+        android:gravity="end"
+        android:textStyle="bold"
+        tools:text="- ibnu batutah" />
+
+    <TextView
+        android:id="@+id/tvUlasanTitle"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/space_half"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingCleanContainer"
+        android:layout_marginHorizontal="@dimen/space_double"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="Test Judul" />
+
+    <TextView
+        android:id="@+id/tvUlasanContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvUlasanTitle"
+        android:layout_marginHorizontal="@dimen/space_double"
+        android:layout_toEndOf="@id/imgPersonUlasan"
+        android:maxLines="3"
+        tools:text="@tools:sample/lorem/random" />
+
+    <ImageView
+        android:id="@+id/imgReview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitXY"
+        android:layout_below="@id/tvUlasanContent"
+        android:layout_marginStart="@dimen/space_double"
+        android:layout_marginTop="@dimen/space"
+        android:layout_toEndOf="@id/imgPersonUlasan" />
+
+</RelativeLayout>

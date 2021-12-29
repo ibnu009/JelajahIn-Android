@@ -6,6 +6,9 @@
     <string name="telfon">Telfon</string>
     <string name="web">web</string>
     <string name="email">email</string>
+    <string name="service">-Pelayanan</string>
+    <string name="food">-Makanan</string>
+    <string name="clean">-Kebersihan</string>
 
     <string-array name="pictures">
         <item>Ambil foto</item>

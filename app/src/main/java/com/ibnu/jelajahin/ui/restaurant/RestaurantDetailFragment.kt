@@ -16,7 +16,7 @@ import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
-import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
+import com.ibnu.jelajahin.core.ui.adapter.ReviewRestaurantAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
@@ -32,7 +32,7 @@ class RestaurantDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var restaurant: Restaurant
 
-    private lateinit var reviewAdapter: ReviewWisataAdapter
+    private lateinit var reviewAdapter: ReviewRestaurantAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,7 +74,7 @@ class RestaurantDetailFragment : Fragment() {
     }
 
     private fun initiateRecyclerViews() {
-        reviewAdapter = ReviewWisataAdapter()
+        reviewAdapter = ReviewRestaurantAdapter()
         binding.rvUlasan.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvUlasan.adapter = reviewAdapter
