@@ -10,15 +10,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Restaurant
-import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
+import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
-import com.ibnu.jelajahin.ui.wisata.WisataDetailFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -32,6 +32,7 @@ class RestaurantDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var restaurant: Restaurant
 
+    private lateinit var reviewAdapter: ReviewWisataAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +47,9 @@ class RestaurantDetailFragment : Fragment() {
         initiateAppbar()
         val safeArgs = arguments?.let { RestaurantDetailFragmentArgs.fromBundle(it) }
         val uuid = safeArgs?.uuidRestaurant ?: ""
+
+        initiateRecyclerViews()
+        initiateUlasanData(uuid)
 
         viewModel.getRestaurantDetail(uuid).observe(viewLifecycleOwner, { response ->
             when (response) {
@@ -67,6 +71,13 @@ class RestaurantDetailFragment : Fragment() {
                 }
             }
         })
+    }
+
+    private fun initiateRecyclerViews() {
+        reviewAdapter = ReviewWisataAdapter()
+        binding.rvUlasan.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvUlasan.adapter = reviewAdapter
     }
 
     @SuppressLint("SetTextI18n")
@@ -115,9 +126,33 @@ class RestaurantDetailFragment : Fragment() {
 //        }
     }
 
+    private fun initiateUlasanData(uuidWisata: String) {
+        viewModel.getListReview(uuidWisata).observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is ApiResponse.Loading -> {
+                    Timber.d("Loading")
+                }
+                is ApiResponse.Success -> {
+                    binding.tvEmptyUlasan.visibility = View.GONE
+                    showLoading(false)
+                    reviewAdapter.setData(response.data)
+                }
+                is ApiResponse.Empty -> {
+                    binding.tvEmptyUlasan.visibility = View.VISIBLE
+                }
+                else -> {
+                    Timber.d("Unknown Error")
+                }
+            }
+
+        })
+    }
+
     private fun navigateToAddUlasan() {
         val action =
-            RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToUlasanRestaurantFragment(restaurant)
+            RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToUlasanRestaurantFragment(
+                restaurant
+            )
         findNavController().navigate(action)
     }
 

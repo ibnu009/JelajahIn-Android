@@ -237,8 +237,6 @@
 
             </LinearLayout>
 
-
-
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

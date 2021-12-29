@@ -2,6 +2,7 @@ package com.ibnu.jelajahin.core.data.repository
 
 import androidx.paging.PagingData
 import com.ibnu.jelajahin.core.data.model.Restaurant
+import com.ibnu.jelajahin.core.data.model.Review
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.source.RestaurantDataSource
 import kotlinx.coroutines.flow.Flow
@@ -25,5 +26,9 @@ class RestaurantRepository @Inject constructor(
         provinceId: Int,
     ): Flow<ApiResponse<List<Restaurant>>> {
         return datasource.getRestaurantLocations(provinceId)
+    }
+
+    suspend fun getReviewRestaurant(uuid: String): Flow<ApiResponse<List<Review>>> {
+        return datasource.getReviewRestaurant(uuid)
     }
 }

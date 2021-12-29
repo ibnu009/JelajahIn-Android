@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.ibnu.jelajahin.core.data.model.Restaurant
+import com.ibnu.jelajahin.core.data.model.Review
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.repository.RestaurantRepository
 import com.ibnu.jelajahin.core.ui.state.PostStateHandler
@@ -44,6 +45,16 @@ class RestaurantViewModel @Inject constructor(private val repository: Restaurant
         val result = MutableLiveData<ApiResponse<List<Restaurant>>>()
         viewModelScope.launch {
             repository.getRestaurantLocations(provinceId).collect {
+                result.postValue(it)
+            }
+        }
+        return result
+    }
+
+    fun getListReview(uuidRestaurant: String): LiveData<ApiResponse<List<Review>>> {
+        val result = MutableLiveData<ApiResponse<List<Review>>>()
+        viewModelScope.launch {
+            repository.getReviewRestaurant(uuidRestaurant).collect {
                 result.postValue(it)
             }
         }
