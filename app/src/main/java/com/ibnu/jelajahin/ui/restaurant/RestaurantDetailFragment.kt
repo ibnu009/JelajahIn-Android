@@ -2,6 +2,8 @@ package com.ibnu.jelajahin.ui.restaurant
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +12,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Restaurant
+import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
+import com.ibnu.jelajahin.ui.wisata.WisataDetailFragmentDirections
+import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -24,6 +30,8 @@ class RestaurantDetailFragment : Fragment() {
 
     private var _binding: FragmentRestaurantDetailBinding? = null
     private val binding get() = _binding!!
+    private lateinit var restaurant: Restaurant
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,6 +59,7 @@ class RestaurantDetailFragment : Fragment() {
                 }
                 is ApiResponse.Success -> {
                     loadUiDetailRestaurant(response.data)
+                    restaurant = response.data
                     showLoading(false)
                 }
                 else -> {
@@ -81,8 +90,15 @@ class RestaurantDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(restaurant.imageUrl)
+                .load(BASE_URL+restaurant.imageUrl)
                 .into(binding.imgRestaurant)
+        }
+
+        binding.btnTambahUlasan.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                navigateToAddUlasan()
+            }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
 //        binding.btnBookmark.setOnClickListener {
@@ -97,6 +113,12 @@ class RestaurantDetailFragment : Fragment() {
 //                }
 //            }, FAST_ANIMATION_TIME)
 //        }
+    }
+
+    private fun navigateToAddUlasan() {
+        val action =
+            RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToUlasanRestaurantFragment(restaurant)
+        findNavController().navigate(action)
     }
 
     private fun showLoading(isLoading: Boolean) {

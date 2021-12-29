@@ -77,5 +77,8 @@
     <string name="alamat">Alamat</string>
     <string name="tambah_ulasan">Tambah Ulasan</string>
     <string name="belum_ada_ulasan">Belum ada ulasan!</string>
+    <string name="service_in_restaurant">Pelayanan di restaurant</string>
+    <string name="food_in_restaurant">Rasa Makanan di restaurant</string>
+    <string name="clean_in_restaurant">Kebersihan di restaurant</string>
 
 </resources>

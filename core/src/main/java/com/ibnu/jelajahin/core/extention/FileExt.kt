@@ -37,7 +37,7 @@ fun Context.getImageUri(img: Bitmap): Uri? {
 
 fun Context.getFilePathFromUri( contentUri: Uri?): String? {
 //        Stream directori file mentah ke dir android
-    val fileName: String = getFileName(contentUri)!!
+    val fileName: String = getFileName(contentUri) ?: ""
     val dir = File(
         this.externalCacheDir.toString()
     )

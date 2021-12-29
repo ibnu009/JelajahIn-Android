@@ -1,4 +1,4 @@
-package com.ibnu.jelajahin.ui.profile
+package com.ibnu.jelajahin.ui.restaurant
 
 import android.content.Context
 import android.os.Bundle
@@ -12,13 +12,15 @@ import androidx.activity.result.launch
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
-import com.ibnu.jelajahin.core.data.model.User
+import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.extention.*
+import com.ibnu.jelajahin.core.ui.state.PostStateHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
-import com.ibnu.jelajahin.databinding.FragmentEditProfileBinding
+import com.ibnu.jelajahin.databinding.FragmentUlasanRestaurantBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
@@ -28,46 +30,44 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EditProfileFragment : Fragment() {
+class UlasanRestaurantFragment : Fragment(), PostStateHandler {
 
-    private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: RestaurantViewModel by viewModels()
 
-    private var _binding: FragmentEditProfileBinding? = null
+    private var _binding: FragmentUlasanRestaurantBinding? = null
     private val binding get() = _binding!!
 
     private var imagePath: String? = null
     private lateinit var pref: SharedPreferenceManager
-    private lateinit var user: User
+    private lateinit var restaurant: Restaurant
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        _binding = FragmentUlasanRestaurantBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initiatePermission(requireActivity())
+
+        val safeArgs = arguments?.let { UlasanRestaurantFragmentArgs.fromBundle(it) }
+        restaurant = safeArgs?.restaurant!!
+
         pref = SharedPreferenceManager(requireContext())
         val token: String = pref.getToken ?: ""
 
-        val safeArgs = arguments?.let { EditProfileFragmentArgs.fromBundle(it) }
-        user = safeArgs?.user!!
+        viewModel.postState = this
 
-        binding.edtFullName.setText(user.fullName)
-        binding.edtEmail.setText(user.email)
-        binding.edtAddress.setText(user.origin)
+        binding.tvUlasanName.text = restaurant.name
+        Glide.with(binding.root)
+            .load("${JelajahinConstValues.BASE_URL}${restaurant.imageUrl}")
+            .placeholder(R.drawable.skeleton)
+            .into(binding.ivUlasan)
 
-       if (user.imageUrl.isNotEmpty()){
-           Glide.with(binding.root)
-               .load(JelajahinConstValues.BASE_URL +user.imageUrl)
-               .placeholder(R.drawable.img_person)
-               .into(binding.imgProfile)
-       }
-
-        binding.imgProfile.setOnClickListener {
+        binding.imgUlasan.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 showImageMenu()
@@ -75,37 +75,42 @@ class EditProfileFragment : Fragment() {
         }
 
         binding.btnSend.setOnClickListener {
-            it.popTap()
-            Handler(Looper.getMainLooper()).postDelayed({
-                sendProfileEdit(token)
-            }, UiConstValue.FAST_ANIMATION_TIME)
+            val title = binding.edtUlasanTitle.text.toString()
+            val content = binding.edtUlasanContent.text.toString()
+            val ratingService = binding.rbUlasanService.rating.toInt()
+            val ratingFood = binding.rbUlasanFood.rating.toInt()
+            val ratingClean = binding.rbUlasanClean.rating.toInt()
+
+            when {
+                title.isEmpty() -> {
+                    binding.edtUlasanTitle.error = "Tidak boleh kosong"
+                }
+                content.isEmpty() -> {
+                    binding.edtUlasanContent.error = "Tidak boleh kosong"
+                }
+                ratingService == 0 || ratingFood == 0 || ratingClean == 0 -> {
+                    binding.root.snackBar("Masih ada Rating yang kosong!")
+                }
+                imagePath.isNullOrEmpty() -> {
+                    binding.root.snackBar("Image tidak boleh kosong!")
+                }
+                else -> {
+                    viewModel.uploadUlasan(
+                        requireContext(),
+                        viewLifecycleOwner,
+                        token,
+                        title,
+                        content,
+                        ratingService,
+                        ratingFood,
+                        ratingClean,
+                        restaurant.uuidRestaurant,
+                        imagePath ?: ""
+                    )
+                }
+            }
         }
     }
-
-    private fun sendProfileEdit(token: String) {
-        val name = binding.edtFullName.text.toString()
-        val address = binding.edtAddress.text.toString()
-        val email = binding.edtEmail.text.toString()
-
-        if (imagePath.isNullOrEmpty()) {
-            requireContext().showOKDialog(
-                "Image Kosong",
-                "Gambar kamu kosong nih, silahkan ambil gambar dari kamera atau galeri"
-            )
-            return
-        }
-
-        viewModel.editUserProfile(
-            requireActivity(),
-            viewLifecycleOwner,
-            token,
-            name,
-            email,
-            address,
-            imagePath ?: ""
-        )
-    }
-
 
     private fun showImageMenu() {
         AlertDialog.Builder(requireActivity())
@@ -119,20 +124,25 @@ class EditProfileFragment : Fragment() {
             }.create().show()
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
     private val takePictureRegistration =
         registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
-            if(bitmap != null){
+            if (bitmap != null) {
                 val uri = requireActivity().getImageUri(bitmap)
                 imagePath = requireActivity().getFilePathFromUri(uri)
-                binding.imgProfile.setImageBitmap(bitmap)
+                binding.imgUlasan.setImageBitmap(bitmap)
             }
         }
 
     private val pickFileImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            if (uri != null){
+            if (uri != null) {
                 imagePath = requireActivity().getFilePathFromUri(uri)
-                binding.imgProfile.setImageURI(uri)
+                binding.imgUlasan.setImageURI(uri)
             }
         }
 
@@ -159,6 +169,31 @@ class EditProfileFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+
+    override fun onInitiating() {
+        showLoading(true)
+    }
+
+    override fun onSuccess(message: String) {
+        showLoading(false)
+        showSuccessDialog(message)
+    }
+
+    private fun showSuccessDialog(message: String) {
+        AlertDialog.Builder(requireContext()).apply {
+            setTitle("Success!")
+            setMessage(message)
+            setPositiveButton("Ok") { p0, _ ->
+                p0.dismiss()
+                findNavController().popBackStack()
+            }
+        }.create().show()
+    }
+
+    override fun onFailure(message: String) {
+        showLoading(false)
+        requireContext().showOKDialog("Gagal", message)
     }
 
 }

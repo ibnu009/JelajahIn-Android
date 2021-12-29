@@ -12,7 +12,6 @@ import androidx.activity.result.launch
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
@@ -64,7 +63,7 @@ class UlasanWisataFragment : Fragment(), PostStateHandler {
 
         binding.tvUlasanName.text = wisata.name
         Glide.with(binding.root)
-            .load( wisata.imageUrl)
+            .load("${JelajahinConstValues.BASE_URL}${wisata.imageUrl}")
             .placeholder(R.drawable.skeleton)
             .into(binding.ivUlasan)
 
@@ -128,15 +127,19 @@ class UlasanWisataFragment : Fragment(), PostStateHandler {
 
     private val takePictureRegistration =
         registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
-            val uri = requireContext().getImageUri(bitmap)
-            imagePath = requireContext().getFilePathFromUri(uri)
-            binding.imgUlasan.setImageBitmap(bitmap)
+            if(bitmap != null){
+                val uri = requireActivity().getImageUri(bitmap)
+                imagePath = requireActivity().getFilePathFromUri(uri)
+                binding.imgUlasan.setImageBitmap(bitmap)
+            }
         }
 
     private val pickFileImage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            imagePath = requireContext().getFilePathFromUri(uri)
-            binding.imgUlasan.setImageURI(uri)
+            if (uri != null){
+                imagePath = requireActivity().getFilePathFromUri(uri)
+                binding.imgUlasan.setImageURI(uri)
+            }
         }
 
     private fun initiatePermission(context: Context) {

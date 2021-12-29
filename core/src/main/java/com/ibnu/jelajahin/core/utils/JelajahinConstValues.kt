@@ -4,10 +4,9 @@ import android.Manifest
 
 object JelajahinConstValues {
 
-    const val BASE_URL = "http://192.168.1.7:8000/"
+    const val BASE_URL = "http://192.168.1.4:8000/"
     const val POST_WISATA_ULASAN_URL = "${BASE_URL}api/wisata/add_ulasan"
     const val EDIT_PROFILE_URL = "${BASE_URL}api/profile/edit"
-
 
     const val DEFAULT_PAGE_INDEX = 1
     const val DEFAULT_PAGE_SIZE = 10

@@ -107,7 +107,12 @@
         android:id="@+id/pointHistoryFragment"
         android:name="com.ibnu.jelajahin.ui.profile.history.PointHistoryFragment"
         android:label="fragment_point_history"
-        tools:layout="@layout/fragment_point_history" />
+        tools:layout="@layout/fragment_point_history" >
+        <argument
+            android:name="point"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/attendEventFragment"
         android:name="com.ibnu.jelajahin.ui.event.attend.AttendEventFragment"
@@ -273,6 +278,9 @@
         <argument
             android:name="uuidRestaurant"
             app:argType="string" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_ulasanRestaurantFragment"
+            app:destination="@id/ulasanRestaurantFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantMapFragment"
@@ -295,6 +303,15 @@
         <argument
             android:name="wisata"
             app:argType="com.ibnu.jelajahin.core.data.model.Wisata" />
+    </fragment>
+    <fragment
+        android:id="@+id/ulasanRestaurantFragment"
+        android:name="com.ibnu.jelajahin.ui.restaurant.UlasanRestaurantFragment"
+        android:label="fragment_ulasan_restaurant"
+        tools:layout="@layout/fragment_ulasan_restaurant" >
+        <argument
+            android:name="restaurant"
+            app:argType="com.ibnu.jelajahin.core.data.model.Restaurant" />
     </fragment>
 
 </navigation>

@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Restaurant
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class InfoWindowsRestaurant(private val activity: Activity, private val context: Context) : GoogleMap.InfoWindowAdapter {
 
@@ -32,7 +33,7 @@ class InfoWindowsRestaurant(private val activity: Activity, private val context:
         val data = p0.tag as Restaurant
 
         Glide.with(context)
-            .load(data.imageUrl)
+            .load(BASE_URL+data.imageUrl)
             .into(img)
 
         name.text = data.name

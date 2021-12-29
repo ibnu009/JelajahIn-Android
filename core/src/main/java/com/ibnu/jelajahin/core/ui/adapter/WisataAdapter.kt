@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.databinding.WisataItemBinding
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Wisata, WisataAdapter.WisataViewHolder>(DIFF_CALLBACK) {
@@ -36,7 +37,7 @@ class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
             binding.tvWisataRating.text = wisata.ratingAverage.toString()
 
             Glide.with(itemView)
-                .load(wisata.imageUrl)
+                .load(BASE_URL+wisata.imageUrl)
                 .into(binding.imvWisata)
         }
     }

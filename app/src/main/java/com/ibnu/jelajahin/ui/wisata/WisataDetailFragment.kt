@@ -18,6 +18,7 @@ import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
 import com.ibnu.jelajahin.core.ui.adapter.AdsAdapter
 import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
@@ -134,7 +135,7 @@ class WisataDetailFragment : Fragment() {
             if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
         view?.let {
             Glide.with(it)
-                .load(wisata.imageUrl)
+                .load(BASE_URL+wisata.imageUrl)
                 .into(binding.imgWisata)
         }
 

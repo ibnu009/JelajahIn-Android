@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.Marker
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.data.model.Wisata
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class InfoWindowsWisata(private val activity: Activity, private val context: Context) : GoogleMap.InfoWindowAdapter {
 
@@ -33,7 +34,7 @@ class InfoWindowsWisata(private val activity: Activity, private val context: Con
         val data = p0.tag as Wisata
 
         Glide.with(context)
-            .load(data.imageUrl)
+            .load(BASE_URL+data.imageUrl)
             .into(img)
 
         name.text = data.name

@@ -17,6 +17,7 @@ import com.ibnu.jelajahin.core.ui.adapter.HistoryPointAdapter
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentPointHistoryBinding
 import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.ui.profile.EditProfileFragmentArgs
 import com.ibnu.jelajahin.ui.profile.ProfileViewModel
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,6 +49,12 @@ class PointHistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         pref = SharedPreferenceManager(requireContext())
         val token: String = pref.getToken ?: ""
+
+        val safeArgs = arguments?.let { PointHistoryFragmentArgs.fromBundle(it) }
+        val points = safeArgs?.point
+
+        binding.tvTotalPoint.text = points.toString()
+
         binding.appBar.imgBack.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({

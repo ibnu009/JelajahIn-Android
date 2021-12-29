@@ -22,7 +22,6 @@ import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
-import com.ibnu.jelajahin.ui.event.detail.EventDetailFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -154,7 +153,8 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutHistoryPoint -> {
                 p0.popTap()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    findNavController().navigate(R.id.action_profileFragment_to_pointHistoryFragment)
+                    val action = ProfileFragmentDirections.actionProfileFragmentToPointHistoryFragment(user.totalPoints)
+                    findNavController().navigate(action)
                 }, FAST_ANIMATION_TIME)
             }
             binding.profileComponent.layoutShop -> {

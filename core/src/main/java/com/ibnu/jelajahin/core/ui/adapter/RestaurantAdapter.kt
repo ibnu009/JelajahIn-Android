@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.databinding.RestaurantItemBinding
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(DIFF_CALLBACK) {
@@ -38,7 +39,7 @@ class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler)
             binding.tvRestaurantRating.text = if (restaurant.ratingAverage != null) restaurant.ratingAverage.toString() else "0.0"
 
             Glide.with(itemView)
-                .load(restaurant.imageUrl)
+                .load(BASE_URL+restaurant.imageUrl)
                 .into(binding.imvRestaurant)
         }
     }
