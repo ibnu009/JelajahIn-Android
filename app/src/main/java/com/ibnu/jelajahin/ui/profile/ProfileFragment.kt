@@ -1,5 +1,6 @@
 package com.ibnu.jelajahin.ui.profile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -92,6 +93,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initiateProfileView(user: User) {
         binding.tvName.text = user.fullName
         binding.tvEmail.text = user.email
@@ -106,7 +108,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.tvUlasanTotal.text = "${user.totalReviews} ulasan"
         binding.tvPoin.text = "${user.totalPoints}"
         binding.tvProgressPercent.text = user.totalXp.getUserLevelProgressInPercent()
-        binding.tvUserLevel.text = user.totalXp.getUserLevel()
+        binding.tvUserLevel.text = user.adventureLevel.toString()
         binding.progressBarUser.progress = user.totalXp.getUserLevelProgressInPercentAsInt()
     }
 

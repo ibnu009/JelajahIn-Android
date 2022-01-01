@@ -14,6 +14,8 @@ data class User(
     @field:SerializedName( "image_url")
     val imageUrl: String,
     val origin: String,
+    @field:SerializedName( "adventure_level")
+    val adventureLevel:Int,
     @field:SerializedName("total_appreciation")
     val totalAppreciations: Int,
     @field:SerializedName("total_reviews")

@@ -31,7 +31,8 @@ fun Context.createImageFile(): File? {
 fun Context.getImageUri(img: Bitmap): Uri? {
     val bytes = ByteArrayOutputStream()
     img.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-    val path = MediaStore.Images.Media.insertImage(this.contentResolver, img, "Title", null)
+    val path = MediaStore.Images.Media.
+    insertImage(this.contentResolver, img, "Title", null)
     return Uri.parse(path)
 }
 

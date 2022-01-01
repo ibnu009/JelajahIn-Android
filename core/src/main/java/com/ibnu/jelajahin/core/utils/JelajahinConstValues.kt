@@ -17,6 +17,7 @@ object JelajahinConstValues {
 
     const val OPEN_WEBVIEW = "open_webview"
     const val OPEN_FRAGMENT = "open_fragment"
+
     const val FRAGMENT_DETAIL_WISTA = "DetailWisata"
     const val FRAGMENT_DETAIL_EVENT = "DetailEvent"
     const val FRAGMENT_DETAIL_HOTEL = "DetailHotel"

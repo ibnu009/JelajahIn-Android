@@ -28,7 +28,11 @@ data class Event(
     @field:SerializedName("city_name")
     val cityName: String,
 
-    val schedule: String,
+    @field:SerializedName("start_date")
+    val startDate: String,
+
+    @field:SerializedName("end_date")
+    val endDate: String,
 
     @field:SerializedName("ticket_price")
     val ticketPrice: String,

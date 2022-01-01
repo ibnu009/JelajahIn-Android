@@ -3,6 +3,7 @@ package com.ibnu.jelajahin.ui.event.detail
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -20,6 +21,7 @@ import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.*
 import com.ibnu.jelajahin.core.extention.map.addSingleMarker
 import com.ibnu.jelajahin.core.extention.map.animateCameraToSingleMarker
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.EVENT_MARKER
 import com.ibnu.jelajahin.databinding.EventDetailFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -85,8 +87,9 @@ class EventDetailFragment : Fragment() {
         binding.tvEventName.text = event.name
         binding.tvEventDescription.text = event.description
         binding.tvEvenTicketPrice.text = event.ticketPrice
-        binding.tvEventTime.text = event.schedule.parseHour()
-        binding.tvEventDate.text = event.schedule.parseDateMonthAndYear()
+
+        setScheduleText(event)
+
         binding.cvReward.tvRewardPoint.text = context?.resources?.getString(
             R.string.points,
             event.pointReward.toString()
@@ -96,7 +99,7 @@ class EventDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(event.imageURL)
+                .load(BASE_URL + event.imageURL)
                 .into(binding.imgEvent)
         }
 
@@ -117,6 +120,34 @@ class EventDetailFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun setScheduleText(event: Event){
+        val eventStart = event.startDate.parseDateMonthAndYear()
+        val eventEnd = event.endDate.parseDateMonthAndYear()
+
+        val isSameMonth = event.startDate.isThisDateIsTheSameMonthAs(event.endDate)
+        val isSameDay = event.startDate.isThisDateIsTheSameDayAs(event.endDate)
+        val year = event.startDate.parseDateToYearOnly()
+
+        if (isSameMonth){
+            val month = event.startDate.parseDateToMonthOnly()
+            val dateStart = event.startDate.parseDateToDateOnly()
+            val dateEnd = event.endDate.parseDateToDateOnly()
+            val hourStart = event.startDate.parseHour()
+            val hourEnd = event.endDate.parseHour()
+            if (isSameDay){
+                binding.tvEventDate.text = "$dateStart $month $year"
+                binding.tvEventTime.text = "$hourStart-$hourEnd"
+            } else {
+                binding.tvEventDate.text = "$dateStart-$dateEnd $month $year"
+                binding.tvEventTime.text = hourStart
+            }
+        } else {
+            binding.tvEventDate.text = "$eventStart-$eventEnd"
+            binding.tvEventTime.text = event.startDate.parseHour()
+        }
+    }
+
     private fun showLoading(isLoading: Boolean){
         if (isLoading){
             binding.shimmeringEventDetail.startShimmer()
@@ -132,11 +163,12 @@ class EventDetailFragment : Fragment() {
     }
 
     private fun compareCurrentTimeWithEventTime(event: Event) {
-
         val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ROOT)
-        val eventDate = parser.parse(event.schedule) ?: Date()
+        val eventStartDate = parser.parse(event.startDate) ?: Date()
+        val eventEndDate = parser.parse(event.endDate) ?: Date()
+        val currentTime = Calendar.getInstance().time.time
 
-        val milliSeconds = eventDate.time - Calendar.getInstance().timeInMillis
+        val milliSeconds = eventStartDate.time - currentTime
         val days = TimeUnit.DAYS.convert(milliSeconds, TimeUnit.MILLISECONDS)
         val hours = TimeUnit.HOURS.convert(milliSeconds, TimeUnit.MILLISECONDS)
         val minutes = TimeUnit.MINUTES.convert(milliSeconds, TimeUnit.MILLISECONDS)
@@ -145,7 +177,8 @@ class EventDetailFragment : Fragment() {
                 requireContext().showOKDialog("Event Belum mulai", "Event akan dimulai $days Hari lagi")
             }
             hours > 0 -> {
-                requireContext().showOKDialog("Event Belum mulai", "Event akan dimulai $hours Jam lagi")
+                val remainingMinutes = minutes - (hours * 60)
+                requireContext().showOKDialog("Event Belum mulai", "Event akan dimulai $hours Jam dan $remainingMinutes menit lagi")
             }
             minutes > 0 -> {
                 requireContext().showOKDialog(
@@ -153,7 +186,7 @@ class EventDetailFragment : Fragment() {
                     "Event akan dimulai $minutes menit lagi"
                 )
             }
-            hours > -3 -> {
+            eventEndDate.time > currentTime -> {
                 val action = EventDetailFragmentDirections.actionEventDetailFragmentToAttendEventFragment(event)
                 findNavController().navigate(action)
             }
