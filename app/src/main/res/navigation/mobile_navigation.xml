@@ -185,6 +185,9 @@
         <action
             android:id="@+id/action_penginapanFragment_to_penginapanMapFragment"
             app:destination="@id/penginapanMapFragment" />
+        <action
+            android:id="@+id/action_penginapanFragment_to_penginapanDetailFragment"
+            app:destination="@id/penginapanDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/wisataDetailFragment"
@@ -321,5 +324,25 @@
         android:id="@+id/penginapanMapFragment"
         android:name="com.ibnu.jelajahin.ui.penginapan.PenginapanMapFragment"
         android:label="PenginapanMapFragment" />
+    <fragment
+        android:id="@+id/penginapanDetailFragment"
+        android:name="com.ibnu.jelajahin.ui.penginapan.PenginapanDetailFragment"
+        android:label="PenginapanDetailFragment" >
+        <argument
+            android:name="uuidPenginapan"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_penginapanDetailFragment_to_ulasanPenginapanFragment"
+            app:destination="@id/ulasanPenginapanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ulasanPenginapanFragment"
+        android:name="com.ibnu.jelajahin.ui.penginapan.UlasanPenginapanFragment"
+        android:label="fragment_ulasan_penginapan"
+        tools:layout="@layout/fragment_ulasan_penginapan" >
+        <argument
+            android:name="penginapan"
+            app:argType="com.ibnu.jelajahin.core.data.model.Penginapan" />
+    </fragment>
 
 </navigation>

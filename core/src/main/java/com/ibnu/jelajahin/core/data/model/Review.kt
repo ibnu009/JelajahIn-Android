@@ -14,6 +14,8 @@ data class Review(
     val ratingService: Int,
     @field:SerializedName("rating_food")
     val ratingFood: Int,
+    @field:SerializedName("rating_friendly")
+    val ratingFriendly: Int,
     @field:SerializedName("rating_clean")
     val ratingClean: Int,
 

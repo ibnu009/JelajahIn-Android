@@ -80,5 +80,10 @@
     <string name="service_in_restaurant">Pelayanan di restaurant</string>
     <string name="food_in_restaurant">Rasa Makanan di restaurant</string>
     <string name="clean_in_restaurant">Kebersihan di restaurant</string>
+    <string name="used_language">Bahasa yang digunakan</string>
+    <string name="kelas_hotel">Kelas Hotel</string>
 
+    <string name="service_in_hotel">Pelayanan di hotel</string>
+    <string name="friendly_in_hotel">Keramahan di hotel</string>
+    <string name="clean_in_hotel">Kebersihan di hotel</string>
 </resources>

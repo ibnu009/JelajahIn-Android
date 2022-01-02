@@ -136,7 +136,7 @@ class PenginapanFragment : Fragment(), RecyclerviewItemClickHandler {
     }
 
     override fun onItemClicked(uuid: String) {
-//        val action = PenginapanFragmentDirections.actionPenginapanFragmentToPenginapanDetailFragment(uuid)
-//        findNavController().navigate(action)
+        val action = PenginapanFragmentDirections.actionPenginapanFragmentToPenginapanDetailFragment(uuid)
+        findNavController().navigate(action)
     }
 }

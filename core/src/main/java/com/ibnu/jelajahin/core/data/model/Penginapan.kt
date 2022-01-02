@@ -16,6 +16,8 @@ data class Penginapan(
     val priceMax: String,
     @field:SerializedName("hotel_facility")
     val hotelFacility: String,
+    @field:SerializedName("hotel_star")
+    val hotelStar: Int?,
     @field:SerializedName("language")
     val language: String,
     val phone: String,
