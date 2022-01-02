@@ -99,18 +99,20 @@
             app:layout_constraintTop_toBottomOf="@id/rvWisataRecommendation"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/tvLihatLainnyaPenginapan"
+        <Button
+            android:id="@+id/btnLihatPenginapan"
+            style="@style/JelajahinTextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="16dp"
-            android:textColor="@color/green_button"
+            android:layout_marginEnd="12dp"
             android:text="@string/lihat_lainnya"
+            android:textAllCaps="false"
+            android:textColor="@color/green_button"
             android:textSize="18sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/txPenginapanRekomendasi"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvWisataRecommendation" />
+            app:layout_constraintTop_toTopOf="@+id/txPenginapanRekomendasi" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPenginapanRecommendation"

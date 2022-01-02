@@ -1,6 +1,8 @@
 package com.ibnu.jelajahin.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +22,7 @@ import com.ibnu.jelajahin.core.utils.JelajahinConstValues.FRAGMENT_DETAIL_WISTA
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.OPEN_FRAGMENT
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.OPEN_WEBVIEW
 import com.ibnu.jelajahin.databinding.FragmentHomeBinding
+import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -46,12 +49,23 @@ class HomeFragment : Fragment(), AdsItemHandler {
 
         binding.btnLihatWisata.setOnClickListener {
             it.popTap()
-            findNavController().navigate(R.id.action_homeFragment_to_wisataFragment)
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_homeFragment_to_wisataFragment)
+            }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
         binding.btnLihatRestaurant.setOnClickListener {
             it.popTap()
-            findNavController().navigate(R.id.action_homeFragment_to_restaurantFragment)
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_homeFragment_to_penginapanFragment)
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+
+        binding.btnLihatRestaurant.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_homeFragment_to_restaurantFragment)
+            }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
         initiateRecyclerViews()
