@@ -181,7 +181,11 @@
         android:id="@+id/penginapanFragment"
         android:name="com.ibnu.jelajahin.ui.penginapan.PenginapanFragment"
         android:label="penginapan_fragment"
-        tools:layout="@layout/penginapan_fragment" />
+        tools:layout="@layout/penginapan_fragment" >
+        <action
+            android:id="@+id/action_penginapanFragment_to_penginapanMapFragment"
+            app:destination="@id/penginapanMapFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wisataDetailFragment"
         android:name="com.ibnu.jelajahin.ui.wisata.WisataDetailFragment"
@@ -313,5 +317,9 @@
             android:name="restaurant"
             app:argType="com.ibnu.jelajahin.core.data.model.Restaurant" />
     </fragment>
+    <fragment
+        android:id="@+id/penginapanMapFragment"
+        android:name="com.ibnu.jelajahin.ui.penginapan.PenginapanMapFragment"
+        android:label="PenginapanMapFragment" />
 
 </navigation>

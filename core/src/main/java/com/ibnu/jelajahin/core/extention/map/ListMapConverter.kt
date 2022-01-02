@@ -2,6 +2,7 @@ package com.ibnu.jelajahin.core.extention.map
 
 import com.google.android.gms.maps.model.LatLng
 import com.ibnu.jelajahin.core.data.model.Gem
+import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.data.model.Wisata
 
@@ -14,17 +15,25 @@ fun List<Wisata>.convertWisataToLatLng(): List<LatLng>{
     return listMarker
 }
 
-fun List<Restaurant>.convertRestaurantToLatLng(): List<LatLng>{
+fun List<Restaurant>.convertRestaurantToLatLng(): List<LatLng> {
     val listMarker = ArrayList<LatLng>()
-    for (restaurant in this){
+    for (restaurant in this) {
         listMarker.add(LatLng(restaurant.latitude, restaurant.longtitude))
     }
     return listMarker
 }
 
-fun List<Gem>.convertGemToLatLng(): List<LatLng>{
+fun List<Penginapan>.convertPenginapanToLatLng(): List<LatLng> {
     val listMarker = ArrayList<LatLng>()
-    for (gem in this){
+    for (penginapan in this) {
+        listMarker.add(LatLng(penginapan.latitude, penginapan.longitude))
+    }
+    return listMarker
+}
+
+fun List<Gem>.convertGemToLatLng(): List<LatLng> {
+    val listMarker = ArrayList<LatLng>()
+    for (gem in this) {
         listMarker.add(LatLng(gem.latitude, gem.longitude))
     }
     return listMarker

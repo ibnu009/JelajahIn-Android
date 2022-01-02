@@ -10,6 +10,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.ui.IconGenerator
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Gem
+import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.EVENT_MARKER
@@ -52,6 +53,21 @@ fun GoogleMap.addMultipleMarkersForRestaurant(listRestaurant: List<Restaurant>, 
             )
         )
         marker?.tag = restaurant
+        marker?.showInfoWindow()
+    }
+}
+
+fun GoogleMap.addMultipleMarkersForPenginapan(listPenginapan: List<Penginapan>, context: Context) {
+    for (penginapan in listPenginapan) {
+        val marker = this.addMarker(
+            createMarkerOptions(
+                LatLng(penginapan.latitude, penginapan.longitude),
+                "Rp ${penginapan.priceMin} - Rp ${penginapan.priceMax}",
+                "penginapan",
+                context
+            )
+        )
+        marker?.tag = penginapan
         marker?.showInfoWindow()
     }
 }

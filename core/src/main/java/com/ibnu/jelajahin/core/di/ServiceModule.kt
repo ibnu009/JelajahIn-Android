@@ -32,6 +32,11 @@ class ServiceModule {
     }
 
     @Provides
+    fun providePenginapanService(retrofit: Retrofit): PenginapanService {
+        return retrofit.create(PenginapanService::class.java)
+    }
+
+    @Provides
     fun provideGemService(retrofit: Retrofit): DiscoveryService {
         return retrofit.create(DiscoveryService::class.java)
     }
