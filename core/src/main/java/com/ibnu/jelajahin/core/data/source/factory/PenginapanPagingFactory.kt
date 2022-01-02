@@ -24,7 +24,7 @@ class PenginapanPagingFactory(
 
         val page = params.key ?: JelajahinConstValues.DEFAULT_PAGE_INDEX
         return LoadResult.Page(
-            data = result.ListPenginapan,
+            data = result.listPenginapan,
             nextKey = if ((result.rowCount / JelajahinConstValues.DEFAULT_PAGE_SIZE) < page) null else page + 1,
             prevKey = if (page == JelajahinConstValues.DEFAULT_PAGE_INDEX) null else page - 1,
         )
