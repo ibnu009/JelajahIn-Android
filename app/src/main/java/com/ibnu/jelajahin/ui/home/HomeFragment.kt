@@ -54,7 +54,7 @@ class HomeFragment : Fragment(), AdsItemHandler {
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
-        binding.btnLihatRestaurant.setOnClickListener {
+        binding.btnLihatPenginapan.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 findNavController().navigate(R.id.action_homeFragment_to_penginapanFragment)

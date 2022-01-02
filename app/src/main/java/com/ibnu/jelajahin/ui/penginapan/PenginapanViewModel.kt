@@ -73,7 +73,7 @@ class PenginapanViewModel @Inject constructor(private val repository: Penginapan
         uuidPenginapan: String,
         path: String
     ) {
-        MultipartUploadRequest(context, JelajahinConstValues.POST_RESTAURANT_ULASAN_URL)
+        MultipartUploadRequest(context, JelajahinConstValues.POST_PENGINAPAN_ULASAN_URL)
             .setMethod("POST")
             .addHeader("token", token)
             .addParameter("title", title)
