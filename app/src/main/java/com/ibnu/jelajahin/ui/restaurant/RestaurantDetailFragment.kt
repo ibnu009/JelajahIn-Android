@@ -21,6 +21,8 @@ import com.ibnu.jelajahin.core.ui.adapter.ReviewRestaurantAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
+import com.ibnu.jelajahin.ui.home.HomeFragmentDirections
+import com.ibnu.jelajahin.ui.profile.ProfileFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -136,6 +138,9 @@ class RestaurantDetailFragment : Fragment() {
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
+        initiateContactView(restaurant)
+
+
 //        binding.btnBookmark.setOnClickListener {
 //            it.popTap()
 //            Handler(Looper.getMainLooper()).postDelayed({
@@ -183,6 +188,38 @@ class RestaurantDetailFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun initiateContactView(restaurant: Restaurant){
+        when {
+            restaurant.website.isNullOrEmpty() && restaurant.phone.isNullOrEmpty() -> {
+                binding.contactComponent.root.visibility = View.GONE
+            }
+            restaurant.website?.isEmpty()!! -> {
+                binding.contactComponent.layoutWeb.visibility = View.GONE
+                binding.contactComponent.layoutEmail.visibility = View.GONE
+            }
+            restaurant.phone?.isEmpty()!! -> {
+                binding.contactComponent.layoutTelfon.visibility = View.GONE
+                binding.contactComponent.layoutEmail.visibility = View.GONE
+            }
+        }
+
+        binding.contactComponent.layoutWeb.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                val action =
+                    RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToWebViewFragment(restaurant.website ?: "")
+                findNavController().navigate(action)
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+
+        binding.contactComponent.layoutTelfon.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                Timber.d("Phone is not empty")
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
     }
 
     private fun initiateAppbar() {

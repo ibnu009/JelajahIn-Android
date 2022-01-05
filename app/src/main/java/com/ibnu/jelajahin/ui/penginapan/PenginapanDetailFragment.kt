@@ -21,6 +21,8 @@ import com.ibnu.jelajahin.core.ui.adapter.ReviewPenginapanAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentPenginapanDetailBinding
+import com.ibnu.jelajahin.ui.home.HomeFragmentDirections
+import com.ibnu.jelajahin.ui.restaurant.RestaurantDetailFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -72,8 +74,8 @@ class PenginapanDetailFragment : Fragment() {
                     showLoading(false)
                 }
                 is ApiResponse.Success -> {
-                    loadUiDetailPenginapan(response.data)
                     penginapan = response.data
+                    loadUiDetailPenginapan(response.data)
                     showLoading(false)
                 }
                 else -> {
@@ -137,6 +139,8 @@ class PenginapanDetailFragment : Fragment() {
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
+        initiateContactView(penginapan)
+
 //        binding.btnBookmark.setOnClickListener {
 //            it.popTap()
 //            Handler(Looper.getMainLooper()).postDelayed({
@@ -184,6 +188,38 @@ class PenginapanDetailFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun initiateContactView(penginapan: Penginapan){
+        when {
+            penginapan.website.isNullOrEmpty() && penginapan.phone.isNullOrEmpty() -> {
+                binding.contactComponent.root.visibility = View.GONE
+            }
+            penginapan.website?.isEmpty()!! -> {
+                binding.contactComponent.layoutWeb.visibility = View.GONE
+                binding.contactComponent.layoutEmail.visibility = View.GONE
+            }
+            penginapan.phone?.isEmpty()!! -> {
+                binding.contactComponent.layoutTelfon.visibility = View.GONE
+                binding.contactComponent.layoutEmail.visibility = View.GONE
+            }
+        }
+
+        binding.contactComponent.layoutWeb.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                val action =
+                    PenginapanDetailFragmentDirections.actionPenginapanDetailFragmentToWebViewFragment(penginapan.website ?: "")
+                findNavController().navigate(action)
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+
+        binding.contactComponent.layoutTelfon.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                Timber.d("Phone is not empty")
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
     }
 
     private fun initiateAppbar() {

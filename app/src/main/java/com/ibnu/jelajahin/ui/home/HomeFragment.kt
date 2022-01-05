@@ -60,6 +60,8 @@ class HomeFragment : Fragment(), AdsItemHandler {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showBannerLoading(true)
+
         binding.btnLihatWisata.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
@@ -97,18 +99,34 @@ class HomeFragment : Fragment(), AdsItemHandler {
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
+                    showBannerLoading(true)
                 }
                 is ApiResponse.Error -> {
+                    showBannerLoading(false)
                     Timber.d("Error ${response.errorMessage}")
                 }
                 is ApiResponse.Success -> {
+                    showBannerLoading(false)
                     adsAdapter.setData(response.data)
                 }
                 else -> {
+                    showBannerLoading(false)
                     Timber.d("Unknown Error")
                 }
             }
         })
+    }
+
+    private fun showBannerLoading(isLoading: Boolean){
+        if (isLoading){
+            binding.bannerShimmeringLoading.startShimmer()
+            binding.bannerShimmeringLoading.showShimmer(true)
+            binding.bannerShimmeringLoading.visibility = View.VISIBLE
+        } else {
+            binding.bannerShimmeringLoading.stopShimmer()
+            binding.bannerShimmeringLoading.showShimmer(false)
+            binding.bannerShimmeringLoading.visibility = View.GONE
+        }
     }
 
     override fun onDestroyView() {
@@ -124,6 +142,9 @@ class HomeFragment : Fragment(), AdsItemHandler {
         when (actionType) {
             OPEN_WEBVIEW -> {
                 Timber.d("Open webview")
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToWebViewFragment(actionValue ?: "")
+                findNavController().navigate(action)
             }
             OPEN_FRAGMENT -> {
                 actionValue?.let { actionVal -> openFragment(actionVal, actionParam) }

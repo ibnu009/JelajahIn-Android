@@ -20,8 +20,10 @@ data class Penginapan(
     val hotelStar: Int?,
     @field:SerializedName("language")
     val language: String,
-    val phone: String,
-    val website: String,
+    @field:SerializedName("phone_number")
+    val phone: String?,
+    @field:SerializedName("website_url")
+    val website: String?,
     @field:SerializedName("image_url")
     val imageUrl: String,
     val address: String,

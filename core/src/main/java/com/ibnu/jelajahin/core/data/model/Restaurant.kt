@@ -18,8 +18,10 @@ data class Restaurant(
     val foodType: String,
     @field:SerializedName("restaurant_type")
     val restaurantType: String,
-    val phone: String,
-    val website: String,
+    @field:SerializedName("phone_number")
+    val phone: String?,
+    @field:SerializedName("website_url")
+    val website: String?,
     @field:SerializedName("business_time_open")
     val OpenTime: String,
     @field:SerializedName("business_time_close")
