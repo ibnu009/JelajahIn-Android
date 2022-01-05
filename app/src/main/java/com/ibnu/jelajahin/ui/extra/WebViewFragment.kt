@@ -1,6 +1,7 @@
 package com.ibnu.jelajahin.ui.extra
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.ibnu.jelajahin.databinding.FragmentWebViewBinding
 import android.webkit.WebChromeClient
+import androidx.navigation.fragment.findNavController
+import com.ibnu.jelajahin.core.extention.popTap
 
 class WebViewFragment : Fragment() {
 
@@ -31,6 +34,7 @@ class WebViewFragment : Fragment() {
         val safeArgs = arguments?.let { WebViewFragmentArgs.fromBundle(it) }
         val webUrl = safeArgs?.url ?: ""
 
+        initiateAppBar()
         initiateWebViewSettings()
 
         binding.webview.webChromeClient = object : WebChromeClient() {
@@ -59,6 +63,16 @@ class WebViewFragment : Fragment() {
         }
         binding.webview.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
         binding.webview.loadUrl(webUrl)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initiateAppBar(){
+        binding.appBar.tvToolbarTitle.text = "Jelajahin Web Viewer"
+        binding.appBar.root.setBackgroundColor(Color.parseColor("#ffffff"))
+        binding.appBar.imgBack.setOnClickListener {
+            it.popTap()
+            findNavController().popBackStack()
+        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")

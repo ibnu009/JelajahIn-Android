@@ -6,16 +6,21 @@
 
     <WebView
         android:id="@+id/webview"
+        android:layout_below="@id/appBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <ProgressBar
+        android:layout_below="@id/appBar"
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         android:max="100"
         />
+
+    <include
+        android:id="@+id/appBar"
+        layout="@layout/toolbar_back_name" />
 
 </RelativeLayout>
