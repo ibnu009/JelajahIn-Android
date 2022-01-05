@@ -55,6 +55,9 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -200,6 +203,9 @@
         <action
             android:id="@+id/action_wisataDetailFragment_to_ulasanWisataFragment"
             app:destination="@id/ulasanWisataFragment" />
+        <action
+            android:id="@+id/action_wisataDetailFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -288,6 +294,9 @@
         <action
             android:id="@+id/action_restaurantDetailFragment_to_ulasanRestaurantFragment"
             app:destination="@id/ulasanRestaurantFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantMapFragment"
@@ -334,6 +343,9 @@
         <action
             android:id="@+id/action_penginapanDetailFragment_to_ulasanPenginapanFragment"
             app:destination="@id/ulasanPenginapanFragment" />
+        <action
+            android:id="@+id/action_penginapanDetailFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment" />
     </fragment>
     <fragment
         android:id="@+id/ulasanPenginapanFragment"
@@ -343,6 +355,14 @@
         <argument
             android:name="penginapan"
             app:argType="com.ibnu.jelajahin.core.data.model.Penginapan" />
+    </fragment>
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.ibnu.jelajahin.ui.extra.WebViewFragment"
+        android:label="WebViewFragment" >
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 
 </navigation>

@@ -130,7 +130,7 @@ class RestaurantDetailFragment : Fragment() {
                 } else {
                     requireContext().showOKDialog(
                         "Akses Ditolak!",
-                        "Kamu harus memiliki akun JelajahIn jika ingin memberikan penginapan ini sebuah ulasan!"
+                        "Kamu harus memiliki akun JelajahIn jika ingin memberikan restaurant ini sebuah ulasan!"
                     )
                 }
             }, UiConstValue.FAST_ANIMATION_TIME)
