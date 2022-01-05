@@ -24,7 +24,7 @@ data class Restaurant(
     val OpenTime: String,
     @field:SerializedName("business_time_close")
     val CloseTime: String,
-    @field:SerializedName("image")
+    @field:SerializedName("image_url")
     val imageUrl: String,
     val address: String,
     @field:SerializedName("rating_avg")

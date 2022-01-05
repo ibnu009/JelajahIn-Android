@@ -67,7 +67,7 @@ class PenginapanFragment : Fragment(), RecyclerviewItemClickHandler {
         binding.btnMap.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                findNavController().navigate(R.id.action_restaurantFragment_to_restaurantMapFragment)
+                findNavController().navigate(R.id.action_penginapanFragment_to_penginapanMapFragment)
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 

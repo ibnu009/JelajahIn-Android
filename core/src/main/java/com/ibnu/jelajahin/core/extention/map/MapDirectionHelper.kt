@@ -29,7 +29,6 @@ class MapDirectionHelper {
 
         try {
             val res: DirectionsResult = req.await()
-
             //Loop through legs and steps to get encoded polylines of each step
             if (res.routes != null && res.routes.isNotEmpty()) {
                 val route = res.routes[0]

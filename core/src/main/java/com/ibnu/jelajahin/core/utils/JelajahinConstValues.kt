@@ -4,11 +4,11 @@ import android.Manifest
 
 object JelajahinConstValues {
 
-    const val BASE_URL = "http://192.168.1.7:8000/"
+    const val BASE_URL = "https://api.jelajahin.xyz/"
+//    const val BASE_URL = "https://ef00-2001-448a-5122-d234-bc3f-399b-29f3-7f88.ngrok.io/"
     const val POST_WISATA_ULASAN_URL = "${BASE_URL}api/wisata/add_ulasan"
     const val POST_RESTAURANT_ULASAN_URL = "${BASE_URL}api/restaurant/add_ulasan"
     const val POST_PENGINAPAN_ULASAN_URL = "${BASE_URL}api/penginapan/add_ulasan"
-
 
     const val EDIT_PROFILE_URL = "${BASE_URL}api/profile/edit"
 
@@ -25,7 +25,6 @@ object JelajahinConstValues {
     const val FRAGMENT_DETAIL_HOTEL = "DetailHotel"
     const val FRAGMENT_DETAIL_RESTAURANT = "DetailRestaurant"
 
-    const val RESTAURANT_MARKER = "restaurant.marker.map"
     const val EVENT_MARKER = "event.marker.map"
     const val GEM_MARKER = "gem.marker.map"
 
@@ -34,5 +33,4 @@ object JelajahinConstValues {
     const val KEY_IS_ALREADY_INTRODUCED = "key.is.already.introduced"
 
     val LOCATION_PERMISSION = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
-    const val RC_LOCATION = 123
 }

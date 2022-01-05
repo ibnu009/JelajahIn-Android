@@ -15,6 +15,7 @@ import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.map.addMultipleMarkersForPenginapan
 import com.ibnu.jelajahin.core.extention.map.boundsCameraToMarkers
 import com.ibnu.jelajahin.core.extention.map.convertPenginapanToLatLng
+import com.ibnu.jelajahin.core.ui.gwindow.InfoWindowsPenginapan
 import com.ibnu.jelajahin.core.ui.gwindow.InfoWindowsRestaurant
 import com.ibnu.jelajahin.databinding.FragmentPenginapanMapBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +64,7 @@ class PenginapanMapFragment : Fragment() {
                             setButtonViews(googleMap, listLocations)
 
                             val infoWindow =
-                                InfoWindowsRestaurant(requireActivity(), requireContext())
+                                InfoWindowsPenginapan(requireActivity(), requireContext())
                             googleMap.setInfoWindowAdapter(infoWindow)
                         }
                         else -> {

@@ -22,7 +22,7 @@ data class Penginapan(
     val language: String,
     val phone: String,
     val website: String,
-    @field:SerializedName("image")
+    @field:SerializedName("image_url")
     val imageUrl: String,
     val address: String,
     @field:SerializedName("rating_avg")
