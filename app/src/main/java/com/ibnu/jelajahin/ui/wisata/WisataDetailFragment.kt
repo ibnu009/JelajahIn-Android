@@ -15,10 +15,11 @@ import com.google.android.material.appbar.AppBarLayout
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
-import com.ibnu.jelajahin.core.ui.adapter.AdsAdapter
 import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,6 +37,8 @@ class WisataDetailFragment : Fragment() {
     var isFavorite = false
 
     private lateinit var reviewAdapter: ReviewWisataAdapter
+    lateinit var pref: SharedPreferenceManager
+    private var token: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +53,10 @@ class WisataDetailFragment : Fragment() {
         initiateAppbar()
         val safeArgs = arguments?.let { WisataDetailFragmentArgs.fromBundle(it) }
         val uuidWisata = safeArgs?.uuidWisata ?: ""
+
+        pref = SharedPreferenceManager(requireContext())
+        token = pref.getToken ?: ""
+        Timber.d("Token is $token")
 
         initiateRecyclerViews()
         initiateDetailData(uuidWisata)
@@ -153,7 +160,14 @@ class WisataDetailFragment : Fragment() {
         binding.btnTambahUlasan.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                navigateToAddUlasan()
+                if (token.isNotEmpty()) {
+                    navigateToAddUlasan()
+                } else {
+                    requireContext().showOKDialog(
+                        "Akses Ditolak!",
+                        "Kamu harus memiliki akun JelajahIn jika ingin memberikan wisata ini sebuah ulasan!"
+                    )
+                }
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 

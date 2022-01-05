@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ibnu.jelajahin.core.extention.showExitJelajahInDialog
 import com.ibnu.jelajahin.core.ui.adapter.EventAdapter
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.databinding.EventFragmentBinding
@@ -30,6 +32,17 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
 
     private lateinit var adapter: EventAdapter
     private var isSearching = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().showExitJelajahInDialog()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

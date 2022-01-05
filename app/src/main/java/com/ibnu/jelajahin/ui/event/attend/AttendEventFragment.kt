@@ -86,7 +86,11 @@ class AttendEventFragment : Fragment() {
         eventLocation.latitude = event?.latitude ?: 0.0
         eventLocation.longitude = event?.longtitude ?: 0.0
 
-        val distance = eventLocation.distanceTo(myLocation).toInt()
+        var distance = 35
+        if (myLocation != null){
+            distance = eventLocation.distanceTo(myLocation).toInt()
+        }
+
         Timber.d("Location distance is $distance meter")
         if (distance > 20) {
             requireContext().showOKDialog(

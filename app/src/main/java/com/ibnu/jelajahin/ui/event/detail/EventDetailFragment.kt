@@ -3,7 +3,8 @@ package com.ibnu.jelajahin.ui.event.detail
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.text.format.DateUtils
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -23,7 +24,9 @@ import com.ibnu.jelajahin.core.extention.map.addSingleMarker
 import com.ibnu.jelajahin.core.extention.map.animateCameraToSingleMarker
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.EVENT_MARKER
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.EventDetailFragmentBinding
+import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.text.SimpleDateFormat
@@ -40,6 +43,9 @@ class EventDetailFragment : Fragment() {
 
     private lateinit var mMap: GoogleMap
 
+    lateinit var pref: SharedPreferenceManager
+    private var token: String = ""
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +56,10 @@ class EventDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        pref = SharedPreferenceManager(requireContext())
+        token = pref.getToken ?: ""
+        Timber.d("Token is $token")
 
         binding.appBar.tvToolbarTitle.text = "Detail Event"
         binding.appBar.root.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -116,7 +126,13 @@ class EventDetailFragment : Fragment() {
 
         binding.btnHadiriEvent.setOnClickListener {
             it.popTap()
-            compareCurrentTimeWithEventTime(event)
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (token.isNotEmpty()) {
+                    compareCurrentTimeWithEventTime(event)
+                } else {
+                    requireContext().showOKDialog("Akses Ditolak!", "Kamu harus memiliki akun JelajahIn jika ingin menghadiri event ini!")
+                }
+            }, UiConstValue.FAST_ANIMATION_TIME)
         }
     }
 

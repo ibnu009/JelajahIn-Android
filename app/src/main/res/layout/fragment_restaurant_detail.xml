@@ -299,7 +299,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/space_double"
-                        android:text="@string/semua_ulasan"
+                        android:text="@string/tambah_ulasan"
                         android:textAllCaps="false"
                         android:textColor="@color/green_button"
                         android:textSize="@dimen/font_medium"

@@ -7,6 +7,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,10 +16,10 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
-import com.ibnu.jelajahin.core.extention.getUserLevel
 import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercent
 import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercentAsInt
 import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.extention.showExitJelajahInDialog
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
@@ -39,6 +40,17 @@ class ProfileFragment : Fragment(), View.OnClickListener {
 
     private var token: String = ""
     private lateinit var user: User
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().showExitJelajahInDialog()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -115,6 +127,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun initiateNotLoggedUser() {
         binding.contentProfile.visibility = View.GONE
         binding.contentNotUser.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.GONE
 
         binding.btnGoToLogin.setOnClickListener {
             it.popTap()
@@ -151,10 +164,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutHelp -> {
                 p0.popTap()
                 Timber.d("Menekan layout help")
-                val i: Int = 2
-                val qwe = i / 0
-
-                Timber.d("Menekan layout help $qwe")
             }
             binding.profileComponent.layoutHistoryPoint -> {
                 p0.popTap()

@@ -66,6 +66,12 @@ class LoginFragment : Fragment() {
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 
+        binding.btnLanjut.setOnClickListener {
+            Handler(Looper.getMainLooper()).postDelayed({
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+
         binding.btnRegister.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({

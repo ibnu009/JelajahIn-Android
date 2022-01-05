@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
@@ -27,6 +28,7 @@ import com.ibnu.jelajahin.core.extention.map.addMultipleMarkersForGem
 import com.ibnu.jelajahin.core.extention.map.boundsCameraToMarkers
 import com.ibnu.jelajahin.core.extention.map.MapDirectionHelper
 import com.ibnu.jelajahin.core.extention.map.convertGemToLatLng
+import com.ibnu.jelajahin.core.extention.showExitJelajahInDialog
 import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.databinding.DiscoveryFragmentBinding
@@ -46,6 +48,17 @@ class DiscoveryFragment : Fragment(), GoogleMap.OnMarkerClickListener {
     private var myLocation: Location? = null
     private var selectedLocation: LatLng? = null
     private lateinit var geoContext: GeoApiContext
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().showExitJelajahInDialog()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

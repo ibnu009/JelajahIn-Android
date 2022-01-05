@@ -15,9 +15,11 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
 import com.ibnu.jelajahin.core.ui.adapter.ReviewPenginapanAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
+import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentPenginapanDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +36,8 @@ class PenginapanDetailFragment : Fragment() {
     private lateinit var penginapan: Penginapan
 
     private lateinit var reviewAdapter: ReviewPenginapanAdapter
+    lateinit var pref: SharedPreferenceManager
+    private var token: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +52,11 @@ class PenginapanDetailFragment : Fragment() {
         initiateAppbar()
         val safeArgs = arguments?.let { PenginapanDetailFragmentArgs.fromBundle(it) }
         val uuid = safeArgs?.uuidPenginapan ?: ""
+
+        pref = SharedPreferenceManager(requireContext())
+        token = pref.getToken ?: ""
+        Timber.d("Token is $token")
+
 
         initiateRecyclerViews()
         initiateUlasanData(uuid)
@@ -117,7 +126,14 @@ class PenginapanDetailFragment : Fragment() {
         binding.btnTambahUlasan.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                navigateToAddUlasan()
+                if (token.isNotEmpty()) {
+                    navigateToAddUlasan()
+                } else {
+                    requireContext().showOKDialog(
+                        "Akses Ditolak!",
+                        "Kamu harus memiliki akun JelajahIn jika ingin memberikan penginapan ini sebuah ulasan!"
+                    )
+                }
             }, UiConstValue.FAST_ANIMATION_TIME)
         }
 

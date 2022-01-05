@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
+import com.ibnu.jelajahin.core.extention.showExitJelajahInDialog
 import com.ibnu.jelajahin.core.ui.adapter.AdsAdapter
 import com.ibnu.jelajahin.core.ui.adapter.handler.AdsItemHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.FRAGMENT_DETAIL_EVENT
@@ -35,6 +37,17 @@ class HomeFragment : Fragment(), AdsItemHandler {
     private val binding get() = _binding!!
 
     private lateinit var adsAdapter: AdsAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().showExitJelajahInDialog()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -97,7 +110,6 @@ class HomeFragment : Fragment(), AdsItemHandler {
             }
         })
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
