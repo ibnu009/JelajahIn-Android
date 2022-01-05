@@ -151,6 +151,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutHelp -> {
                 p0.popTap()
                 Timber.d("Menekan layout help")
+                throw RuntimeException("This is a crash");
             }
             binding.profileComponent.layoutHistoryPoint -> {
                 p0.popTap()

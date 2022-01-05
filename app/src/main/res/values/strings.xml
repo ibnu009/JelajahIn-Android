@@ -86,4 +86,7 @@
     <string name="service_in_hotel">Pelayanan di hotel</string>
     <string name="friendly_in_hotel">Keramahan di hotel</string>
     <string name="clean_in_hotel">Kebersihan di hotel</string>
+    <string name="kembali_ke_jelajahin">Kembali ke Jelajahin</string>
+    <string name="error_handler_message">Kami menemukan kegagalan pada aplikasi kami, semua error sudah tercatat otomatis di sistem kami, agar segera kami tindak lanjuti.</string>
+    <string name="error_handler_title">There is something wrong!</string>
 </resources>

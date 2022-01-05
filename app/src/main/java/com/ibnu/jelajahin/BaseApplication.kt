@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import com.ibnu.jelajahin.handler.JelajahinCrashHandler
 import dagger.hilt.android.HiltAndroidApp
 import net.gotev.uploadservice.UploadServiceConfig
 import net.gotev.uploadservice.logger.UploadServiceLogger
@@ -13,6 +14,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
+
 
 @HiltAndroidApp
 open class BaseApplication : Application() {
@@ -49,6 +51,9 @@ open class BaseApplication : Application() {
         UploadServiceConfig.idleTimeoutSeconds = 60 * 5
         UploadServiceConfig.bufferSizeBytes = 4096
         UploadServiceLogger.setLogLevel(UploadServiceLogger.LogLevel.Debug)
+
+        Thread.setDefaultUncaughtExceptionHandler(JelajahinCrashHandler(this))
+
     }
 
     private fun getOkHttpClient(): OkHttpClient {
