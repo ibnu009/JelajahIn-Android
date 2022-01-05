@@ -15,7 +15,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 
-
 @HiltAndroidApp
 open class BaseApplication : Application() {
 

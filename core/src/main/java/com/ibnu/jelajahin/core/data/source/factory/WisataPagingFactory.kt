@@ -26,7 +26,7 @@ class WisataPagingFactory(
 
         val page = params.key ?: JelajahinConstValues.DEFAULT_PAGE_INDEX
         return LoadResult.Page(
-            data = result.wisata ?: Collections.emptyList(),
+            data = result.wisata,
             nextKey = if ((result.rowCount / JelajahinConstValues.DEFAULT_PAGE_SIZE) < page) null else page + 1,
             prevKey = if (page == JelajahinConstValues.DEFAULT_PAGE_INDEX) null else page - 1,
         )

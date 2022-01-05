@@ -1,10 +1,12 @@
 package com.ibnu.jelajahin.handler
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ibnu.jelajahin.databinding.ActivityCrashHandlerBinding
+import com.ibnu.jelajahin.ui.MainActivity
 import java.io.IOException
 import java.io.RandomAccessFile
 import java.lang.Exception
@@ -17,7 +19,6 @@ class CrashHandlerActivity : AppCompatActivity() {
     private lateinit var errorMessage: String
     private lateinit var deviceInformation: String
     private lateinit var firmwareInformation: String
-    private lateinit var operatorName: String
     private lateinit var activityName: String
 
     private var memoryUsage = 0f
@@ -44,6 +45,10 @@ class CrashHandlerActivity : AppCompatActivity() {
         binding?.btnCheckError?.setOnClickListener {
             showCrashMessage()
         }
+
+        binding?.btnKembali?.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun showCrashMessage() {
@@ -54,9 +59,7 @@ class CrashHandlerActivity : AppCompatActivity() {
              $errorMessage
              $deviceInformation
              $firmwareInformation
-             
-             ************ NETWORK ************
-             $operatorName
+   
              
              Activity : $activityName
              """.trimIndent()
@@ -67,9 +70,7 @@ class CrashHandlerActivity : AppCompatActivity() {
              $errorMessage
              $deviceInformation
              $firmwareInformation
-             
-             ************ NETWORK ************
-             $operatorName
+            
              
              App Usage : $memoryUsage
              """.trimIndent()
@@ -90,6 +91,8 @@ class CrashHandlerActivity : AppCompatActivity() {
         if (binding?.errorPreview?.visibility == View.VISIBLE) {
             binding?.errorPreview?.visibility = View.GONE
         } else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

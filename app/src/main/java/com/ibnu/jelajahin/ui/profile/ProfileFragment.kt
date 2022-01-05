@@ -151,7 +151,10 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutHelp -> {
                 p0.popTap()
                 Timber.d("Menekan layout help")
-                throw RuntimeException("This is a crash");
+                val i: Int = 2
+                val qwe = i / 0
+
+                Timber.d("Menekan layout help $qwe")
             }
             binding.profileComponent.layoutHistoryPoint -> {
                 p0.popTap()

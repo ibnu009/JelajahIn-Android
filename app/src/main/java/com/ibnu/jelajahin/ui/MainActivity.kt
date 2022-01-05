@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.databinding.ActivityMainBinding
+import com.ibnu.jelajahin.handler.JelajahinCrashHandler
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,9 +41,7 @@ class MainActivity : AppCompatActivity() {
                 binding?.bottomNav?.visibility = View.GONE
             }
         }
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
+        Thread.setDefaultUncaughtExceptionHandler(JelajahinCrashHandler(this))
     }
 }

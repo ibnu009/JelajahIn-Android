@@ -39,7 +39,7 @@ class InfoWindowsWisata(private val activity: Activity, private val context: Con
 
         name.text = data.name
         rating.text = data.ratingAverage.toString()
-        stars.rating = data.ratingAverage.toFloat() ?: 0f
+        stars.rating = data.ratingAverage.toFloat()
         price.text = "${data.ticketPrice}"
         address.text = data.address
         schedule.visibility = View.GONE
