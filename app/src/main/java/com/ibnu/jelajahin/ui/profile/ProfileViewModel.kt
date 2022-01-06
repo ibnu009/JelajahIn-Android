@@ -93,6 +93,49 @@ class ProfileViewModel @Inject constructor(
             })
     }
 
+    fun editUserProfileWithoutImage(
+        context: Context, lifecycleOwner: LifecycleOwner,
+        token: String, name: String, email: String, address: String?
+    ) {
+        MultipartUploadRequest(context, JelajahinConstValues.EDIT_PROFILE_URL)
+            .setMethod("PUT")
+            .addHeader("token", token)
+            .addParameter("name", name)
+            .addParameter("email", email)
+            .addParameter("origin", address ?: "")
+            .setMaxRetries(2)
+            .subscribe(context = context, lifecycleOwner = lifecycleOwner, delegate = object :
+                RequestObserverDelegate {
+                override fun onCompleted(context: Context, uploadInfo: UploadInfo) {
+                    Timber.d("Material Sudah $uploadInfo")
+                }
+
+                override fun onCompletedWhileNotObserving() {
+                    Timber.d("Material loh weh")
+                }
+
+                override fun onError(
+                    context: Context,
+                    uploadInfo: UploadInfo,
+                    exception: Throwable
+                ) {
+                    exception.stackTrace
+                }
+
+                override fun onProgress(context: Context, uploadInfo: UploadInfo) {
+                    Timber.d("Material lagi proses")
+                }
+
+                override fun onSuccess(
+                    context: Context,
+                    uploadInfo: UploadInfo,
+                    serverResponse: ServerResponse
+                ) {
+                    Timber.d("Material done terupload $uploadInfo,\n ${serverResponse.bodyString}")
+                }
+            })
+    }
+
 
 
 

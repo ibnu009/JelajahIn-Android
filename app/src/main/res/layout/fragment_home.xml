@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:overScrollMode="never"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
@@ -11,10 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <include
+            android:id="@+id/appBar"
+            layout="@layout/toolbar_logo" />
+
         <View
             android:id="@+id/cl_head"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="125dp"
             android:background="@color/green_button"
             android:paddingStart="16dp"
             android:paddingTop="6dp"
@@ -22,26 +27,12 @@
             android:paddingBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/sv_food"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/bg_searchview"
-            app:defaultQueryHint="Mau cari apa?"
-            app:layout_constraintBottom_toTopOf="@+id/rvAdvertisement"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Mau cari apa?" />
+            app:layout_constraintTop_toBottomOf="@+id/appBar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAdvertisement"
             android:layout_width="match_parent"
-            android:layout_height="183dp"
+            android:layout_height="210dp"
             android:layout_marginTop="22dp"
             tools:listitem="@layout/banner_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -65,7 +56,6 @@
                 android:layout_height="wrap_content" />
 
         </com.facebook.shimmer.ShimmerFrameLayout>
-
 
         <TextView
             android:id="@+id/txWisataRekomendasi"

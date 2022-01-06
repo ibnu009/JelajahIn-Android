@@ -48,6 +48,11 @@ private val eventService: EventService
         }.flowOn(Dispatchers.IO)
     }
 
-
+    suspend fun getUserStatusAttendance(uuidEvent: String): Flow<String> {
+        return flow {
+            val response = eventService.checkUserAttendance(uuidEvent)
+            emit(response.message)
+        }.flowOn(Dispatchers.IO)
+    }
 
 }

@@ -26,4 +26,14 @@ class EventDetailViewModel @Inject constructor(private val eventRepository: Even
         return result
     }
 
+    fun checkUserIsAlreadyAttendEvent(uuidEvent: String): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        viewModelScope.launch {
+            eventRepository.checkUserAttendanceStatus(uuidEvent).collect {
+                result.postValue(it == "Sudah")
+            }
+        }
+        return result
+    }
+
 }

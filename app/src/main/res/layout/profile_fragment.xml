@@ -7,7 +7,6 @@
     tools:context=".ui.profile.ProfileFragment">
 
     <ScrollView
-        android:visibility="gone"
         android:id="@+id/contentProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

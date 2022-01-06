@@ -28,7 +28,9 @@ fun Int.getUserLevelProgressInPercentAsInt(): Int {
 
 fun Int.getUserLevel(): String {
     val level = this.toDouble() / 1000
-    return "${level.toInt()}"
+    val result = level.toInt() + 1
+
+    return "$result"
 }
 
 fun String.formatAverageTooLong(): String {

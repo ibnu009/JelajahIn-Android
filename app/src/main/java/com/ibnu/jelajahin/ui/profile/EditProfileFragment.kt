@@ -57,15 +57,21 @@ class EditProfileFragment : Fragment() {
         user = safeArgs?.user!!
 
         binding.edtFullName.setText(user.fullName)
-        binding.edtEmail.setText(user.email)
+        binding.edtEmail.text = user.email
+        binding.edtEmail.setOnClickListener {
+            requireContext().showOKDialog(
+                "Email",
+                "Email yang telah didaftarkan ke aplikasi JelajahIn tidak dapat diubah!"
+            )
+        }
         binding.edtAddress.setText(user.origin)
 
-       if (user.imageUrl.isNotEmpty()){
-           Glide.with(binding.root)
-               .load(JelajahinConstValues.BASE_URL +user.imageUrl)
-               .placeholder(R.drawable.img_person)
-               .into(binding.imgProfile)
-       }
+        if (user.imageUrl.isNotEmpty()) {
+            Glide.with(binding.root)
+                .load(JelajahinConstValues.BASE_URL + user.imageUrl)
+                .placeholder(R.drawable.img_person)
+                .into(binding.imgProfile)
+        }
 
         binding.imgProfile.setOnClickListener {
             it.popTap()
@@ -85,25 +91,28 @@ class EditProfileFragment : Fragment() {
     private fun sendProfileEdit(token: String) {
         val name = binding.edtFullName.text.toString()
         val address = binding.edtAddress.text.toString()
-        val email = binding.edtEmail.text.toString()
+        val email = user.email
 
         if (imagePath.isNullOrEmpty()) {
-            requireContext().showOKDialog(
-                "Image Kosong",
-                "Gambar kamu kosong nih, silahkan ambil gambar dari kamera atau galeri"
+            viewModel.editUserProfileWithoutImage(
+                requireActivity(),
+                viewLifecycleOwner,
+                token,
+                name,
+                email,
+                address
             )
-            return
+        } else {
+            viewModel.editUserProfile(
+                requireActivity(),
+                viewLifecycleOwner,
+                token,
+                name,
+                email,
+                address,
+                imagePath ?: ""
+            )
         }
-
-        viewModel.editUserProfile(
-            requireActivity(),
-            viewLifecycleOwner,
-            token,
-            name,
-            email,
-            address,
-            imagePath ?: ""
-        )
     }
 
 

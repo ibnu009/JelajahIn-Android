@@ -90,4 +90,6 @@
     <string name="error_handler_message">Kami menemukan kegagalan pada aplikasi kami, semua error sudah tercatat otomatis di sistem kami, agar segera kami tindak lanjuti.</string>
     <string name="error_handler_title">There is something wrong!</string>
     <string name="lihat_error">Lihat Error</string>
+    <string name="welcome_text">Hey,</string>
+    <string name="current_location_text">Selamat datang di </string>
 </resources>

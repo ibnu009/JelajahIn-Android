@@ -128,7 +128,17 @@ class EventDetailFragment : Fragment() {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 if (token.isNotEmpty()) {
-                    compareCurrentTimeWithEventTime(event)
+                    viewModel.checkUserIsAlreadyAttendEvent(event.uuidEvent)
+                        .observe(viewLifecycleOwner, { isAlreadyAttend ->
+                            if (isAlreadyAttend) {
+                                requireContext().showOKDialog(
+                                    "Sudah Menghadiri!",
+                                    "Kamu sudah menghadiri event ini dan mendapatkan point, kamu tidak bisa lagi menghadiri event ini lagi!"
+                                )
+                            } else {
+                                compareCurrentTimeWithEventTime(event)
+                            }
+                        })
                 } else {
                     requireContext().showOKDialog("Akses Ditolak!", "Kamu harus memiliki akun JelajahIn jika ingin menghadiri event ini!")
                 }

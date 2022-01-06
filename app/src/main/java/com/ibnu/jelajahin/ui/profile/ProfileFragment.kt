@@ -16,10 +16,7 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
-import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercent
-import com.ibnu.jelajahin.core.extention.getUserLevelProgressInPercentAsInt
-import com.ibnu.jelajahin.core.extention.popTap
-import com.ibnu.jelajahin.core.extention.showExitJelajahInDialog
+import com.ibnu.jelajahin.core.extention.*
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
@@ -120,7 +117,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         binding.tvUlasanTotal.text = "${user.totalReviews} ulasan"
         binding.tvPoin.text = "${user.totalPoints}"
         binding.tvProgressPercent.text = user.totalXp.getUserLevelProgressInPercent()
-        binding.tvUserLevel.text = user.adventureLevel.toString()
+        binding.tvUserLevel.text = user.totalXp.getUserLevel()
         binding.progressBarUser.progress = user.totalXp.getUserLevelProgressInPercentAsInt()
     }
 

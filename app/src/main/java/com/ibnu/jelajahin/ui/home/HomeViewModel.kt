@@ -23,6 +23,16 @@ class HomeViewModel @Inject constructor(
     private val restaurantRepository: RestaurantRepository
 ) : ViewModel() {
 
+    fun getUserProfile(token: String): LiveData<ApiResponse<User>> {
+        val result = MutableLiveData<ApiResponse<User>>()
+        viewModelScope.launch {
+            userRepository.getUserProfile(token).collect {
+                result.postValue(it)
+            }
+        }
+        return result
+    }
+
     fun getAds(provinceId: Int): LiveData<ApiResponse<List<Ads>>> {
         val result = MutableLiveData<ApiResponse<List<Ads>>>()
         viewModelScope.launch {
