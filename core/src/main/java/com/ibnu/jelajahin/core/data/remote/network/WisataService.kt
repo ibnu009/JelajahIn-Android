@@ -14,8 +14,10 @@ interface WisataService {
         @Query("provinceId") provinceId: Int,
         @Query("cityId") cityId: Int,
         @Query("search") searchQuery: String?
-
     ): WisataResponse
+
+    @GET("api/wisata/recommended")
+    suspend fun getWisataRecommendation(): WisataResponse
 
     @GET("api/wisata/search")
     suspend fun searchWisata(

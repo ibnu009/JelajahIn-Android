@@ -15,6 +15,9 @@ interface PenginapanService {
         @Query("search") searchQuery: String?
     ): PenginapanResponse
 
+    @GET("api/penginapan/recommended")
+    suspend fun getPenginapanRecommendation(): PenginapanResponse
+
     @GET("api/penginapan/{uuidPenginapan}")
     suspend fun getPenginapanDetail(
         @Path("uuidPenginapan") uuidPenginapan: String,

@@ -71,6 +71,23 @@ class PenginapanDataSource @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getPenginapanRecommendation(): Flow<ApiResponse<List<Penginapan>>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = service.getPenginapanRecommendation()
+                if (response.rowCount > 0) {
+                    emit(ApiResponse.Success(response.listPenginapan))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e("Error Penginapan Ulasan $e")
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
 
     suspend fun getReviewPenginapan(uuid: String): Flow<ApiResponse<List<Review>>> {
         return flow {

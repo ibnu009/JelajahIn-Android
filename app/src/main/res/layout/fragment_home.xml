@@ -51,9 +51,10 @@
 
         <com.facebook.shimmer.ShimmerFrameLayout
             android:id="@+id/bannerShimmeringLoading"
-            android:visibility="gone"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
+            app:shimmer_base_alpha="100"
             app:layout_constraintBottom_toBottomOf="@+id/cl_head"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cl_head">
@@ -72,7 +73,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="@dimen/space_double"
             android:layout_marginStart="16dp"
             android:text="@string/wisata_rekomendasi"
             app:layout_constraintTop_toBottomOf="@id/rvAdvertisement"
@@ -82,7 +83,7 @@
             android:id="@+id/btnLihatWisata"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="@dimen/space_double"
             android:layout_marginEnd="12dp"
             style="@style/JelajahinTextButton"
             android:text="@string/lihat_lainnya"
@@ -98,11 +99,25 @@
             android:id="@+id/rvWisataRecommendation"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="265dp"
             tools:listitem="@layout/recommendation_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/txWisataRekomendasi" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/wisataShimmeringLoading"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txWisataRekomendasi">
+
+            <include
+                layout="@layout/smh_recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/txPenginapanRekomendasi"
@@ -110,7 +125,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="@dimen/space_double"
             android:layout_marginStart="16dp"
             android:text="@string/penginapan_rekomendasi"
             app:layout_constraintTop_toBottomOf="@id/rvWisataRecommendation"
@@ -135,12 +150,25 @@
             android:id="@+id/rvPenginapanRecommendation"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="265dp"
             tools:listitem="@layout/recommendation_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi" />
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/penginapanShimmeringLoading"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi">
+
+            <include
+                layout="@layout/smh_recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <TextView
             android:id="@+id/txRestaurantRekomendasi"
@@ -148,7 +176,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="@dimen/space_double"
             android:layout_marginStart="16dp"
             android:text="@string/restaurant_rekomendasi"
             app:layout_constraintTop_toBottomOf="@id/rvPenginapanRecommendation"
@@ -174,11 +202,25 @@
             android:id="@+id/rvRestaurantRecommendation"
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="265dp"
             tools:listitem="@layout/recommendation_item"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/restaurantShimmeringLoading"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi">
+
+            <include
+                layout="@layout/smh_recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -28,6 +28,10 @@ class PenginapanRepository @Inject constructor(
         return datasource.getPenginapanLocations(provinceId)
     }
 
+    suspend fun getPenginapanRecommendation(): Flow<ApiResponse<List<Penginapan>>> {
+        return datasource.getPenginapanRecommendation()
+    }
+
     suspend fun getReviewPenginapan(uuid: String): Flow<ApiResponse<List<Review>>> {
         return datasource.getReviewPenginapan(uuid)
     }

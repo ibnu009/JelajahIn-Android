@@ -16,20 +16,27 @@ import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.showExitJelajahInDialog
 import com.ibnu.jelajahin.core.ui.adapter.AdsAdapter
+import com.ibnu.jelajahin.core.ui.adapter.RecommendedPenginapanAdapter
+import com.ibnu.jelajahin.core.ui.adapter.RecommendedRestaurantAdapter
+import com.ibnu.jelajahin.core.ui.adapter.RecommendedWisataAdapter
 import com.ibnu.jelajahin.core.ui.adapter.handler.AdsItemHandler
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecommendationItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.FRAGMENT_DETAIL_EVENT
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.FRAGMENT_DETAIL_HOTEL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.FRAGMENT_DETAIL_RESTAURANT
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.FRAGMENT_DETAIL_WISTA
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.OPEN_FRAGMENT
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.OPEN_WEBVIEW
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.RECOMMENDATION_PENGINAPAN_TYPE
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.RECOMMENDATION_RESTAURANT_TYPE
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.RECOMMENDATION_WISATA_TYPE
 import com.ibnu.jelajahin.databinding.FragmentHomeBinding
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), AdsItemHandler {
+class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler {
 
     private val viewModel: HomeViewModel by viewModels()
 
@@ -37,6 +44,9 @@ class HomeFragment : Fragment(), AdsItemHandler {
     private val binding get() = _binding!!
 
     private lateinit var adsAdapter: AdsAdapter
+    private lateinit var wisataRecommendationAdapter: RecommendedWisataAdapter
+    private lateinit var penginapanRecommendationAdapter: RecommendedPenginapanAdapter
+    private lateinit var restaurantRecommendationAdapter: RecommendedRestaurantAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,13 +95,36 @@ class HomeFragment : Fragment(), AdsItemHandler {
 
         initiateRecyclerViews()
         initiateAds()
+        initiateRecommendedWisata()
+        initiateRecommendedRestaurant()
+        initiateRecommendedPenginapan()
+
     }
 
     private fun initiateRecyclerViews() {
+        //banner adapter
         adsAdapter = AdsAdapter(this)
         binding.rvAdvertisement.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvAdvertisement.adapter = adsAdapter
+
+        //wisata adapter
+        wisataRecommendationAdapter = RecommendedWisataAdapter(this)
+        binding.rvWisataRecommendation.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvWisataRecommendation.adapter = wisataRecommendationAdapter
+
+        //restaurant adapter
+        restaurantRecommendationAdapter = RecommendedRestaurantAdapter(this)
+        binding.rvRestaurantRecommendation.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvRestaurantRecommendation.adapter = restaurantRecommendationAdapter
+
+        //penginapan adapter
+        penginapanRecommendationAdapter = RecommendedPenginapanAdapter(this)
+        binding.rvPenginapanRecommendation.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPenginapanRecommendation.adapter = penginapanRecommendationAdapter
     }
 
     private fun initiateAds() {
@@ -117,8 +150,78 @@ class HomeFragment : Fragment(), AdsItemHandler {
         })
     }
 
-    private fun showBannerLoading(isLoading: Boolean){
-        if (isLoading){
+    private fun initiateRecommendedWisata() {
+        viewModel.getWisataRecommendation().observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is ApiResponse.Loading -> {
+                    Timber.d("Loading")
+                    showWisataLoading(true)
+                }
+                is ApiResponse.Error -> {
+                    showWisataLoading(false)
+                    Timber.d("Error ${response.errorMessage}")
+                }
+                is ApiResponse.Success -> {
+                    showWisataLoading(false)
+                    wisataRecommendationAdapter.setData(response.data)
+                }
+                else -> {
+                    showWisataLoading(false)
+                    Timber.d("Unknown Error")
+                }
+            }
+        })
+    }
+
+    private fun initiateRecommendedRestaurant() {
+        viewModel.getRestaurantRecommendation().observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is ApiResponse.Loading -> {
+                    Timber.d("Loading")
+                    showRestaurantLoading(true)
+                }
+                is ApiResponse.Error -> {
+                    showRestaurantLoading(false)
+                    Timber.d("Error ${response.errorMessage}")
+                }
+                is ApiResponse.Success -> {
+                    showRestaurantLoading(false)
+                    restaurantRecommendationAdapter.setData(response.data)
+                }
+                else -> {
+                    showRestaurantLoading(false)
+                    Timber.d("Unknown Error")
+                }
+            }
+        })
+    }
+
+    private fun initiateRecommendedPenginapan() {
+        viewModel.getPenginapanRecommendation().observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is ApiResponse.Loading -> {
+                    Timber.d("Loading")
+                    showPenginapanLoading(true)
+                }
+                is ApiResponse.Error -> {
+                    showPenginapanLoading(false)
+                    Timber.d("Error ${response.errorMessage}")
+                }
+                is ApiResponse.Success -> {
+                    showPenginapanLoading(false)
+                    penginapanRecommendationAdapter.setData(response.data)
+                }
+                else -> {
+                    showPenginapanLoading(false)
+                    Timber.d("Unknown Error")
+                }
+            }
+        })
+    }
+
+
+    private fun showBannerLoading(isLoading: Boolean) {
+        if (isLoading) {
             binding.bannerShimmeringLoading.startShimmer()
             binding.bannerShimmeringLoading.showShimmer(true)
             binding.bannerShimmeringLoading.visibility = View.VISIBLE
@@ -126,6 +229,42 @@ class HomeFragment : Fragment(), AdsItemHandler {
             binding.bannerShimmeringLoading.stopShimmer()
             binding.bannerShimmeringLoading.showShimmer(false)
             binding.bannerShimmeringLoading.visibility = View.GONE
+        }
+    }
+
+    private fun showWisataLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.wisataShimmeringLoading.startShimmer()
+            binding.wisataShimmeringLoading.showShimmer(true)
+            binding.wisataShimmeringLoading.visibility = View.VISIBLE
+        } else {
+            binding.wisataShimmeringLoading.stopShimmer()
+            binding.wisataShimmeringLoading.showShimmer(false)
+            binding.wisataShimmeringLoading.visibility = View.GONE
+        }
+    }
+
+    private fun showRestaurantLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.restaurantShimmeringLoading.startShimmer()
+            binding.restaurantShimmeringLoading.showShimmer(true)
+            binding.restaurantShimmeringLoading.visibility = View.VISIBLE
+        } else {
+            binding.restaurantShimmeringLoading.stopShimmer()
+            binding.restaurantShimmeringLoading.showShimmer(false)
+            binding.restaurantShimmeringLoading.visibility = View.GONE
+        }
+    }
+
+    private fun showPenginapanLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.penginapanShimmeringLoading.startShimmer()
+            binding.penginapanShimmeringLoading.showShimmer(true)
+            binding.penginapanShimmeringLoading.visibility = View.VISIBLE
+        } else {
+            binding.penginapanShimmeringLoading.stopShimmer()
+            binding.penginapanShimmeringLoading.showShimmer(false)
+            binding.penginapanShimmeringLoading.visibility = View.GONE
         }
     }
 
@@ -172,6 +311,25 @@ class HomeFragment : Fragment(), AdsItemHandler {
                 val action = HomeFragmentDirections.actionHomeFragmentToWisataDetailFragment(
                     actionParam ?: ""
                 )
+                findNavController().navigate(action)
+            }
+        }
+    }
+
+    override fun onItemClicked(uuid: String, type: String) {
+        when (type) {
+            RECOMMENDATION_WISATA_TYPE -> {
+                val action = HomeFragmentDirections.actionHomeFragmentToWisataDetailFragment(uuid)
+                findNavController().navigate(action)
+            }
+            RECOMMENDATION_RESTAURANT_TYPE -> {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToRestaurantDetailFragment(uuid)
+                findNavController().navigate(action)
+            }
+            RECOMMENDATION_PENGINAPAN_TYPE -> {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToPenginapanDetailFragment(uuid)
                 findNavController().navigate(action)
             }
         }

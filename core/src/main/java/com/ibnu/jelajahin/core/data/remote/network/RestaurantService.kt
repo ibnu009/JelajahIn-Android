@@ -15,6 +15,9 @@ interface RestaurantService {
         @Query("search") searchQuery: String?
     ): RestaurantResponse
 
+    @GET("api/restaurant/recommended")
+    suspend fun getRestaurantRecommendation(): RestaurantResponse
+
     @GET("api/restaurant/{uuidRestaurant}")
     suspend fun getRestaurantDetail(
         @Path("uuidRestaurant") uuidRestaurant: String,

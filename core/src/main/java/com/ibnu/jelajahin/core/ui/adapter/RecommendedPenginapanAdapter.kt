@@ -8,9 +8,11 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.databinding.RecommendationItemBinding
+import com.ibnu.jelajahin.core.ui.adapter.handler.RecommendationItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.RECOMMENDATION_PENGINAPAN_TYPE
 
-class RecommendedPenginapanAdapter :
+class RecommendedPenginapanAdapter(private val onClickAction: RecommendationItemClickHandler) :
     RecyclerView.Adapter<RecommendedPenginapanAdapter.RecommendationViewHolder>() {
 
     private val listPenginapan = ArrayList<Penginapan>()
@@ -27,13 +29,17 @@ class RecommendedPenginapanAdapter :
         return RecommendationViewHolder(binding)
     }
 
-
     override fun onBindViewHolder(holder: RecommendationViewHolder, position: Int) {
         val data = listPenginapan[position]
         holder.bind(data)
+        holder.itemView.setOnClickListener {
+            onClickAction.onItemClicked(
+                data.uuidPenginapan, RECOMMENDATION_PENGINAPAN_TYPE
+            )
+        }
     }
 
-    override fun getItemCount(): Int = listPenginapan.size
+    override fun getItemCount(): Int = if (listPenginapan.size > 5) 5 else listPenginapan.size
 
     @SuppressLint("SetTextI18n")
     inner class RecommendationViewHolder(val binding: RecommendationItemBinding) :

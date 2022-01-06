@@ -32,6 +32,10 @@ class WisataRepository @Inject constructor(
         return wisataDataSource.getWisataLocations(provinceId, cityId)
     }
 
+    suspend fun getWisataRecommendation(): Flow<ApiResponse<List<Wisata>>> {
+        return wisataDataSource.getWisataRecommendation()
+    }
+
     suspend fun getReviewWisata(uuid: String): Flow<ApiResponse<List<Review>>> {
         return wisataDataSource.getReviewWisata(uuid)
     }

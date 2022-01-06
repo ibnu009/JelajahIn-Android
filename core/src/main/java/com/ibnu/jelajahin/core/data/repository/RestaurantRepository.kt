@@ -28,6 +28,10 @@ class RestaurantRepository @Inject constructor(
         return datasource.getRestaurantLocations(provinceId)
     }
 
+    suspend fun getRestaurantRecommendation(): Flow<ApiResponse<List<Restaurant>>> {
+        return datasource.getRestaurantRecommendation()
+    }
+
     suspend fun getReviewRestaurant(uuid: String): Flow<ApiResponse<List<Review>>> {
         return datasource.getReviewRestaurant(uuid)
     }

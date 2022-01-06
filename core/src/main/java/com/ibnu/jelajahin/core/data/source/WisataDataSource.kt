@@ -76,6 +76,23 @@ class WisataDataSource@Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getWisataRecommendation(): Flow<ApiResponse<List<Wisata>>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = wisataService.getWisataRecommendation()
+                if (response.rowCount > 0){
+                    emit(ApiResponse.Success(response.wisata))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception){
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e("Error Event $e")
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun getReviewWisata(uuid: String): Flow<ApiResponse<List<Review>>> {
         return flow {
             try {

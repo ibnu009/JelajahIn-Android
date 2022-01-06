@@ -17,6 +17,10 @@ object JelajahinConstValues {
 
     const val BUFFER_SIZE: Int = 1024 * 2
 
+    const val RECOMMENDATION_WISATA_TYPE = "type wisata"
+    const val RECOMMENDATION_RESTAURANT_TYPE = "type restaurant"
+    const val RECOMMENDATION_PENGINAPAN_TYPE = "type penginapan"
+
     const val OPEN_WEBVIEW = "open_webview"
     const val OPEN_FRAGMENT = "open_fragment"
 

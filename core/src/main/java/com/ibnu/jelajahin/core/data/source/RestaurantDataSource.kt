@@ -71,6 +71,22 @@ class RestaurantDataSource @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun getRestaurantRecommendation(): Flow<ApiResponse<List<Restaurant>>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = service.getRestaurantRecommendation()
+                if (response.rowCount > 0){
+                    emit(ApiResponse.Success(response.restaurants))
+                } else {
+                    emit(ApiResponse.Empty)
+                }
+            } catch (e: Exception){
+                emit(ApiResponse.Error(e.message.toString()))
+                Timber.e("Error Restaurant Ulasan $e")
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 
     suspend fun getReviewRestaurant(uuid: String): Flow<ApiResponse<List<Review>>> {
         return flow {
