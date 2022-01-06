@@ -128,7 +128,7 @@ class EventDetailFragment : Fragment() {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 if (token.isNotEmpty()) {
-                    viewModel.checkUserIsAlreadyAttendEvent(event.uuidEvent)
+                    viewModel.checkUserIsAlreadyAttendEvent(token, event.uuidEvent)
                         .observe(viewLifecycleOwner, { isAlreadyAttend ->
                             if (isAlreadyAttend) {
                                 requireContext().showOKDialog(

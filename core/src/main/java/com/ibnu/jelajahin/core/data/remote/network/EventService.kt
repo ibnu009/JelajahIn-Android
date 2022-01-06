@@ -23,6 +23,7 @@ interface EventService {
 
     @GET("api/event/check/attendance_status/{uuidEvent}")
     suspend fun checkUserAttendance(
+        @Header("token") token: String,
         @Path("uuidEvent") uuidEvent: String,
         ): GenericResponse
 

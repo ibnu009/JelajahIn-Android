@@ -48,9 +48,9 @@ private val eventService: EventService
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun getUserStatusAttendance(uuidEvent: String): Flow<String> {
+    suspend fun getUserStatusAttendance(token: String, uuidEvent: String): Flow<String> {
         return flow {
-            val response = eventService.checkUserAttendance(uuidEvent)
+            val response = eventService.checkUserAttendance(token, uuidEvent)
             emit(response.message)
         }.flowOn(Dispatchers.IO)
     }

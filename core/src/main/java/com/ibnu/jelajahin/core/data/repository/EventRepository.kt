@@ -27,7 +27,7 @@ class EventRepository @Inject constructor(
         return eventDataSource.getEventById(eventUuid)
     }
 
-    suspend fun checkUserAttendanceStatus(uuidEvent: String): Flow<String> {
-        return eventDataSource.getUserStatusAttendance(uuidEvent)
+    suspend fun checkUserAttendanceStatus(token: String, uuidEvent: String): Flow<String> {
+        return eventDataSource.getUserStatusAttendance(token, uuidEvent)
     }
 }
