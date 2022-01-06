@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Restaurant
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class InfoWindowsRestaurant(private val activity: Activity, private val context: Context) : GoogleMap.InfoWindowAdapter {
@@ -37,7 +38,15 @@ class InfoWindowsRestaurant(private val activity: Activity, private val context:
             .into(img)
 
         name.text = data.name
-        rating.text = if (data.ratingAverage != null) data.ratingAverage.toString() else "0.0"
+
+        if (data.ratingAverage.toString().length > 3) {
+            rating.text =
+                if (data.ratingAverage != null) data.ratingAverage.toString().formatAverageTooLong() else "0.0"
+        } else {
+            rating.text =
+                if (data.ratingAverage == null) "0.0" else data.ratingAverage.toString()
+        }
+
         stars.rating = data.ratingAverage?.toFloat() ?: 0f
         price.text = "Rp ${data.priceMin} - ${data.priceMax}"
         address.text = data.address

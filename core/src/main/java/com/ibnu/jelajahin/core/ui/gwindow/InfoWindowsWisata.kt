@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.Marker
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.data.model.Wisata
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class InfoWindowsWisata(private val activity: Activity, private val context: Context) : GoogleMap.InfoWindowAdapter {
@@ -39,6 +40,13 @@ class InfoWindowsWisata(private val activity: Activity, private val context: Con
 
         name.text = data.name
         rating.text = data.ratingAverage.toString()
+
+        if (data.ratingAverage.toString().length > 3) {
+            rating.text = data.ratingAverage.toString().formatAverageTooLong()
+        } else {
+            rating.text = data.ratingAverage.toString()
+        }
+
         stars.rating = data.ratingAverage.toFloat()
         price.text = "${data.ticketPrice}"
         address.text = data.address

@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.databinding.PenginapanItemBinding
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
-import kotlin.math.min
 
 class PenginapanAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Penginapan, PenginapanAdapter.PenginapanViewHolder>(DIFF_CALLBACK) {
@@ -39,10 +39,8 @@ class PenginapanAdapter(private val onClickAction: RecyclerviewItemClickHandler)
             binding.rbPenginapan.rating = penginapan.ratingAverage?.toFloat() ?: 0f
 
             if (penginapan.ratingAverage.toString().length > 3) {
-                val maxLength: Int = min(penginapan.ratingAverage.toString().length, 3)
                 binding.tvPenginapanRating.text =
-                    if (penginapan.ratingAverage != null) penginapan.ratingAverage.toString()
-                        .substring(0, maxLength) else "0.0"
+                    if (penginapan.ratingAverage != null) penginapan.ratingAverage.toString().formatAverageTooLong() else "0.0"
             } else {
                 binding.tvPenginapanRating.text =
                     if (penginapan.ratingAverage == null) "0.0" else penginapan.ratingAverage.toString()

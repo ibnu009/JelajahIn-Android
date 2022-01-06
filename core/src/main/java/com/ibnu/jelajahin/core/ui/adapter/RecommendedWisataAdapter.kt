@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.databinding.RecommendationItemBinding
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecommendationItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.RECOMMENDATION_WISATA_TYPE
@@ -47,7 +48,14 @@ class RecommendedWisataAdapter(private val onClickAction: RecommendationItemClic
             binding.tvTitle.text = wisata.name
             binding.tvRecommendationLocation.text = wisata.address
             binding.recommendationRating.rating = wisata.ratingAverage.toFloat()
-            binding.tvRecommendationRating.text = wisata.ratingAverage.toString()
+
+            if (wisata.ratingAverage.toString().length > 3) {
+                binding.tvRecommendationRating.text =
+                    wisata.ratingAverage.toString().formatAverageTooLong()
+            } else {
+                binding.tvRecommendationRating.text = wisata.ratingAverage.toString()
+            }
+
             binding.recommendationRatingTotal.text = "(${wisata.ratingCount})"
 
             Glide.with(binding.root.context)

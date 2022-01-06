@@ -8,14 +8,14 @@
     <LinearLayout
         android:layout_marginTop="@dimen/space_double"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="267dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <View
             android:layout_width="215dp"
-            android:layout_height="245dp"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/space_double"
             android:layout_marginVertical="@dimen/space"
             android:background="@drawable/skeleton_darker"
@@ -24,7 +24,7 @@
 
         <View
             android:layout_width="215dp"
-            android:layout_height="245dp"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/space_double"
             android:layout_marginVertical="@dimen/space"
             android:background="@drawable/skeleton_darker"

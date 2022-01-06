@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.databinding.RestaurantItemBinding
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import kotlin.math.min
@@ -39,13 +40,12 @@ class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler)
             binding.rbRestaurant.rating = restaurant.ratingAverage?.toFloat() ?: 0f
 
             if (restaurant.ratingAverage.toString().length > 3) {
-                val maxLength: Int = min(restaurant.ratingAverage.toString().length, 3)
-                binding.tvRestaurantRating.text = if (restaurant.ratingAverage != null) restaurant.ratingAverage.toString().substring(0, maxLength) else "0.0"
+                binding.tvRestaurantRating.text =
+                    if (restaurant.ratingAverage != null) restaurant.ratingAverage.toString().formatAverageTooLong() else "0.0"
             } else {
                 binding.tvRestaurantRating.text =
                     if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString()
             }
-
 
             Glide.with(itemView)
                 .load(BASE_URL+restaurant.imageUrl)

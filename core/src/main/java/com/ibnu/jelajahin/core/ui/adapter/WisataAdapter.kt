@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.databinding.WisataItemBinding
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
-import kotlin.math.min
 
 class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Wisata, WisataAdapter.WisataViewHolder>(DIFF_CALLBACK) {
@@ -37,8 +37,7 @@ class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
             binding.rbRestaurant.rating = wisata.ratingAverage.toFloat()
 
             if (wisata.ratingAverage.toString().length > 3) {
-                val maxLength: Int = min(wisata.ratingAverage.toString().length, 3)
-                binding.tvWisataRating.text = wisata.ratingAverage.toString().substring(maxLength)
+                binding.tvWisataRating.text = wisata.ratingAverage.toString().formatAverageTooLong()
             } else {
                 binding.tvWisataRating.text = wisata.ratingAverage.toString()
             }

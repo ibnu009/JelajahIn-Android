@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="10dp"
+    app:cardElevation="@dimen/space"
     android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="8dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,8 +27,8 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="@dimen/space"
+            android:layout_marginTop="@dimen/space"
             android:singleLine="true"
             android:paddingTop="5dp"
             android:paddingEnd="5dp"
@@ -39,29 +40,40 @@
             app:layout_constraintTop_toBottomOf="@+id/img_cover"
             tools:text="MOVIE NAME" />
 
-        <ImageView
-            android:id="@+id/imgLocation"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_location"
+        <LinearLayout
+            android:id="@+id/layoutLocation"
+            android:layout_marginTop="@dimen/space"
+            android:layout_marginStart="@dimen/space_half"
+            android:layout_marginEnd="@dimen/space"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
-
-        <TextView
-            android:id="@+id/tv_recommendation_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:paddingEnd="5dp"
-            android:paddingBottom="5dp"
-            android:maxLines="1"
-            android:ellipsize="end"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/imgLocation"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            tools:text="Bondowoso, Jawa Timur" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                android:id="@+id/tv_recommendation_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="5dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imgLocation"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tools:text="Bondowoso, Jawa Timur" />
+
+
+        </LinearLayout>
+
 
         <RatingBar
             android:id="@+id/recommendationRating"
@@ -69,18 +81,18 @@
             android:layout_width="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="@dimen/space"
             android:numStars="5"
             android:rating="4.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgLocation" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutLocation" />
 
         <TextView
             android:id="@+id/tvRecommendationRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="4.5"
+            tools:text="4.5"
             android:textColor="@color/dusk_yellow"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -92,8 +104,9 @@
             android:id="@+id/recommendationRatingTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(1,6k Reviews)"
+            tools:text="(1,6k Reviews)"
             android:textSize="12sp"
+            android:layout_marginEnd="@dimen/space"
             android:layout_marginStart="6dp"
             app:layout_constraintBottom_toBottomOf="@+id/tvRecommendationRating"
             app:layout_constraintStart_toEndOf="@+id/tvRecommendationRating"

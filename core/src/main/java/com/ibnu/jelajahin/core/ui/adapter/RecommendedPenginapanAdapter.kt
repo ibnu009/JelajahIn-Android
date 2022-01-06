@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.ibnu.jelajahin.core.R
 import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.databinding.RecommendationItemBinding
+import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecommendationItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.RECOMMENDATION_PENGINAPAN_TYPE
@@ -48,9 +49,16 @@ class RecommendedPenginapanAdapter(private val onClickAction: RecommendationItem
             binding.tvTitle.text = penginapan.name
             binding.tvRecommendationLocation.text = penginapan.address
             binding.recommendationRating.rating = penginapan.ratingAverage?.toFloat() ?: 0f
-            binding.tvRecommendationRating.text = if (penginapan.ratingAverage == null) "0.0" else penginapan.ratingAverage.toString()
-            binding.recommendationRatingTotal.text = if (penginapan.ratingCount == null) "(0)" else "(${penginapan.ratingCount})"
 
+            if (penginapan.ratingAverage.toString().length > 3) {
+                binding.tvRecommendationRating.text =
+                    if (penginapan.ratingAverage != null) penginapan.ratingAverage.toString().formatAverageTooLong() else "0.0"
+            } else {
+                binding.tvRecommendationRating.text =
+                    if (penginapan.ratingAverage == null) "0.0" else penginapan.ratingAverage.toString()
+            }
+
+            binding.recommendationRatingTotal.text = if (penginapan.ratingCount == null) "(0)" else "(${penginapan.ratingCount})"
             Glide.with(binding.root.context)
                 .load("${JelajahinConstValues.BASE_URL}${penginapan.imageUrl}")
                 .placeholder(R.color.input_color)

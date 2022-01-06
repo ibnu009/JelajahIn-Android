@@ -240,7 +240,7 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
         } else {
             binding.wisataShimmeringLoading.stopShimmer()
             binding.wisataShimmeringLoading.showShimmer(false)
-            binding.wisataShimmeringLoading.visibility = View.GONE
+            binding.wisataShimmeringLoading.visibility = View.INVISIBLE
         }
     }
 
@@ -252,7 +252,7 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
         } else {
             binding.restaurantShimmeringLoading.stopShimmer()
             binding.restaurantShimmeringLoading.showShimmer(false)
-            binding.restaurantShimmeringLoading.visibility = View.GONE
+            binding.restaurantShimmeringLoading.visibility = View.INVISIBLE
         }
     }
 
@@ -264,7 +264,7 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
         } else {
             binding.penginapanShimmeringLoading.stopShimmer()
             binding.penginapanShimmeringLoading.showShimmer(false)
-            binding.penginapanShimmeringLoading.visibility = View.GONE
+            binding.penginapanShimmeringLoading.visibility = View.INVISIBLE
         }
     }
 
