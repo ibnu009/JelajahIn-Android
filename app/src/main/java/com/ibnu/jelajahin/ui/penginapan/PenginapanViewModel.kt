@@ -4,13 +4,16 @@ import android.content.Context
 import androidx.lifecycle.*
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
 import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.data.model.Review
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
+import com.ibnu.jelajahin.core.data.repository.FavoriteRepository
 import com.ibnu.jelajahin.core.data.repository.PenginapanRepository
 import com.ibnu.jelajahin.core.ui.state.PostStateHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -22,10 +25,33 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class PenginapanViewModel @Inject constructor(private val repository: PenginapanRepository) :
-    ViewModel() {
+class PenginapanViewModel @Inject constructor(
+    private val favoriteRepository: FavoriteRepository,
+    private val repository: PenginapanRepository
+) : ViewModel() {
 
     var postState: PostStateHandler? = null
+
+    fun insertPenginapanToFavorite(favoriteEntity: FavoriteEntity) {
+        viewModelScope.launch(Dispatchers.IO) {
+            favoriteRepository.insertItemToFavorite(favoriteEntity)
+        }
+    }
+
+    fun removePenginapanFromFavorite(uuid: String, savedBy: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            favoriteRepository.removeItemFromFavorite(uuid, savedBy)
+        }
+    }
+
+    fun isAlreadyFavorite(uuid: String, email: String): LiveData<Boolean> {
+        val result = MutableLiveData<Boolean>()
+        viewModelScope.launch {
+            val status = favoriteRepository.checkIsItemAlreadyFavorite(uuid, email)
+            result.postValue(status)
+        }
+        return result
+    }
 
     fun getListPenginapan(provinceId: Int, searchQuery: String): Flow<PagingData<Penginapan>> {
         return repository.getPenginapan(provinceId, searchQuery).cachedIn(viewModelScope)

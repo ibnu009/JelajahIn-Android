@@ -96,6 +96,8 @@ class LoginFragment : Fragment() {
                     Timber.d("token is ${response.data}")
                     showLoading(false)
                     pref.setStringPreference(JelajahinConstValues.KEY_TOKEN, response.data)
+                    pref.setStringPreference(JelajahinConstValues.KEY_EMAIL, request.email)
+
                     findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
                 else -> {

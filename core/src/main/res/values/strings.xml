@@ -10,6 +10,7 @@
     <string name="food">-Makanan</string>
     <string name="clean">-Kebersihan</string>
     <string name="keramahan">-Keramahan</string>
+    <string name="hapus_dari_bookmark">Hapus</string>
 
     <string-array name="pictures">
         <item>Ambil foto</item>

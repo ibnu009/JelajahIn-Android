@@ -6,12 +6,16 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.appbar.AppBarLayout
+import com.ibnu.jelajahin.R
+import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
+import com.ibnu.jelajahin.core.data.local.room.query.TypeUtils
 import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
@@ -21,7 +25,7 @@ import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
-import com.ibnu.jelajahin.utils.UiConstValue
+import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import kotlin.math.min
@@ -39,6 +43,7 @@ class WisataDetailFragment : Fragment() {
     private lateinit var reviewAdapter: ReviewWisataAdapter
     lateinit var pref: SharedPreferenceManager
     private var token: String = ""
+    private var email: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +61,8 @@ class WisataDetailFragment : Fragment() {
 
         pref = SharedPreferenceManager(requireContext())
         token = pref.getToken ?: ""
+        email = pref.getEmail ?: ""
+
         Timber.d("Token is $token")
 
         initiateRecyclerViews()
@@ -65,10 +72,17 @@ class WisataDetailFragment : Fragment() {
         binding.refresh.setOnRefreshListener {
             initiateDetailData(uuidWisata)
         }
-
     }
 
     private fun initiateDetailData(uuidWisata: String) {
+        viewModel.isAlreadyFavorite(uuidWisata, email).observe(viewLifecycleOwner, {
+            Timber.d("Favorite is $it")
+            isFavorite = it
+            getDetailData(uuidWisata)
+        })
+    }
+
+    private fun getDetailData(uuidWisata: String) {
         viewModel.getWisataDetail(uuidWisata).observe(viewLifecycleOwner, { response ->
             when (response) {
                 is ApiResponse.Loading -> {
@@ -140,11 +154,11 @@ class WisataDetailFragment : Fragment() {
         binding.wisataStar.rating = wisata.ratingAverage.toFloat()
         binding.tvWisataAccreditation.text = wisata.ratingAverage.toJelajahinAccreditation()
 
-
         if (wisata.ratingAverage.toString().length > 3) {
             val maxLength: Int = min(wisata.ratingAverage.toString().length, 3)
             binding.tvWisataRating.text =
-                if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString().substring(0, maxLength)
+                if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
+                    .substring(0, maxLength)
         } else {
             binding.tvWisataRating.text =
                 if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
@@ -153,9 +167,16 @@ class WisataDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(BASE_URL+wisata.imageUrl)
+                .load(BASE_URL + wisata.imageUrl)
                 .into(binding.imgWisata)
         }
+
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                if (!isFavorite) R.color.grey_600 else R.color.dusk_yellow
+            )
+        )
 
         binding.btnTambahUlasan.setOnClickListener {
             it.popTap()
@@ -168,22 +189,53 @@ class WisataDetailFragment : Fragment() {
                         "Kamu harus memiliki akun JelajahIn jika ingin memberikan wisata ini sebuah ulasan!"
                     )
                 }
-            }, UiConstValue.FAST_ANIMATION_TIME)
+            }, FAST_ANIMATION_TIME)
         }
 
-//        binding.btnBookmark.setOnClickListener {
-//            it.popTap()
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                if (isFavorite){
-//                    isFavorite = !isFavorite
-//                    binding.imgBookmark.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_bookmark))
-//                } else {
-//                    isFavorite = !isFavorite
-//                    binding.imgBookmark.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_bookmarked))
-//                }
-//            }, FAST_ANIMATION_TIME)
-//        }
+        binding.btnBookmark.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFavorite) {
+                    val favoriteEntity = FavoriteEntity(
+                        uuid = wisata.uuidWisata,
+                        name = wisata.name,
+                        address = wisata.address,
+                        favoriteType = TypeUtils.FAVORITE_WISATA,
+                        ratingAvg = wisata.ratingAverage,
+                        ratingCount = wisata.ratingCount,
+                        imageUrl = wisata.imageUrl,
+                        savedBy = email
+                    )
+                    saveItemToFavorite(favoriteEntity)
+                } else {
+                    removeItemFromFavorite(wisata.uuidWisata, email)
+                }
+            }, FAST_ANIMATION_TIME)
+        }
+    }
 
+    private fun saveItemToFavorite(favoriteEntity: FavoriteEntity) {
+        viewModel.insertWisataToFavorite(favoriteEntity)
+        isFavorite = !isFavorite
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.dusk_yellow
+            )
+        )
+        Timber.d("Saved ${favoriteEntity.name}")
+    }
+
+    private fun removeItemFromFavorite(uuidWisata: String, email: String) {
+        isFavorite = !isFavorite
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.grey_600
+            )
+        )
+        viewModel.removeWisataFromFavorite(uuidWisata, email)
+        Timber.d("Removed $uuidWisata with $email")
     }
 
     private fun showLoading(isLoading: Boolean) {

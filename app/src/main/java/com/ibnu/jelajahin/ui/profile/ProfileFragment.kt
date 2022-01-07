@@ -18,6 +18,7 @@ import com.ibnu.jelajahin.core.data.model.User
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.*
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_EMAIL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.ProfileFragmentBinding
@@ -145,6 +146,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutAbout -> {
                 p0.popTap()
                 Timber.d("Menekan layout about")
+                throw RuntimeException("This is a crash")
             }
             binding.profileComponent.layoutEditProfile -> {
                 p0.popTap()
@@ -190,6 +192,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             setPositiveButton("IYA") { _, _ ->
                 try {
                     pref.clearPreferenceByKey(KEY_TOKEN)
+                    pref.clearPreferenceByKey(KEY_EMAIL)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 } finally {

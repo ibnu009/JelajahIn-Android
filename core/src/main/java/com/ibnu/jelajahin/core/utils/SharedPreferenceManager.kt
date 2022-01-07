@@ -2,12 +2,10 @@ package com.ibnu.jelajahin.core.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_EMAIL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_IS_ALREADY_INTRODUCED
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.KEY_TOKEN
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.PREFS_NAME
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
 
 class SharedPreferenceManager(context: Context) {
     private var prefs: SharedPreferences = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
@@ -29,5 +27,6 @@ class SharedPreferenceManager(context: Context) {
     }
 
     val getToken = prefs.getString(KEY_TOKEN, "")
+    val getEmail = prefs.getString(KEY_EMAIL, "")
     val isAlreadyIntroduced = prefs.getBoolean(KEY_IS_ALREADY_INTRODUCED, false)
 }

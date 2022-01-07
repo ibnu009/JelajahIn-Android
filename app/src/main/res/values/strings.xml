@@ -92,4 +92,7 @@
     <string name="lihat_error">Lihat Error</string>
     <string name="welcome_text">Hey,</string>
     <string name="current_location_text">Selamat datang di </string>
+    <string name="wisata">Wisata</string>
+    <string name="penginapan">Penginapan</string>
+    <string name="restaurant">Restaurant</string>
 </resources>

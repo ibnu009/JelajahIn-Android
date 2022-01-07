@@ -7,11 +7,15 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.ibnu.jelajahin.R
+import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
+import com.ibnu.jelajahin.core.data.local.room.query.TypeUtils
 import com.ibnu.jelajahin.core.data.model.Restaurant
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
@@ -21,9 +25,7 @@ import com.ibnu.jelajahin.core.ui.adapter.ReviewRestaurantAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
-import com.ibnu.jelajahin.ui.home.HomeFragmentDirections
-import com.ibnu.jelajahin.ui.profile.ProfileFragmentDirections
-import com.ibnu.jelajahin.utils.UiConstValue
+import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import kotlin.math.min
@@ -40,6 +42,8 @@ class RestaurantDetailFragment : Fragment() {
     private lateinit var reviewAdapter: ReviewRestaurantAdapter
     lateinit var pref: SharedPreferenceManager
     private var token: String = ""
+    private var email: String = ""
+    var isFavorite = false
 
 
     override fun onCreateView(
@@ -58,11 +62,32 @@ class RestaurantDetailFragment : Fragment() {
 
         pref = SharedPreferenceManager(requireContext())
         token = pref.getToken ?: ""
+        email = pref.getEmail ?: ""
+
         Timber.d("Token is $token")
 
         initiateRecyclerViews()
+        initiateDetailData(uuid)
         initiateUlasanData(uuid)
 
+    }
+
+    private fun initiateRecyclerViews() {
+        reviewAdapter = ReviewRestaurantAdapter()
+        binding.rvUlasan.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvUlasan.adapter = reviewAdapter
+    }
+
+    private fun initiateDetailData(uuid: String) {
+        viewModel.isAlreadyFavorite(uuid, email).observe(viewLifecycleOwner, {
+            Timber.d("Favorite is $it")
+            isFavorite = it
+            getDetailData(uuid)
+        })
+    }
+
+    private fun getDetailData(uuid: String) {
         viewModel.getRestaurantDetail(uuid).observe(viewLifecycleOwner, { response ->
             when (response) {
                 is ApiResponse.Loading -> {
@@ -85,13 +110,6 @@ class RestaurantDetailFragment : Fragment() {
         })
     }
 
-    private fun initiateRecyclerViews() {
-        reviewAdapter = ReviewRestaurantAdapter()
-        binding.rvUlasan.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.rvUlasan.adapter = reviewAdapter
-    }
-
     @SuppressLint("SetTextI18n")
     private fun loadUiDetailRestaurant(restaurant: Restaurant) {
         binding.tvRestaurantName.text = restaurant.name
@@ -111,16 +129,23 @@ class RestaurantDetailFragment : Fragment() {
         if (restaurant.ratingAverage.toString().length > 3) {
             val maxLength: Int = min(restaurant.ratingAverage.toString().length, 3)
             binding.tvRestaurantRating.text =
-                if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString().substring(0, maxLength)
+                if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString()
+                    .substring(0, maxLength)
         } else {
             binding.tvRestaurantRating.text =
                 if (restaurant.ratingAverage == null) "0.0" else restaurant.ratingAverage.toString()
         }
 
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                if (!isFavorite) R.color.grey_600 else R.color.dusk_yellow
+            )
+        )
 
         view?.let {
             Glide.with(it)
-                .load(BASE_URL+restaurant.imageUrl)
+                .load(BASE_URL + restaurant.imageUrl)
                 .into(binding.imgRestaurant)
         }
 
@@ -135,28 +160,60 @@ class RestaurantDetailFragment : Fragment() {
                         "Kamu harus memiliki akun JelajahIn jika ingin memberikan restaurant ini sebuah ulasan!"
                     )
                 }
-            }, UiConstValue.FAST_ANIMATION_TIME)
+            }, FAST_ANIMATION_TIME)
         }
 
         initiateContactView(restaurant)
 
-
-//        binding.btnBookmark.setOnClickListener {
-//            it.popTap()
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                if (isFavorite){
-//                    isFavorite = !isFavorite
-//                    binding.imgBookmark.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_bookmark))
-//                } else {
-//                    isFavorite = !isFavorite
-//                    binding.imgBookmark.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_bookmarked))
-//                }
-//            }, FAST_ANIMATION_TIME)
-//        }
+        binding.btnBookmark.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFavorite) {
+                    val favoriteEntity = FavoriteEntity(
+                        uuid = restaurant.uuidRestaurant,
+                        name = restaurant.name,
+                        address = restaurant.address,
+                        favoriteType = TypeUtils.FAVORITE_RESTAURANT,
+                        ratingAvg = restaurant.ratingAverage ?: 0.0,
+                        ratingCount = restaurant.ratingCount ?: 0,
+                        imageUrl = restaurant.imageUrl,
+                        savedBy = email
+                    )
+                    saveItemToFavorite(favoriteEntity)
+                } else {
+                    removeItemFromFavorite(restaurant.uuidRestaurant, email)
+                }
+            }, FAST_ANIMATION_TIME)
+        }
     }
 
-    private fun initiateUlasanData(uuidWisata: String) {
-        viewModel.getListReview(uuidWisata).observe(viewLifecycleOwner, { response ->
+    private fun saveItemToFavorite(favoriteEntity: FavoriteEntity) {
+        viewModel.insertRestaurantToFavorite(favoriteEntity)
+        isFavorite = !isFavorite
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.dusk_yellow
+            )
+        )
+        Timber.d("Saved ${favoriteEntity.name}")
+    }
+
+    private fun removeItemFromFavorite(uuidRestaurant: String, email: String) {
+        isFavorite = !isFavorite
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.grey_600
+            )
+        )
+        viewModel.removeRestaurantFromFavorite(uuidRestaurant, email)
+        Timber.d("Removed $uuidRestaurant with $email")
+    }
+
+
+    private fun initiateUlasanData(uuidRestaurant: String) {
+        viewModel.getListReview(uuidRestaurant).observe(viewLifecycleOwner, { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
@@ -209,16 +266,18 @@ class RestaurantDetailFragment : Fragment() {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 val action =
-                    RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToWebViewFragment(restaurant.website ?: "")
+                    RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToWebViewFragment(
+                        restaurant.website ?: ""
+                    )
                 findNavController().navigate(action)
-            }, UiConstValue.FAST_ANIMATION_TIME)
+            }, FAST_ANIMATION_TIME)
         }
 
         binding.contactComponent.layoutTelfon.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 Timber.d("Phone is not empty")
-            }, UiConstValue.FAST_ANIMATION_TIME)
+            }, FAST_ANIMATION_TIME)
         }
     }
 

@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_homeFragment_to_penginapanDetailFragment"
             app:destination="@id/penginapanDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -369,6 +372,20 @@
         <argument
             android:name="url"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookmarkFragment"
+        android:name="com.ibnu.jelajahin.ui.bookmark.BookmarkFragment"
+        android:label="BookmarkFragment" >
+        <action
+            android:id="@+id/action_bookmarkFragment_to_penginapanDetailFragment"
+            app:destination="@id/penginapanDetailFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_restaurantDetailFragment"
+            app:destination="@id/restaurantDetailFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_wisataDetailFragment"
+            app:destination="@id/wisataDetailFragment" />
     </fragment>
 
 </navigation>

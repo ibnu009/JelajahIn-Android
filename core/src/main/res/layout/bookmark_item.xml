@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    android:elevation="5dp"
+    app:cardCornerRadius="6dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:id="@+id/imvBookmark"
+            android:layout_width="120dp"
+            android:layout_height="130dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="#DFDFDF" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/imvEvent">
+
+            <TextView
+                android:id="@+id/tvBookmarName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="NAMA MAKANAN" />
+
+            <ImageView
+                android:id="@+id/iconPosition"
+                android:layout_below="@id/tvBookmarName"
+                android:src="@drawable/ic_location"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="@dimen/space"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tvBookmarLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBookmarName"
+                android:layout_marginStart="@dimen/space"
+                android:layout_marginTop="6dp"
+                android:layout_toEndOf="@id/iconPosition"
+                android:gravity="top"
+                tools:text="NAMA PEMILIK" />
+
+            <LinearLayout
+                android:id="@+id/llRating"
+                android:layout_alignParentBottom="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_double"
+                android:layout_marginTop="@dimen/space_double"
+                android:orientation="horizontal">
+
+                <RatingBar
+                    android:id="@+id/rbRestaurant"
+                    style="@style/customRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="6dp"
+                    android:numStars="5"
+                    android:rating="4.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgLocation" />
+
+                <TextView
+                    android:id="@+id/tvBookmarRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="6dp"
+                    android:text="4.5"
+                    android:textColor="@color/dusk_yellow"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/recommendationRating"
+                    app:layout_constraintStart_toEndOf="@+id/recommendationRating"
+                    app:layout_constraintTop_toTopOf="@+id/recommendationRating" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUnBookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/space"
+                android:layout_marginTop="@dimen/space"
+                android:layout_marginEnd="@dimen/space"
+                android:layout_marginBottom="@dimen/space"
+                android:background="@drawable/bg_rounded_corner_stroke_red"
+                android:paddingHorizontal="@dimen/space_double"
+                android:paddingVertical="@dimen/space"
+                android:text="@string/hapus_dari_bookmark"
+                android:textColor="@color/red_button"
+                android:textSize="@dimen/font_small"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

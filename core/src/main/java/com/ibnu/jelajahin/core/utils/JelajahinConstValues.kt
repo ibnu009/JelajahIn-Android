@@ -34,7 +34,10 @@ object JelajahinConstValues {
 
     const val PREFS_NAME = "jelajahin.pref"
     const val KEY_TOKEN = "key.token"
+    const val KEY_EMAIL = "key.email"
     const val KEY_IS_ALREADY_INTRODUCED = "key.is.already.introduced"
+
+    const val DB_NAME = "jelajahin_room_db"
 
     val LOCATION_PERMISSION = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
 }

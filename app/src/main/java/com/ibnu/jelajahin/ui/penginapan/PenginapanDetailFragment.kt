@@ -7,22 +7,26 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.ibnu.jelajahin.R
+import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
+import com.ibnu.jelajahin.core.data.local.room.query.TypeUtils
 import com.ibnu.jelajahin.core.data.model.Penginapan
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
+import com.ibnu.jelajahin.core.ui.adapter.HotelFacilityAdapter
 import com.ibnu.jelajahin.core.ui.adapter.ReviewPenginapanAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentPenginapanDetailBinding
-import com.ibnu.jelajahin.ui.home.HomeFragmentDirections
-import com.ibnu.jelajahin.ui.restaurant.RestaurantDetailFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -38,8 +42,12 @@ class PenginapanDetailFragment : Fragment() {
     private lateinit var penginapan: Penginapan
 
     private lateinit var reviewAdapter: ReviewPenginapanAdapter
+    private lateinit var hotelFacilityAdapter: HotelFacilityAdapter
     lateinit var pref: SharedPreferenceManager
     private var token: String = ""
+    private var email: String = ""
+    var isFavorite = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,12 +65,25 @@ class PenginapanDetailFragment : Fragment() {
 
         pref = SharedPreferenceManager(requireContext())
         token = pref.getToken ?: ""
+        email = pref.getEmail ?: ""
+
         Timber.d("Token is $token")
 
 
         initiateRecyclerViews()
+        initiateDetailData(uuid)
         initiateUlasanData(uuid)
+    }
 
+    private fun initiateDetailData(uuid: String) {
+        viewModel.isAlreadyFavorite(uuid, email).observe(viewLifecycleOwner, {
+            Timber.d("Favorite is $it")
+            isFavorite = it
+            getDetailData(uuid)
+        })
+    }
+
+    private fun getDetailData(uuid: String) {
         viewModel.getPenginapanDetail(uuid).observe(viewLifecycleOwner, { response ->
             when (response) {
                 is ApiResponse.Loading -> {
@@ -90,6 +111,12 @@ class PenginapanDetailFragment : Fragment() {
         binding.rvUlasan.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.rvUlasan.adapter = reviewAdapter
+
+        hotelFacilityAdapter = HotelFacilityAdapter()
+        with(binding.rvHotelFacility) {
+            adapter = hotelFacilityAdapter
+            layoutManager = GridLayoutManager(context, 2, GridLayoutManager.HORIZONTAL, false)
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -118,6 +145,13 @@ class PenginapanDetailFragment : Fragment() {
                 if (penginapan.ratingAverage == null) "0.0" else penginapan.ratingAverage.toString()
         }
 
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                if (!isFavorite) R.color.grey_600 else R.color.dusk_yellow
+            )
+        )
+
 
         view?.let {
             Glide.with(it)
@@ -141,18 +175,53 @@ class PenginapanDetailFragment : Fragment() {
 
         initiateContactView(penginapan)
 
-//        binding.btnBookmark.setOnClickListener {
-//            it.popTap()
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                if (isFavorite){
-//                    isFavorite = !isFavorite
-//                    binding.imgBookmark.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_bookmark))
-//                } else {
-//                    isFavorite = !isFavorite
-//                    binding.imgBookmark.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_bookmarked))
-//                }
-//            }, FAST_ANIMATION_TIME)
-//        }
+        val facilities: List<String> = penginapan.hotelFacility.split(",")
+        hotelFacilityAdapter.setData(facilities)
+
+        binding.btnBookmark.setOnClickListener {
+            it.popTap()
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!isFavorite) {
+                    val favoriteEntity = FavoriteEntity(
+                        uuid = penginapan.uuidPenginapan,
+                        name = penginapan.name,
+                        address = penginapan.address,
+                        favoriteType = TypeUtils.FAVORITE_PENGINAPAN,
+                        ratingAvg = penginapan.ratingAverage ?: 0.0,
+                        ratingCount = penginapan.ratingCount ?: 0,
+                        imageUrl = penginapan.imageUrl,
+                        savedBy = email
+                    )
+                    saveItemToFavorite(favoriteEntity)
+                } else {
+                    removeItemFromFavorite(penginapan.uuidPenginapan, email)
+                }
+            }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+    }
+
+    private fun saveItemToFavorite(favoriteEntity: FavoriteEntity) {
+        viewModel.insertPenginapanToFavorite(favoriteEntity)
+        isFavorite = !isFavorite
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.dusk_yellow
+            )
+        )
+        Timber.d("Saved ${favoriteEntity.name}")
+    }
+
+    private fun removeItemFromFavorite(uuidWisata: String, email: String) {
+        isFavorite = !isFavorite
+        binding.btnBookmark.setColorFilter(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.grey_600
+            )
+        )
+        viewModel.removePenginapanFromFavorite(uuidWisata, email)
+        Timber.d("Removed $uuidWisata with $email")
     }
 
     private fun initiateUlasanData(uuidWisata: String) {

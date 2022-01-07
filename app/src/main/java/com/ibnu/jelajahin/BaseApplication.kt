@@ -50,9 +50,6 @@ open class BaseApplication : Application() {
         UploadServiceConfig.idleTimeoutSeconds = 60 * 5
         UploadServiceConfig.bufferSizeBytes = 4096
         UploadServiceLogger.setLogLevel(UploadServiceLogger.LogLevel.Debug)
-
-        Thread.setDefaultUncaughtExceptionHandler(JelajahinCrashHandler(this))
-
     }
 
     private fun getOkHttpClient(): OkHttpClient {

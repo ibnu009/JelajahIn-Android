@@ -17,8 +17,8 @@
         android:title="@string/discover" />
 
     <item
-        android:id="@+id/savedFragment"
-        android:icon="@drawable/ic_love"
+        android:id="@+id/bookmarkFragment"
+        android:icon="@drawable/ic_bookmark_outline"
         android:title="@string/saved"/>
 
     <item

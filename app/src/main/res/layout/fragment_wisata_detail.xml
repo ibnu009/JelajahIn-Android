@@ -240,6 +240,7 @@
         </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnBookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/space_triple"
@@ -254,7 +255,7 @@
             android:src="@drawable/ic_bookmark"
             app:fabSize="normal"
             app:layout_anchor="@id/appBarCoor"
-            app:tint="#989898" />
+            app:tint="@color/grey_600" />
 
         <View
             android:id="@+id/bg_dim"
