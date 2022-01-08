@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
 import com.ibnu.jelajahin.core.data.local.room.query.TypeUtils
@@ -46,7 +47,7 @@ class PenginapanDetailFragment : Fragment() {
     lateinit var pref: SharedPreferenceManager
     private var token: String = ""
     private var email: String = ""
-    var isFavorite = false
+    private var isFavorite = false
 
 
     override fun onCreateView(
@@ -73,6 +74,10 @@ class PenginapanDetailFragment : Fragment() {
         initiateRecyclerViews()
         initiateDetailData(uuid)
         initiateUlasanData(uuid)
+
+        binding.refresh.setOnRefreshListener {
+            initiateDetailData(uuid)
+        }
     }
 
     private fun initiateDetailData(uuid: String) {
@@ -93,11 +98,13 @@ class PenginapanDetailFragment : Fragment() {
                 is ApiResponse.Error -> {
                     Timber.d("Error ${response.errorMessage}")
                     showLoading(false)
+                    binding.refresh.isRefreshing = false
                 }
                 is ApiResponse.Success -> {
                     penginapan = response.data
                     loadUiDetailPenginapan(response.data)
                     showLoading(false)
+                    binding.refresh.isRefreshing = false
                 }
                 else -> {
                     Timber.d("Unknown Error")
@@ -255,8 +262,15 @@ class PenginapanDetailFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding.layoutLoading.visibility = View.VISIBLE
+            binding.shimmeringDetail.startShimmer()
+            binding.shimmeringDetail.showShimmer(true)
+        } else {
+            binding.shimmeringDetail.stopShimmer()
+            binding.shimmeringDetail.showShimmer(false)
+            binding.layoutLoading.visibility = View.GONE
+        }
     }
 
     private fun initiateContactView(penginapan: Penginapan){
@@ -296,6 +310,9 @@ class PenginapanDetailFragment : Fragment() {
             it.popTap()
             findNavController().popBackStack()
         }
+        binding.appBarCoor.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            binding.refresh.isEnabled = verticalOffset == 0
+        })
     }
 
     override fun onDestroy() {

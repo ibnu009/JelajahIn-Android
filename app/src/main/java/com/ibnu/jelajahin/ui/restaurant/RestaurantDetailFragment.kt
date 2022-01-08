@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.google.android.material.appbar.AppBarLayout
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
 import com.ibnu.jelajahin.core.data.local.room.query.TypeUtils
@@ -43,7 +44,7 @@ class RestaurantDetailFragment : Fragment() {
     lateinit var pref: SharedPreferenceManager
     private var token: String = ""
     private var email: String = ""
-    var isFavorite = false
+    private var isFavorite = false
 
 
     override fun onCreateView(
@@ -70,6 +71,9 @@ class RestaurantDetailFragment : Fragment() {
         initiateDetailData(uuid)
         initiateUlasanData(uuid)
 
+        binding.refresh.setOnRefreshListener {
+            initiateDetailData(uuid)
+        }
     }
 
     private fun initiateRecyclerViews() {
@@ -243,8 +247,16 @@ class RestaurantDetailFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding.layoutLoading.visibility = View.VISIBLE
+            binding.shimmeringDetail.startShimmer()
+            binding.shimmeringDetail.showShimmer(true)
+        } else {
+            binding.shimmeringDetail.stopShimmer()
+            binding.shimmeringDetail.showShimmer(false)
+            binding.layoutLoading.visibility = View.GONE
+        }
+        binding.refresh.isRefreshing = isLoading
     }
 
     private fun initiateContactView(restaurant: Restaurant){
@@ -286,6 +298,9 @@ class RestaurantDetailFragment : Fragment() {
             it.popTap()
             findNavController().popBackStack()
         }
+        binding.appBarCoor.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+            binding.refresh.isEnabled = verticalOffset == 0
+        })
     }
 
     override fun onDestroy() {

@@ -1,371 +1,406 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/refresh"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarCoor"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbar"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/green"
-            android:fitsSystemWindows="true"
-            app:contentScrim="@color/green"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imgRestaurant"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarCoor"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                app:layout_collapseMode="parallax" />
+                android:layout_height="280dp"
+                android:fitsSystemWindows="true">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolBar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_arrow_back" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="-25dp"
-        android:background="@drawable/bg_content"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-        <LinearLayout
-            android:id="@+id/llContent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvRestaurantName"
-                style="@style/JelajahinTitleText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_quintuple"
-                tools:text="Kawah Ijen" />
-
-            <TextView
-                android:id="@+id/tvRestaurantLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_marginTop="@dimen/space"
-                app:drawableStartCompat="@drawable/ic_location"
-                tools:text="Bondowoso, Jawa Timur" />
-
-            <TextView
-                android:id="@+id/tvPriceRange"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="@color/red_button"
-                android:textSize="@dimen/font_medium"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_marginTop="@dimen/space"
-                tools:text="Bondowoso, Jawa Timur" />
-
-            <TextView
-                android:id="@+id/tvRestaurantDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_double"
-                android:ellipsize="end"
-                android:maxLines="4"
-                tools:text="@tools:sample/lorem/random" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_double"
-                android:divider="@drawable/vertical_divider"
-                android:orientation="horizontal"
-                android:showDividers="middle"
-                android:weightSum="2">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_double"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/tvRestaurantRating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/green_button"
-                        android:textSize="@dimen/font_xxbig"
-                        android:textStyle="bold"
-                        tools:text="4,2" />
-
-                    <TextView
-                        android:id="@+id/tvRestaurantAccreditation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space"
-                        android:layout_toEndOf="@id/tvRestaurantRating"
-                        android:textColor="@color/blackTitle"
-                        android:textStyle="bold"
-                        tools:text="Luar Biasa" />
-
-                    <RatingBar
-                        android:id="@+id/restaurantStar"
-                        style="@style/customRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvRestaurantAccreditation"
-                        android:layout_marginStart="6dp"
-                        android:layout_toEndOf="@id/tvRestaurantRating"
-                        android:numStars="5"
-                        android:rating="4.5" />
-
-                    <TextView
-                        android:id="@+id/tvRestaurantServiceRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/restaurantStar"
-                        android:layout_marginStart="@dimen/space"
-                        android:layout_toEndOf="@id/restaurantServiceStar"
-                        android:text="Pelayanan"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/font_small" />
-
-                    <RatingBar
-                        android:id="@+id/restaurantServiceStar"
-                        style="@style/customRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvRestaurantRating"
-                        android:numStars="5"
-                        android:rating="4.5" />
-
-                    <TextView
-                        android:id="@+id/tvRestaurantFoodRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvRestaurantServiceRate"
-                        android:layout_marginStart="@dimen/space"
-                        android:layout_toEndOf="@id/restaurantServiceStar"
-                        android:text="Makanan"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/font_small" />
-
-                    <RatingBar
-                        android:id="@+id/restaurantFoodStar"
-                        style="@style/customRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvRestaurantServiceRate"
-                        android:numStars="5"
-                        android:rating="4.5" />
-
-                    <TextView
-                        android:id="@+id/tvRestaurantCleanRate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvRestaurantFoodRate"
-                        android:layout_marginStart="@dimen/space"
-                        android:layout_toEndOf="@id/restaurantServiceStar"
-                        android:text="Kebersihan"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/font_small" />
-
-                    <RatingBar
-                        android:id="@+id/restaurantCleanStar"
-                        style="@style/customRatingBar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tvRestaurantFoodRate"
-                        android:numStars="5"
-                        android:rating="4.5" />
-
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            android:text="@string/business_schedule"
-                            android:textColor="@color/blackTitle"
-                            android:textStyle="bold" />
-
-                        <ImageButton
-                            android:id="@+id/btnInfo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            android:background="@android:color/transparent"
-                            android:src="@drawable/ic_info" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvBusinessTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space"
-                        tools:text="12:00 PM - 09:00 PM" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space"
-                        android:text="@string/diet"
-                        android:textColor="@color/blackTitle"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvDiet"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space"
-                        tools:text="Vegan" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-            <include
-                android:id="@+id/contactComponent"
-                android:layout_marginVertical="@dimen/space_double"
-                android:layout_marginHorizontal="@dimen/space_triple"
-                layout="@layout/component_detail_contact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space"
-                android:orientation="vertical">
-
-                <RelativeLayout
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:background="@color/green"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="@color/green"
+                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                     <ImageView
-                        android:id="@+id/iconChat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/space_double"
-                        android:src="@drawable/ic_chat" />
+                        android:id="@+id/imgRestaurant"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        app:layout_collapseMode="parallax" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="@dimen/space"
-                        android:layout_toEndOf="@id/iconChat"
-                        android:text="@string/pendapat_pengunjung"
-                        android:textColor="@color/blackTitle"
-                        android:textStyle="bold" />
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_arrow_back" />
 
-                    <Button
-                        android:id="@+id/btnTambahUlasan"
-                        style="@style/JelajahinTextButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/space_double"
-                        android:text="@string/tambah_ulasan"
-                        android:textAllCaps="false"
-                        android:textColor="@color/green_button"
-                        android:textSize="@dimen/font_medium"
-                        android:textStyle="bold" />
-                </RelativeLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="-25dp"
+                android:background="@drawable/bg_content"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
                 <LinearLayout
-                    android:orientation="vertical"
+                    android:id="@+id/llContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/tvEmptyUlasan"
-                        android:visibility="gone"
-                        android:text="@string/belum_ada_ulasan"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/space_quintuple"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_content"
+                    android:orientation="vertical">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvUlasan"
+                    <TextView
+                        android:id="@+id/tvRestaurantName"
+                        style="@style/JelajahinTitleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space_quintuple"
+                        tools:text="Kawah Ijen" />
+
+                    <TextView
+                        android:id="@+id/tvRestaurantLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space"
+                        app:drawableStartCompat="@drawable/ic_location"
+                        tools:text="Bondowoso, Jawa Timur" />
+
+                    <TextView
+                        android:id="@+id/tvPriceRange"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/red_button"
+                        android:textSize="@dimen/font_medium"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space"
+                        tools:text="Bondowoso, Jawa Timur" />
+
+                    <TextView
+                        android:id="@+id/tvRestaurantDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        tools:text="@tools:sample/lorem/random" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_double"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/ulasan_item" />
+                        android:divider="@drawable/vertical_divider"
+                        android:orientation="horizontal"
+                        android:showDividers="middle"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_double"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tvRestaurantRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/green_button"
+                                android:textSize="@dimen/font_xxbig"
+                                android:textStyle="bold"
+                                tools:text="4,2" />
+
+                            <TextView
+                                android:id="@+id/tvRestaurantAccreditation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/tvRestaurantRating"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold"
+                                tools:text="Luar Biasa" />
+
+                            <RatingBar
+                                android:id="@+id/restaurantStar"
+                                style="@style/customRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvRestaurantAccreditation"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/tvRestaurantRating"
+                                android:numStars="5"
+                                android:rating="4.5" />
+
+                            <TextView
+                                android:id="@+id/tvRestaurantServiceRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/restaurantStar"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/restaurantServiceStar"
+                                android:text="Pelayanan"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small" />
+
+                            <RatingBar
+                                android:id="@+id/restaurantServiceStar"
+                                style="@style/customRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvRestaurantRating"
+                                android:numStars="5"
+                                android:rating="4.5" />
+
+                            <TextView
+                                android:id="@+id/tvRestaurantFoodRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvRestaurantServiceRate"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/restaurantServiceStar"
+                                android:text="Makanan"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small" />
+
+                            <RatingBar
+                                android:id="@+id/restaurantFoodStar"
+                                style="@style/customRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvRestaurantServiceRate"
+                                android:numStars="5"
+                                android:rating="4.5" />
+
+                            <TextView
+                                android:id="@+id/tvRestaurantCleanRate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvRestaurantFoodRate"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/restaurantServiceStar"
+                                android:text="Kebersihan"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/font_small" />
+
+                            <RatingBar
+                                android:id="@+id/restaurantCleanStar"
+                                style="@style/customRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvRestaurantFoodRate"
+                                android:numStars="5"
+                                android:rating="4.5" />
+
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/space"
+                                    android:text="@string/business_schedule"
+                                    android:textColor="@color/blackTitle"
+                                    android:textStyle="bold" />
+
+                                <ImageButton
+                                    android:id="@+id/btnInfo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/space"
+                                    android:background="@android:color/transparent"
+                                    android:src="@drawable/ic_info" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvBusinessTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                tools:text="12:00 PM - 09:00 PM" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                android:text="@string/diet"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvDiet"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                tools:text="Vegan" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <include
+                        android:id="@+id/contactComponent"
+                        android:layout_marginVertical="@dimen/space_double"
+                        android:layout_marginHorizontal="@dimen/space_triple"
+                        layout="@layout/component_detail_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/iconChat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/space_double"
+                                android:src="@drawable/ic_chat" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/iconChat"
+                                android:text="@string/pendapat_pengunjung"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/btnTambahUlasan"
+                                style="@style/JelajahinTextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="@dimen/space_double"
+                                android:text="@string/tambah_ulasan"
+                                android:textAllCaps="false"
+                                android:textColor="@color/green_button"
+                                android:textSize="@dimen/font_medium"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/tvEmptyUlasan"
+                                android:visibility="gone"
+                                android:text="@string/belum_ada_ulasan"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="@dimen/space_quintuple"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvUlasan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_double"
+                                tools:itemCount="4"
+                                tools:listitem="@layout/ulasan_item" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:id="@+id/btnBookmark"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginTop="@dimen/space"
+                android:layout_marginEnd="@dimen/space_triple"
+                android:backgroundTint="@color/white"
+                android:baselineAlignBottom="false"
+                android:clickable="true"
+                android:contentDescription="@string/discover"
+                android:focusable="true"
+                android:src="@drawable/ic_bookmark"
+                app:fabSize="normal"
+                app:layout_anchor="@id/appBarCoor"
+                app:layout_anchorGravity="end|bottom"
+                app:tint="@color/grey_600" />
+
+            <View
+                android:id="@+id/bg_dim"
+                android:visibility="gone"
+                android:background="@color/black_dim"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutLoading"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmeringDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include
+                    layout="@layout/smh_content_detail"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:id="@+id/btnBookmark"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_marginTop="@dimen/space"
-        android:layout_marginEnd="@dimen/space_triple"
-        android:backgroundTint="@color/white"
-        android:baselineAlignBottom="false"
-        android:clickable="true"
-        android:contentDescription="@string/discover"
-        android:focusable="true"
-        android:src="@drawable/ic_bookmark"
-        app:fabSize="normal"
-        app:layout_anchor="@id/appBarCoor"
-        app:layout_anchorGravity="end|bottom"
-        app:tint="@color/grey_600" />
 
-    <View
-        android:id="@+id/bg_dim"
-        android:visibility="gone"
-        android:background="@color/black_dim"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

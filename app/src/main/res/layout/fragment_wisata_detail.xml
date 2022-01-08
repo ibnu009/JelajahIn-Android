@@ -7,272 +7,282 @@
     android:layout_height="match_parent"
     tools:context=".ui.wisata.WisataDetailFragment">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarCoor"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="280dp"
-            android:fitsSystemWindows="true">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsingToolbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarCoor"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="@color/green"
-                android:background="@color/green"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+                android:layout_height="280dp"
+                android:fitsSystemWindows="true">
 
-                <ImageView
-                    android:id="@+id/imgWisata"
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsingToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:layout_collapseMode="parallax" />
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="@color/green"
+                    android:background="@color/green"
+                    app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolBar"
-                    app:navigationIcon="@drawable/ic_arrow_back"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin" />
+                    <ImageView
+                        android:id="@+id/imgWisata"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        app:layout_collapseMode="parallax" />
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolBar"
+                        app:navigationIcon="@drawable/ic_arrow_back"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="pin" />
 
-        </com.google.android.material.appbar.AppBarLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/content"
-            android:layout_marginTop="-25dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_content"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            </com.google.android.material.appbar.AppBarLayout>
 
-            <LinearLayout
-                android:id="@+id/llContent"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/content"
+                android:layout_marginTop="-25dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/bg_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvWisataName"
-                    style="@style/JelajahinTitleText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/space_double"
-                    android:layout_marginTop="@dimen/space_quintuple"
-                    tools:text="Kawah Ijen" />
-
-                <TextView
-                    android:id="@+id/tvWisataLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/space_double"
-                    android:layout_marginTop="@dimen/space"
-                    app:drawableStartCompat="@drawable/ic_location"
-                    tools:text="Bondowoso, Jawa Timur" />
-
-                <TextView
-                    android:id="@+id/tvWisataDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/space_double"
-                    android:layout_marginTop="@dimen/space_double"
-                    android:ellipsize="end"
-                    android:maxLines="4"
-                    tools:text="@tools:sample/lorem/random" />
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
                 <LinearLayout
+                    android:id="@+id/llContent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_double"
-                    android:divider="@drawable/vertical_divider"
-                    android:orientation="horizontal"
-                    android:showDividers="middle"
-                    android:weightSum="2">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_content"
+                    android:orientation="vertical">
 
-                    <RelativeLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tvWisataName"
+                        style="@style/JelajahinTitleText"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/space_double"
-                        android:layout_weight="1">
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space_quintuple"
+                        tools:text="Kawah Ijen" />
 
-                        <TextView
-                            android:id="@+id/tvWisataRating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/green_button"
-                            android:textSize="@dimen/font_xxbig"
-                            android:textStyle="bold"
-                            tools:text="4,2" />
+                    <TextView
+                        android:id="@+id/tvWisataLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space"
+                        app:drawableStartCompat="@drawable/ic_location"
+                        tools:text="Bondowoso, Jawa Timur" />
 
-                        <TextView
-                            android:id="@+id/tvWisataAccreditation"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            android:layout_toEndOf="@id/tvWisataRating"
-                            android:textColor="@color/blackTitle"
-                            android:textStyle="bold"
-                            tools:text="Luar Biasa" />
-
-                        <RatingBar
-                            android:id="@+id/wisataStar"
-                            style="@style/customRatingBar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@id/tvWisataAccreditation"
-                            android:layout_marginStart="6dp"
-                            android:layout_toEndOf="@id/tvWisataRating"
-                            android:numStars="5"
-                            android:rating="4.5" />
-
-
-                    </RelativeLayout>
+                    <TextView
+                        android:id="@+id/tvWisataDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:ellipsize="end"
+                        android:maxLines="4"
+                        tools:text="@tools:sample/lorem/random" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:divider="@drawable/vertical_divider"
+                        android:orientation="horizontal"
+                        android:showDividers="middle"
+                        android:weightSum="2">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/space_double"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tvWisataRating"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/green_button"
+                                android:textSize="@dimen/font_xxbig"
+                                android:textStyle="bold"
+                                tools:text="4,2" />
+
+                            <TextView
+                                android:id="@+id/tvWisataAccreditation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/tvWisataRating"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold"
+                                tools:text="Luar Biasa" />
+
+                            <RatingBar
+                                android:id="@+id/wisataStar"
+                                style="@style/customRatingBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tvWisataAccreditation"
+                                android:layout_marginStart="6dp"
+                                android:layout_toEndOf="@id/tvWisataRating"
+                                android:numStars="5"
+                                android:rating="4.5" />
+
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                android:text="@string/harga_tiket"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvTicketPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                tools:text="Rp 20.000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                android:text="@string/harga_tiket_weekend"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvTicketPriceWeekend"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/space"
+                                tools:text="Rp 25.000" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            android:text="@string/harga_tiket"
-                            android:textColor="@color/blackTitle"
-                            android:textStyle="bold" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/iconChat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/space_double"
+                                android:src="@drawable/ic_chat" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/space"
+                                android:layout_toEndOf="@id/iconChat"
+                                android:text="@string/pendapat_pengunjung"
+                                android:textColor="@color/blackTitle"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/btnTambahUlasan"
+                                style="@style/JelajahinTextButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="@dimen/space_double"
+                                android:text="@string/tambah_ulasan"
+                                android:textAllCaps="false"
+                                android:textColor="@color/green_button"
+                                android:textSize="@dimen/font_medium"
+                                android:textStyle="bold" />
+                        </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/tvTicketPrice"
+                            android:id="@+id/tvEmptyUlasan"
+                            android:visibility="gone"
+                            android:text="@string/belum_ada_ulasan"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/space_quintuple"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            tools:text="Rp 20.000" />
+                            android:layout_height="wrap_content"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvUlasan"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            android:text="@string/harga_tiket_weekend"
-                            android:textColor="@color/blackTitle"
-                            android:textStyle="bold" />
+                            tools:itemCount="4"
+                            tools:listitem="@layout/ulasan_item" />
 
-                        <TextView
-                            android:id="@+id/tvTicketPriceWeekend"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space"
-                            tools:text="Rp 25.000" />
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space"
-                    android:orientation="vertical">
+            </androidx.core.widget.NestedScrollView>
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnBookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_triple"
+                android:backgroundTint="@color/white"
+                android:baselineAlignBottom="false"
+                android:clickable="true"
+                android:contentDescription="aweaw"
+                android:layout_gravity="top"
+                android:layout_marginTop="@dimen/space"
+                app:layout_anchorGravity="end|bottom"
+                android:focusable="true"
+                android:src="@drawable/ic_bookmark"
+                app:fabSize="normal"
+                app:layout_anchor="@id/appBarCoor"
+                app:tint="@color/grey_600" />
 
-                        <ImageView
-                            android:id="@+id/iconChat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/space_double"
-                            android:src="@drawable/ic_chat" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="@dimen/space"
-                            android:layout_toEndOf="@id/iconChat"
-                            android:text="@string/pendapat_pengunjung"
-                            android:textColor="@color/blackTitle"
-                            android:textStyle="bold" />
-
-                        <Button
-                            android:id="@+id/btnTambahUlasan"
-                            style="@style/JelajahinTextButton"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_marginEnd="@dimen/space_double"
-                            android:text="@string/tambah_ulasan"
-                            android:textAllCaps="false"
-                            android:textColor="@color/green_button"
-                            android:textSize="@dimen/font_medium"
-                            android:textStyle="bold" />
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/tvEmptyUlasan"
-                        android:visibility="gone"
-                        android:text="@string/belum_ada_ulasan"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/space_quintuple"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvUlasan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:itemCount="4"
-                        tools:listitem="@layout/ulasan_item" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnBookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_triple"
-            android:backgroundTint="@color/white"
-            android:baselineAlignBottom="false"
-            android:clickable="true"
-            android:contentDescription="aweaw"
-            android:layout_gravity="top"
-            android:layout_marginTop="@dimen/space"
-            app:layout_anchorGravity="end|bottom"
-            android:focusable="true"
-            android:src="@drawable/ic_bookmark"
-            app:fabSize="normal"
-            app:layout_anchor="@id/appBarCoor"
-            app:tint="@color/grey_600" />
-
-        <View
-            android:id="@+id/bg_dim"
+        <LinearLayout
+            android:id="@+id/layoutLoading"
+            android:background="@color/white"
             android:visibility="gone"
-            android:background="@color/black_dim"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:visibility="gone"
-            android:layout_gravity="center"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmeringDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <include
+                    layout="@layout/smh_content_detail"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -38,7 +38,7 @@ class WisataDetailFragment : Fragment() {
     private var _binding: FragmentWisataDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var wisata: Wisata
-    var isFavorite = false
+    private var isFavorite = false
 
     private lateinit var reviewAdapter: ReviewWisataAdapter
     lateinit var pref: SharedPreferenceManager
@@ -139,6 +139,7 @@ class WisataDetailFragment : Fragment() {
     private fun initiateAppbar() {
         binding.toolBar.setNavigationOnClickListener {
             it.popTap()
+            findNavController().popBackStack()
         }
         binding.appBarCoor.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
             binding.refresh.isEnabled = verticalOffset == 0
@@ -239,8 +240,15 @@ class WisataDetailFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+        if (isLoading) {
+            binding.layoutLoading.visibility = View.VISIBLE
+            binding.shimmeringDetail.startShimmer()
+            binding.shimmeringDetail.showShimmer(true)
+        } else {
+            binding.shimmeringDetail.stopShimmer()
+            binding.shimmeringDetail.showShimmer(false)
+            binding.layoutLoading.visibility = View.GONE
+        }
     }
 
     private fun navigateToAddUlasan() {
