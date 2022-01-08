@@ -1,41 +1,44 @@
 package com.ibnu.jelajahin.ui.onboarding
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
-import com.ibnu.jelajahin.databinding.FragmentOnBoardingSecondBinding
-import com.ibnu.jelajahin.databinding.FragmentOnBoardingThirdBinding
+import com.ibnu.jelajahin.databinding.FragmentOnBoardingForthkBinding
 
-class OnBoardingThirdFragment : Fragment() {
+class OnBoardingForthFragment : Fragment() {
 
-    private var _binding: FragmentOnBoardingThirdBinding? = null
+    private var _binding: FragmentOnBoardingForthkBinding? = null
     private val binding get() = _binding!!
+
+    lateinit var pref: SharedPreferenceManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentOnBoardingThirdBinding.inflate(inflater, container, false)
+        _binding = FragmentOnBoardingForthkBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pref = SharedPreferenceManager(requireContext())
         val pager = activity?.findViewById<ViewPager2>(R.id.onboardingViewPager)
-        binding.btnNext.setOnClickListener {
-            pager?.currentItem = 3
-        }
 
-        binding.btnPrev.setOnClickListener {
-            pager?.currentItem = 1
+        binding.btnStart.setOnClickListener {
+            try {
+                pref.setBooleanPreference(JelajahinConstValues.KEY_IS_ALREADY_INTRODUCED, true)
+            } finally {
+                findNavController().navigate(R.id.action_onBoardingFragment_to_loginFragment)
+            }
         }
 
         binding.circle1.setOnClickListener {
@@ -53,8 +56,4 @@ class OnBoardingThirdFragment : Fragment() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
 }

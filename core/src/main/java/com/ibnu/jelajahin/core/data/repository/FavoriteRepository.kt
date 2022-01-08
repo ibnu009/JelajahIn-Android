@@ -2,6 +2,7 @@ package com.ibnu.jelajahin.core.data.repository
 
 import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
 import com.ibnu.jelajahin.core.data.source.FavoriteDataSource
+import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,6 +22,7 @@ class FavoriteRepository @Inject constructor(
 
     suspend fun checkIsItemAlreadyFavorite(uuid: String, savedBy: String) : Boolean{
         val favoriteId = favoriteDataSource.checkIsItemAlreadyFavorite(uuid, savedBy)
+        Timber.d("favorite id is $favoriteId, with uuid $uuid and saved by $savedBy")
         return favoriteId ?: -1 > -1
     }
 

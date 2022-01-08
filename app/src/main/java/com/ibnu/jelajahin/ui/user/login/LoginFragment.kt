@@ -6,19 +6,17 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.data.remote.request.LoginBody
+import com.ibnu.jelajahin.core.extention.*
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.LoginFragmentBinding
-import com.ibnu.jelajahin.core.extention.isEmailValid
-import com.ibnu.jelajahin.core.extention.popTap
-import com.ibnu.jelajahin.core.extention.sha256
-import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.utils.UiConstValue
 import com.ibnu.jelajahin.utils.UiConstValue.ERROR_TITLE
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +31,18 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var pref: SharedPreferenceManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    requireActivity().showExitJelajahInDialog()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(this, callback)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

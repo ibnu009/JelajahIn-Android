@@ -188,22 +188,33 @@ class PenginapanDetailFragment : Fragment() {
         binding.btnBookmark.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                if (!isFavorite) {
-                    val favoriteEntity = FavoriteEntity(
-                        uuid = penginapan.uuidPenginapan,
-                        name = penginapan.name,
-                        address = penginapan.address,
-                        favoriteType = TypeUtils.FAVORITE_PENGINAPAN,
-                        ratingAvg = penginapan.ratingAverage ?: 0.0,
-                        ratingCount = penginapan.ratingCount ?: 0,
-                        imageUrl = penginapan.imageUrl,
-                        savedBy = email
-                    )
-                    saveItemToFavorite(favoriteEntity)
+                if (token.isNotEmpty()) {
+                    initiateBookmarkFunction()
                 } else {
-                    removeItemFromFavorite(penginapan.uuidPenginapan, email)
+                    requireContext().showOKDialog(
+                        "Akses Ditolak!",
+                        "Kamu harus memiliki akun JelajahIn jika ingin memasukkan penginapan ini ke bookmark!"
+                    )
                 }
             }, UiConstValue.FAST_ANIMATION_TIME)
+        }
+    }
+
+    private fun initiateBookmarkFunction(){
+        if (!isFavorite) {
+            val favoriteEntity = FavoriteEntity(
+                uuid = penginapan.uuidPenginapan,
+                name = penginapan.name,
+                address = penginapan.address,
+                favoriteType = TypeUtils.FAVORITE_PENGINAPAN,
+                ratingAvg = penginapan.ratingAverage ?: 0.0,
+                ratingCount = penginapan.ratingCount ?: 0,
+                imageUrl = penginapan.imageUrl,
+                savedBy = email
+            )
+            saveItemToFavorite(favoriteEntity)
+        } else {
+            removeItemFromFavorite(penginapan.uuidPenginapan, email)
         }
     }
 

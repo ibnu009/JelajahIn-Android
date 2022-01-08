@@ -36,7 +36,7 @@ class SplashFragment : Fragment() {
         Handler(Looper.getMainLooper()).postDelayed({
             when {
                 !isAlreadyIntroduced -> {
-                     findNavController().navigate(R.id.action_splashFragment_to_onBoardingFirstFragment)
+                     findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
                 }
                 token.isBlank() -> {
                     findNavController().navigate(R.id.action_splashFragment_to_loginFragment)

@@ -46,14 +46,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/circle1"
+                android:background="@android:color/transparent"
                 android:src="@drawable/circle"
                 android:layout_width="20dp"
                 android:layout_marginHorizontal="@dimen/space"
                 android:layout_height="20dp"
                 app:tint="@color/green_button" />
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/circle2"
+                android:background="@android:color/transparent"
                 android:src="@drawable/circle"
                 android:layout_width="16dp"
                 android:layout_gravity="center_vertical"
@@ -61,9 +65,21 @@
                 android:layout_height="16dp"
                 app:tint="@color/grey_500" />
 
-            <ImageView
+            <ImageButton
+                android:id="@+id/circle3"
+                android:layout_height="16dp"
                 android:src="@drawable/circle"
                 android:layout_width="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/space"
+                android:background="@android:color/transparent"
+                app:tint="@color/grey_500" />
+
+            <ImageButton
+                android:id="@+id/circle4"
+                android:layout_width="16dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/circle"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="@dimen/space"
                 android:layout_height="16dp"
@@ -75,14 +91,17 @@
 
     <Button
         android:id="@+id/btnNext"
-        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_margin="@dimen/space"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/space"
+        android:layout_marginTop="@dimen/space"
+        android:layout_marginEnd="@dimen/space"
+        android:layout_marginBottom="@dimen/space"
         android:background="@android:color/transparent"
         android:text="@string/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
 </RelativeLayout>

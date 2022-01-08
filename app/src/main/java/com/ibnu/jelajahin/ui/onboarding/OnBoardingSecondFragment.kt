@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.ibnu.jelajahin.R
 import com.ibnu.jelajahin.databinding.FragmentOnBoardingSecondBinding
 
@@ -24,8 +25,26 @@ class OnBoardingSecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val pager = activity?.findViewById<ViewPager2>(R.id.onboardingViewPager)
         binding.btnNext.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardingSecondFragment_to_onBoardingThirdFragment)
+            pager?.currentItem = 2
+        }
+
+        binding.btnPrev.setOnClickListener {
+            pager?.currentItem = 0
+        }
+
+        binding.circle1.setOnClickListener {
+            pager?.currentItem = 0
+        }
+        binding.circle2.setOnClickListener {
+            pager?.currentItem = 1
+        }
+        binding.circle3.setOnClickListener {
+            pager?.currentItem = 2
+        }
+        binding.circle4.setOnClickListener {
+            pager?.currentItem = 3
         }
 
     }

@@ -56,13 +56,16 @@
     <string name="harga_tiket">Harga Tiket</string>
     <string name="harga_tiket_weekend">Harga Tiket Weekend</string>
 
-    <string name="onboarding_first_title">Ready To Travel</string>
-    <string name="onboarding_second_title">Select the date</string>
-    <string name="onboarding_third_title">Feels like home</string>
+    <string name="onboarding_first_title">Bersiaplah!</string>
+    <string name="onboarding_second_title">Pilih lokasinya</string>
+    <string name="onboarding_third_title">Seni dan Budaya</string>
+    <string name="onboarding_forth_title">Point dan Hadiah</string>
 
-    <string name="onboarding_first_desc">Choose your destinations, plan your trip. pick the best place for your holiday.</string>
-    <string name="onboarding_second_desc">Select the day, pick your ticket. we give you the best price, we guaranteed!</string>
-    <string name="onboarding_third_desc">Enjoy your holiday! Don\'t forget to take camera and take a photo!</string>
+
+    <string name="onboarding_first_desc">Pilih tujuan dan rencanakan perjalananmu jelajahi tanah langit yang hidup! .</string>
+    <string name="onboarding_second_desc">Pilih tempat terbaik untuk liburanmu dan kunjungilah sudut planet yang menakjubkan! </string>
+    <string name="onboarding_third_desc">Hadiri berbagai budaya dan acara menarik di setiap daerah di Indonesia.</string>
+    <string name="onboarding_forth_desc">Kumpulkan poinnya dan tukarkan dengan hadiah yang menarik.</string>
 
     <string name="next">Next</string>
     <string name="start_journey">Mulai Petualangan!</string>

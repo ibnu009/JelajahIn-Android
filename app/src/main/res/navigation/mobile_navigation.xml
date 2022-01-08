@@ -230,55 +230,15 @@
             app:popExitAnim="@android:anim/slide_out_right"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_onBoardingFirstFragment"
-            app:destination="@id/onBoardingFirstFragment"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/onBoardingFirstFragment"
-        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingFirstFragment"
-        android:label="fragment_on_boarding_first"
-        tools:layout="@layout/fragment_on_boarding_first" >
         <action
-            android:id="@+id/action_onBoardingFirstFragment_to_onBoardingSecondFragment"
-            app:destination="@id/onBoardingSecondFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/onBoardingSecondFragment"
-        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingSecondFragment"
-        android:label="fragment_on_boarding_second"
-        tools:layout="@layout/fragment_on_boarding_second" >
-        <action
-            android:id="@+id/action_onBoardingSecondFragment_to_onBoardingThirdFragment"
-            app:destination="@id/onBoardingThirdFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/onBoardingThirdFragment"
-        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingThirdFragment"
-        android:label="fragment_on_boarding_third"
-        tools:layout="@layout/fragment_on_boarding_third" >
-        <action
-            android:id="@+id/action_onBoardingThirdFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+            android:id="@+id/action_splashFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
     </fragment>
     <fragment
         android:id="@+id/wisataMapFragment"
@@ -386,6 +346,18 @@
         <action
             android:id="@+id/action_bookmarkFragment_to_wisataDetailFragment"
             app:destination="@id/wisataDetailFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.ibnu.jelajahin.ui.onboarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
 </navigation>

@@ -172,22 +172,33 @@ class RestaurantDetailFragment : Fragment() {
         binding.btnBookmark.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                if (!isFavorite) {
-                    val favoriteEntity = FavoriteEntity(
-                        uuid = restaurant.uuidRestaurant,
-                        name = restaurant.name,
-                        address = restaurant.address,
-                        favoriteType = TypeUtils.FAVORITE_RESTAURANT,
-                        ratingAvg = restaurant.ratingAverage ?: 0.0,
-                        ratingCount = restaurant.ratingCount ?: 0,
-                        imageUrl = restaurant.imageUrl,
-                        savedBy = email
-                    )
-                    saveItemToFavorite(favoriteEntity)
+                if (token.isNotEmpty()) {
+                    initiateBookmarkFunction()
                 } else {
-                    removeItemFromFavorite(restaurant.uuidRestaurant, email)
+                    requireContext().showOKDialog(
+                        "Akses Ditolak!",
+                        "Kamu harus memiliki akun JelajahIn jika ingin memasukkan restaurant ini ke bookmark!"
+                    )
                 }
             }, FAST_ANIMATION_TIME)
+        }
+    }
+
+    private fun initiateBookmarkFunction(){
+        if (!isFavorite) {
+            val favoriteEntity = FavoriteEntity(
+                uuid = restaurant.uuidRestaurant,
+                name = restaurant.name,
+                address = restaurant.address,
+                favoriteType = TypeUtils.FAVORITE_RESTAURANT,
+                ratingAvg = restaurant.ratingAverage ?: 0.0,
+                ratingCount = restaurant.ratingCount ?: 0,
+                imageUrl = restaurant.imageUrl,
+                savedBy = email
+            )
+            saveItemToFavorite(favoriteEntity)
+        } else {
+            removeItemFromFavorite(restaurant.uuidRestaurant, email)
         }
     }
 

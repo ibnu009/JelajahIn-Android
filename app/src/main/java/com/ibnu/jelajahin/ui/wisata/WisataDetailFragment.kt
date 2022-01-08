@@ -64,6 +64,8 @@ class WisataDetailFragment : Fragment() {
         email = pref.getEmail ?: ""
 
         Timber.d("Token is $token")
+        Timber.d("Email is $email")
+
 
         initiateRecyclerViews()
         initiateDetailData(uuidWisata)
@@ -196,22 +198,33 @@ class WisataDetailFragment : Fragment() {
         binding.btnBookmark.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
-                if (!isFavorite) {
-                    val favoriteEntity = FavoriteEntity(
-                        uuid = wisata.uuidWisata,
-                        name = wisata.name,
-                        address = wisata.address,
-                        favoriteType = TypeUtils.FAVORITE_WISATA,
-                        ratingAvg = wisata.ratingAverage,
-                        ratingCount = wisata.ratingCount,
-                        imageUrl = wisata.imageUrl,
-                        savedBy = email
-                    )
-                    saveItemToFavorite(favoriteEntity)
+                if (token.isNotEmpty()) {
+                    initiateBookmarkFunction()
                 } else {
-                    removeItemFromFavorite(wisata.uuidWisata, email)
+                    requireContext().showOKDialog(
+                        "Akses Ditolak!",
+                        "Kamu harus memiliki akun JelajahIn jika ingin memasukkan wisata ini ke bookmark!"
+                    )
                 }
             }, FAST_ANIMATION_TIME)
+        }
+    }
+
+    private fun initiateBookmarkFunction(){
+        if (!isFavorite) {
+            val favoriteEntity = FavoriteEntity(
+                uuid = wisata.uuidWisata,
+                name = wisata.name,
+                address = wisata.address,
+                favoriteType = TypeUtils.FAVORITE_WISATA,
+                ratingAvg = wisata.ratingAverage,
+                ratingCount = wisata.ratingCount,
+                imageUrl = wisata.imageUrl,
+                savedBy = email
+            )
+            saveItemToFavorite(favoriteEntity)
+        } else {
+            removeItemFromFavorite(wisata.uuidWisata, email)
         }
     }
 

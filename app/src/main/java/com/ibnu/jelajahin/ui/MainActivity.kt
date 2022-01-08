@@ -26,9 +26,9 @@ class MainActivity : AppCompatActivity() {
         _bindingMainActivity = ActivityMainBinding.inflate(layoutInflater)
         setContentView(_bindingMainActivity?.root)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.statusBarColor = ContextCompat.getColor(this, R.color.dark_green);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.dark_green)
 
         val navHostBottomBar = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navControllerBottomBar = navHostBottomBar.navController
