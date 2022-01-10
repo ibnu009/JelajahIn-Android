@@ -10,5 +10,7 @@ data class PointBody(
     @field:SerializedName("type")
     val transactionType: Int,
     @field:SerializedName("created_date")
-val createdDate: String,
-)
+    val createdDate: String,
+    @field:SerializedName("uuid_event")
+    val uuidEvent: String,
+    )

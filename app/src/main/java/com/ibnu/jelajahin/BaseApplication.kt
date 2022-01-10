@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import androidx.appcompat.app.AppCompatDelegate
 import com.ibnu.jelajahin.handler.JelajahinCrashHandler
 import dagger.hilt.android.HiltAndroidApp
 import net.gotev.uploadservice.UploadServiceConfig
@@ -39,6 +40,7 @@ open class BaseApplication : Application() {
         Timber.plant(Timber.DebugTree())
 
         createNotificationChannel()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         UploadServiceConfig.initialize(
             context = this,

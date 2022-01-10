@@ -146,7 +146,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             binding.profileComponent.layoutAbout -> {
                 p0.popTap()
                 Timber.d("Menekan layout about")
-                throw RuntimeException("This is a crash")
             }
             binding.profileComponent.layoutEditProfile -> {
                 p0.popTap()

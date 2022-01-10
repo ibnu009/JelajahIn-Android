@@ -2,11 +2,13 @@ package com.ibnu.jelajahin.ui.discovery
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,9 +36,13 @@ import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.databinding.DiscoveryFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import androidx.annotation.NonNull
+
+
+
 
 @AndroidEntryPoint
-class DiscoveryFragment : Fragment(), GoogleMap.OnMarkerClickListener {
+class DiscoveryFragment : Fragment(), GoogleMap.OnMarkerClickListener, LocationListener {
 
     private val viewModel: DiscoveryViewModel by viewModels()
 
@@ -157,13 +163,9 @@ class DiscoveryFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager?
 
-        val locationListener = LocationListener { p0 ->
-            Timber.d("location is ${p0.latitude} + ${p0.longitude}")
-            myLocation = p0
-        }
         locationManager?.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER, 0, 0f,
-            locationListener
+            LocationManager.GPS_PROVIDER, 10000, 5f,
+            this
         )
     }
 
@@ -187,5 +189,21 @@ class DiscoveryFragment : Fragment(), GoogleMap.OnMarkerClickListener {
         Timber.d("selected latitude is ${p0.position.latitude}")
         return false
     }
+
+    override fun onLocationChanged(p0: Location) {
+        Timber.d("location is ${p0.latitude} + ${p0.longitude}")
+        myLocation = p0
+
+    }
+
+    override fun onProviderDisabled(provider: String) {
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        startActivity(intent)
+    }
+
+    override fun onProviderEnabled(provider: String) {
+        super.onProviderEnabled(provider)
+    }
+
 
 }

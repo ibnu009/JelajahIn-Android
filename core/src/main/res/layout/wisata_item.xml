@@ -46,22 +46,24 @@
 
             <ImageView
                 android:id="@+id/iconPosition"
-                android:layout_below="@id/tvWisataName"
-                android:src="@drawable/ic_location"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="6dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvWisataName"
                 android:layout_marginStart="@dimen/space"
-                android:layout_height="wrap_content"/>
+                android:layout_marginTop="6dp"
+                android:src="@drawable/ic_location" />
 
             <TextView
                 android:id="@+id/tvWisataLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvWisataName"
-                android:layout_marginStart="@dimen/space"
+                android:layout_marginHorizontal="@dimen/space"
                 android:layout_marginTop="6dp"
                 android:layout_toEndOf="@id/iconPosition"
+                android:ellipsize="end"
                 android:gravity="top"
+                android:maxLines="1"
                 tools:text="NAMA PEMILIK" />
 
             <LinearLayout

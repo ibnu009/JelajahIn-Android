@@ -57,8 +57,10 @@
                 android:id="@+id/tvBookmarLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_below="@id/tvBookmarName"
-                android:layout_marginStart="@dimen/space"
                 android:layout_marginTop="6dp"
                 android:layout_toEndOf="@id/iconPosition"
                 android:gravity="top"
@@ -67,7 +69,7 @@
             <LinearLayout
                 android:id="@+id/llRating"
                 android:layout_alignParentBottom="true"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/space_double"
                 android:layout_marginTop="@dimen/space_double"
@@ -101,26 +103,25 @@
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <TextView
                 android:id="@+id/btnUnBookmark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="@dimen/space"
                 android:layout_marginTop="@dimen/space"
                 android:layout_marginEnd="@dimen/space"
                 android:layout_marginBottom="@dimen/space"
                 android:background="@drawable/bg_rounded_corner_stroke_red"
-                android:paddingHorizontal="@dimen/space_double"
-                android:paddingVertical="@dimen/space"
+                android:clickable="true"
+                android:paddingVertical="@dimen/space_half"
+                android:paddingHorizontal="@dimen/space"
                 android:text="@string/hapus_dari_bookmark"
                 android:textColor="@color/red_button"
                 android:textSize="@dimen/font_small"
                 android:textStyle="bold" />
 
         </RelativeLayout>
-
 
     </LinearLayout>
 

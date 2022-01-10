@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,62 +9,84 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@color/green"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/appBar"
-            layout="@layout/toolbar_back_name"
-            />
+        <LinearLayout
+            android:orientation="vertical"
+            android:background="@color/green"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/appBar"
+                layout="@layout/toolbar_back_name"
+                />
+
+            <TextView
+                tools:text="Nama event"
+                style="@style/JelajahinTitleText"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/space_triple"
+                android:id="@+id/tvEventName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:cardCornerRadius="@dimen/space"
+                android:layout_marginHorizontal="@dimen/space_triple"
+                android:layout_marginVertical="@dimen/space_double"
+                >
+                <fragment
+                    android:id="@+id/containerMap"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:touchscreenBlocksFocus="true" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
         <TextView
-            tools:text="Nama event"
-            style="@style/JelajahinTitleText"
-            android:textColor="@color/white"
-            android:layout_marginStart="@dimen/space_triple"
-            android:id="@+id/tvEventName"
+            android:id="@+id/tvEventGuide"
+            android:text="@string/guide_event_confirmation"
+            android:layout_marginHorizontal="@dimen/space_triple"
+            android:layout_width="match_parent"
+            android:textSize="@dimen/font_medium"
+            android:layout_marginTop="@dimen/space_quintuple"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnConfirm"
+            style="@style/JelajahinPrimaryButton"
+            android:layout_marginTop="@dimen/space_quintuple"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/konfirmasi_kehadiran"
+            android:paddingHorizontal="@dimen/space_quadruple"
+            android:paddingVertical="@dimen/space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            app:cardCornerRadius="@dimen/space"
-            android:layout_marginHorizontal="@dimen/space_triple"
-            android:layout_marginVertical="@dimen/space_double"
-            >
-            <fragment
-                android:id="@+id/containerMap"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:touchscreenBlocksFocus="true" />
-
-        </androidx.cardview.widget.CardView>
-
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvEventGuide"
-        android:text="@string/guide_event_confirmation"
-        android:layout_marginHorizontal="@dimen/space_triple"
+    <View
+        android:id="@+id/bg_dim"
+        android:visibility="gone"
+        android:background="@color/black_dim"
         android:layout_width="match_parent"
-        android:textSize="@dimen/font_medium"
-        android:layout_marginTop="@dimen/space_quintuple"
-        android:textAlignment="center"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnConfirm"
-        style="@style/JelajahinPrimaryButton"
-        android:layout_marginTop="@dimen/space_quintuple"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/konfirmasi_kehadiran"
-        android:paddingHorizontal="@dimen/space_quadruple"
-        android:paddingVertical="@dimen/space"
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</RelativeLayout>

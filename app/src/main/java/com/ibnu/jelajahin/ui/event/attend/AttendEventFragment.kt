@@ -2,24 +2,23 @@ package com.ibnu.jelajahin.ui.event.attend
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.switchMap
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -42,7 +41,7 @@ import timber.log.Timber
 import java.util.*
 
 @AndroidEntryPoint
-class AttendEventFragment : Fragment() {
+class AttendEventFragment : Fragment(), LocationListener {
 
     private val viewModel: EventViewModel by viewModels();
 
@@ -105,18 +104,22 @@ class AttendEventFragment : Fragment() {
                 xpQuantity = event?.xpReward ?: 0,
                 createdDate = currentTime,
                 pointQuantity = event?.pointReward ?: 0,
-                transactionType = 1
+                transactionType = 1,
+                uuidEvent = event?.uuidEvent ?: ""
             )
             viewModel.addUserPoint(token, pointBody).observe(viewLifecycleOwner, {
                     response ->
                 when (response) {
                     is ApiResponse.Loading -> {
                         Timber.d("Loading")
+                        showLoading(true)
                     }
                     is ApiResponse.Error -> {
+                        showLoading(false)
                         Timber.d("Error ${response.errorMessage}")
                     }
                     is ApiResponse.Success -> {
+                        showLoading(false)
                         Timber.d("Success ${response.data}")
                         val action = event?.let { AttendEventFragmentDirections.actionAttendEventFragmentToSuccessAttendFragment(it) }
                         action?.let { findNavController().navigate(it) }
@@ -178,14 +181,16 @@ class AttendEventFragment : Fragment() {
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager?
 
-        val locationListener = LocationListener { p0 ->
-            Timber.d("location is ${p0.latitude} + ${p0.longitude}")
-            myLocation = p0
-        }
         locationManager?.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER, 0, 0f,
-            locationListener
+            LocationManager.GPS_PROVIDER, 10000, 5f,
+            this
         )
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.btnConfirm.isClickable = !isLoading
+        binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     private val permReqLauncher =
@@ -203,4 +208,18 @@ class AttendEventFragment : Fragment() {
         _binding = null
     }
 
+    override fun onLocationChanged(p0: Location) {
+        Timber.d("location is ${p0.latitude} + ${p0.longitude}")
+        myLocation = p0
+    }
+
+    override fun onProviderDisabled(provider: String) {
+        super.onProviderDisabled(provider)
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        startActivity(intent)
+    }
+
+    override fun onProviderEnabled(provider: String) {
+        super.onProviderEnabled(provider)
+    }
 }
