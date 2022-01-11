@@ -172,7 +172,9 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
             binding.profileComponent.layoutShop -> {
                 p0.popTap()
-                Timber.d("Menekan layout shop")
+                Handler(Looper.getMainLooper()).postDelayed({
+                    findNavController().navigate(R.id.action_profileFragment_to_shopFragment)
+                }, FAST_ANIMATION_TIME)
             }
             binding.profileComponent.layoutSyaratDanKetentuan -> {
                 p0.popTap()
