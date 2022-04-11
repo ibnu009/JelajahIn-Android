@@ -35,4 +35,8 @@ class PenginapanRepository @Inject constructor(
     suspend fun getReviewPenginapan(uuid: String): Flow<ApiResponse<List<Review>>> {
         return datasource.getReviewPenginapan(uuid)
     }
+
+    suspend fun checkUserReviewStatus(token: String, uuid: String): Flow<String> {
+        return datasource.getUserReviewStatus(token, uuid)
+    }
 }
