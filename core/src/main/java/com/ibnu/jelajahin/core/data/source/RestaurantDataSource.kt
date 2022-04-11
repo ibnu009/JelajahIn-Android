@@ -104,11 +104,4 @@ class RestaurantDataSource @Inject constructor(
             }
         }.flowOn(Dispatchers.IO)
     }
-
-    suspend fun getUserReviewStatus(token: String, uuid: String): Flow<String> {
-        return flow {
-            val response = service.checkUserReviewStatus(token, uuid)
-            emit(response.message)
-        }.flowOn(Dispatchers.IO)
-    }
 }

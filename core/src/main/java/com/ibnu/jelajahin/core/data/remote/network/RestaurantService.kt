@@ -1,11 +1,9 @@
 package com.ibnu.jelajahin.core.data.remote.network
 
-import com.ibnu.jelajahin.core.data.remote.response.GenericResponse
 import com.ibnu.jelajahin.core.data.remote.response.RestaurantDetailResponse
 import com.ibnu.jelajahin.core.data.remote.response.RestaurantResponse
 import com.ibnu.jelajahin.core.data.remote.response.ReviewResponse
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -29,11 +27,4 @@ interface RestaurantService {
     suspend fun getUlasanRestaurant(
         @Path("uuidRestaurant") uuidRestaurant: String,
     ): ReviewResponse
-
-    @GET("api/restaurant/review_status/{uuidRestaurant}")
-    suspend fun checkUserReviewStatus(
-        @Header("token") token: String,
-        @Path("uuidRestaurant") uuidRestaurant: String,
-    ): GenericResponse
-
 }

@@ -127,7 +127,6 @@ class UlasanRestaurantFragment : Fragment(), PostStateHandler {
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         binding.bgDim.visibility = if (isLoading) View.VISIBLE else View.GONE
-        binding.btnSend.isClickable = !isLoading
     }
 
     private val takePictureRegistration =

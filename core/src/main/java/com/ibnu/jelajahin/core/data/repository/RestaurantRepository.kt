@@ -35,8 +35,4 @@ class RestaurantRepository @Inject constructor(
     suspend fun getReviewRestaurant(uuid: String): Flow<ApiResponse<List<Review>>> {
         return datasource.getReviewRestaurant(uuid)
     }
-
-    suspend fun checkUserReviewStatus(token: String, uuid: String): Flow<String> {
-        return datasource.getUserReviewStatus(token, uuid)
-    }
 }

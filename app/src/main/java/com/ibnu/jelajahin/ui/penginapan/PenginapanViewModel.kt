@@ -87,17 +87,6 @@ class PenginapanViewModel @Inject constructor(
         return result
     }
 
-    fun checkUserAlreadyReview(token: String, uuid: String): LiveData<Boolean> {
-        val result = MutableLiveData<Boolean>()
-        viewModelScope.launch {
-            repository.checkUserReviewStatus(token, uuid).collect {
-                result.postValue(it == "Sudah")
-            }
-        }
-        return result
-    }
-
-
     fun uploadUlasan(
         context: Context,
         lifecycleOwner: LifecycleOwner,
@@ -155,6 +144,4 @@ class PenginapanViewModel @Inject constructor(
                 }
             })
     }
-
-
 }

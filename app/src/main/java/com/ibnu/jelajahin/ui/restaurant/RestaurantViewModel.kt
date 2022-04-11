@@ -87,16 +87,6 @@ class RestaurantViewModel @Inject constructor(
         return result
     }
 
-    fun checkUserAlreadyReview(token: String, uuid: String): LiveData<Boolean> {
-        val result = MutableLiveData<Boolean>()
-        viewModelScope.launch {
-            repository.checkUserReviewStatus(token, uuid).collect {
-                result.postValue(it == "Sudah")
-            }
-        }
-        return result
-    }
-
     fun uploadUlasan(
         context: Context, lifecycleOwner: LifecycleOwner,
         token: String, title: String, content: String, ratingService: Int, ratingFood: Int, ratingClean: Int, uuidRestaurant: String, path: String

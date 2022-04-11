@@ -26,7 +26,6 @@ import com.ibnu.jelajahin.core.ui.adapter.ReviewRestaurantAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
-import com.ibnu.jelajahin.ui.wisata.WisataDetailFragmentDirections
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -251,20 +250,11 @@ class RestaurantDetailFragment : Fragment() {
     }
 
     private fun navigateToAddUlasan() {
-        viewModel.checkUserAlreadyReview(token, restaurant.uuidRestaurant).observe(viewLifecycleOwner, { isAlreadyReview ->
-            if (!isAlreadyReview){
-                val action =
-                    RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToUlasanRestaurantFragment(
-                        restaurant
-                    )
-                findNavController().navigate(action)
-            } else{
-                requireContext().showOKDialog(
-                    "Akses Ditolak!",
-                    "Kamu udah pernah memberikan ulasan kepada restaurant ini!"
-                )
-            }
-        })
+        val action =
+            RestaurantDetailFragmentDirections.actionRestaurantDetailFragmentToUlasanRestaurantFragment(
+                restaurant
+            )
+        findNavController().navigate(action)
     }
 
     private fun showLoading(isLoading: Boolean) {

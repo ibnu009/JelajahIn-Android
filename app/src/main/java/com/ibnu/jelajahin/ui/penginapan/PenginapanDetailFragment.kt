@@ -265,21 +265,11 @@ class PenginapanDetailFragment : Fragment() {
     }
 
     private fun navigateToAddUlasan() {
-        viewModel.checkUserAlreadyReview(token, penginapan.uuidPenginapan)
-            .observe(viewLifecycleOwner, { isAlreadyReview ->
-                if (!isAlreadyReview) {
-                    val action =
-                        PenginapanDetailFragmentDirections.actionPenginapanDetailFragmentToUlasanPenginapanFragment(
-                            penginapan
-                        )
-                    findNavController().navigate(action)
-                } else {
-                    requireContext().showOKDialog(
-                        "Akses Ditolak!",
-                        "Kamu udah pernah memberikan ulasan kepada penginapan ini!"
-                    )
-                }
-            })
+        val action =
+            PenginapanDetailFragmentDirections.actionPenginapanDetailFragmentToUlasanPenginapanFragment(
+                penginapan
+            )
+        findNavController().navigate(action)
     }
 
     private fun showLoading(isLoading: Boolean) {

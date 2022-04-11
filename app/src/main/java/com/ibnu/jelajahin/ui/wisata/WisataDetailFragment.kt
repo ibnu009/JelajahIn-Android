@@ -265,18 +265,9 @@ class WisataDetailFragment : Fragment() {
     }
 
     private fun navigateToAddUlasan() {
-        viewModel.checkUserAlreadyReview(token, wisata.uuidWisata).observe(viewLifecycleOwner, { isAlreadyReview ->
-            if (!isAlreadyReview){
-                val action =
-                    WisataDetailFragmentDirections.actionWisataDetailFragmentToUlasanWisataFragment(wisata)
-                findNavController().navigate(action)
-            } else{
-                requireContext().showOKDialog(
-                    "Akses Ditolak!",
-                    "Kamu udah pernah memberikan ulasan kepada wisata ini!"
-                )
-            }
-        })
+        val action =
+            WisataDetailFragmentDirections.actionWisataDetailFragmentToUlasanWisataFragment(wisata)
+        findNavController().navigate(action)
     }
 
     override fun onDestroy() {

@@ -97,16 +97,6 @@ class WisataViewModel @Inject constructor(
         return result
     }
 
-    fun checkUserAlreadyReview(token: String, uuid: String): LiveData<Boolean> {
-        val result = MutableLiveData<Boolean>()
-        viewModelScope.launch {
-            wisataRepository.checkUserReviewStatus(token, uuid).collect {
-                result.postValue(it == "Sudah")
-            }
-        }
-        return result
-    }
-
     fun uploadUlasan(
         context: Context, lifecycleOwner: LifecycleOwner,
         token: String, title: String, content: String, rating: Int, uuidWisata: String, path: String
