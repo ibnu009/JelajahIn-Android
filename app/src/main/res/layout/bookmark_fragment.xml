@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/contentProfile"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/appBar"
@@ -18,16 +18,16 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/bookmarkTabLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/white"
             android:backgroundTint="@color/green_button"
-            android:overScrollMode="never"
-            android:paddingBottom="@dimen/space"
-            app:tabGravity="center"
+            android:layout_height="wrap_content"
+            app:tabTextColor="@color/white"
             app:tabIndicatorColor="@color/white"
+            android:paddingBottom="@dimen/space"
             app:tabMode="scrollable"
-            app:tabTextColor="@color/white">
+            app:tabGravity="center"
+            android:overScrollMode="never"
+            android:layout_gravity="center"
+            android:background="@color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -55,36 +55,36 @@
 
     <LinearLayout
         android:id="@+id/contentNotUser"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
+            android:src="@drawable/locked"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:src="@drawable/locked" />
+            android:layout_height="300dp"/>
 
         <TextView
             style="@style/JelajahinTitleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/space_quadruple"
             android:text="@string/locked_message"
             android:textAlignment="center"
-            android:textColor="@color/black" />
+            android:layout_marginHorizontal="@dimen/space_quadruple"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/btnGoToLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="@dimen/space_quintuple"
-            android:layout_marginTop="@dimen/space_triple"
+            android:text="@string/to_login"
             android:background="@drawable/bg_rounded_corner_solid"
-            android:text="@string/to_login" />
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/space_triple"
+            android:layout_marginHorizontal="@dimen/space_quintuple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

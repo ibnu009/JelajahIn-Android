@@ -11,7 +11,6 @@
     <string name="clean">-Kebersihan</string>
     <string name="keramahan">-Keramahan</string>
     <string name="hapus_dari_bookmark">Hapus</string>
-    <string name="name_item_img_btn">-for_u</string>
 
     <string-array name="pictures">
         <item>Ambil foto</item>
