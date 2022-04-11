@@ -91,9 +91,9 @@ fun GoogleMap.animateCameraToSingleMarker(location: LatLng) {
     this.animateCamera(cu, 1000, null)
 }
 
-fun GoogleMap.boundsCameraToMarkers(locations: List<LatLng>){
+fun GoogleMap.boundsCameraToMarkers(locations: List<LatLng>) {
     val builder = LatLngBounds.builder()
-    for (location in locations){
+    for (location in locations) {
         builder.include(location)
     }
     val bounds = builder.build()

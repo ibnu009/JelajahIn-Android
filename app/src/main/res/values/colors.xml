@@ -14,7 +14,6 @@
     <color name="base_color">#F9FAFE</color>
 
 
-
     <!--  custom  -->
     <color name="black_dim">#74000000</color>
     <color name="green_button">#38C991</color>
@@ -32,6 +31,7 @@
     <color name="light_red_bg">#DD8391</color>
     <color name="red_button">#EC1132</color>
     <color name="dark_red">#A30920</color>
+    <color name="silver">#E7E7E7</color>
 
 
     <color name="grey_50">#FAFAFA</color>

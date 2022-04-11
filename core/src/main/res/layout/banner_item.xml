@@ -5,16 +5,16 @@
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
     app:cardElevation="@dimen/space_half"
-    android:layout_marginVertical="@dimen/space"
+    android:layout_marginVertical="16dp"
     android:layout_marginHorizontal="@dimen/space_double"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/imvBanner"
-        android:layout_width="340dp"
+        android:layout_width="3800dp"
         tools:background="@color/dusk_yellow"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:scaleType="fitXY"
         android:layout_gravity="center" />
 

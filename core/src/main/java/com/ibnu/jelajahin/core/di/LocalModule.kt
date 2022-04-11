@@ -21,7 +21,8 @@ class LocalModule {
     fun provideDatabase(@ApplicationContext context: Context): JelajahinDatabase {
         return Room.databaseBuilder(
             context,
-            JelajahinDatabase::class.java, DB_NAME)
+            JelajahinDatabase::class.java, DB_NAME
+        )
             .fallbackToDestructiveMigration()
             .build()
     }

@@ -111,10 +111,59 @@
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/ulasan_penginapan_item.xml" value="0.20416666666666666" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/ulasan_restaurant_item.xml" value="0.5" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/wisata_item.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/bg_searchview.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/customprogress.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_chevron_right.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_close.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_coin_pile.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_compass.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_event.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_event_profile.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/skeleton.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/skeleton_darker.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/splash_background.xml" value="0.138" />
+        <entry key="app/src/main/res/layout/bookmark_fragment.xml" value="0.10126582278481013" />
+        <entry key="app/src/main/res/layout/fragment_attend_event.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/fragment_detail_wisata.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding_second.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/liast.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/smh_home_banner.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/toolbar_back_name.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/toolbar_logo.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/drawable/bg_facility.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/bg_img_btn_style.xml" value="0.1175" />
+        <entry key="core/src/main/res/drawable/bg_rounded_corner_solid_red.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/bg_rounded_corner_stroke.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/ic_bookmark.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/ic_bookmark_outline.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/searchview_backgraound.xml" value="0.1175" />
+        <entry key="core/src/main/res/layout/banner_item.xml" value="0.1" />
+        <entry key="core/src/main/res/layout/bookmark_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/category_event_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/component_detail_contact.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/event_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/facility_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/history_point_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/info_window_jelajahin.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/item_img_btn_home.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/penginapan_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/recommendation_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/restaurant_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/shop_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/test.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/ulasan_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/ulasan_penginapan_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/ulasan_restaurant_item.xml" value="0.15" />
+        <entry key="core/src/main/res/layout/wisata_item.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

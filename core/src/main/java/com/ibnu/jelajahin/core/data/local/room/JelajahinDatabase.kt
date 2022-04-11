@@ -10,7 +10,6 @@ import com.ibnu.jelajahin.core.data.local.entities.FavoriteEntity
     exportSchema = false
 )
 abstract class JelajahinDatabase : RoomDatabase() {
-
     abstract fun getFavoriteDao(): FavoriteDao
 
 }

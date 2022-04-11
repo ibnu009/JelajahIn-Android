@@ -1,215 +1,413 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:overScrollMode="never"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_head"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="-63dp"
+        tools:layout_editor_absoluteY="293dp">
 
-        <include
-            android:id="@+id/appBar"
-            layout="@layout/toolbar_logo" />
-
-         <View
-            android:id="@+id/cl_head"
+        <LinearLayout
+            android:id="@+id/lnr_top"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="250dp"
             android:background="@color/green_button"
-            android:paddingStart="16dp"
-            android:paddingTop="6dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBar" />
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAdvertisement"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_marginTop="22dp"
-            tools:listitem="@layout/banner_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/cl_head"
-            app:layout_constraintTop_toBottomOf="@+id/cl_head" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal">
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/bannerShimmeringLoading"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            app:shimmer_base_alpha="100"
-            app:layout_constraintBottom_toBottomOf="@+id/cl_head"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cl_head">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lokasi_sekarang"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
 
-            <include
-                layout="@layout/smh_home_banner"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/nama_lokasi"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lnyt_search"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+                <SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@drawable/searchview_backgraound"
+                    android:backgroundTint="@color/white"
+                    android:iconifiedByDefault="false"
+                    android:queryBackground="@android:color/transparent"
+                    android:queryHint="Enter user name" />
 
-        <TextView
-            android:id="@+id/txWisataRekomendasi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/space_double"
-            android:layout_marginStart="16dp"
-            android:text="@string/wisata_rekomendasi"
-            app:layout_constraintTop_toBottomOf="@id/rvAdvertisement"
-            app:layout_constraintStart_toStartOf="parent" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:backgroundTint="@color/green_button"
+                    android:src="@drawable/ic_notif" />
 
-        <Button
-            android:id="@+id/btnLihatWisata"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_double"
-            style="@style/JelajahinTextButton"
-            android:text="@string/lihat_lainnya"
-            android:textColor="@color/green_button"
-            android:textSize="18sp"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/txWisataRekomendasi"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rvAdvertisement" />
+            </LinearLayout>
+        </LinearLayout>
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/wisataShimmeringLoading"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/txWisataRekomendasi">
+            android:layout_height="match_parent">
 
-            <include
-                layout="@layout/smh_recommendation"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAdvertisement"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="210dp"
+                android:layout_below="@+id/lnr_top"
+                android:layout_marginTop="-150dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:ignore="MissingConstraints"
+                tools:listitem="@layout/banner_item" />
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+            <!--        lnr btn img top-->
+            <LinearLayout
+                android:id="@+id/lnr_img_btn_top"
+                android:layout_width="wrap_content"
+                android:layout_height="96dp"
+                android:layout_below="@+id/rvAdvertisement"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWisataRecommendation"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/recommendation_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/txWisataRekomendasi" />
+                <!--            image button star-->
+                <LinearLayout
+                    android:id="@+id/img_btn_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/bg_img_btn_style"
+                        android:padding="30dp"
+                        android:src="@drawable/ic_start" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/for_u"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+
+                <!--            image button jelajahin pedia-->
+                <LinearLayout
+                    android:id="@+id/img_btn_jljn_pedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/bg_img_btn_style"
+                        android:padding="30dp"
+                        android:src="@drawable/ic_rack" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="Jelajahin Pedia"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/txPenginapanRekomendasi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/space_double"
-            android:layout_marginStart="16dp"
-            android:text="@string/penginapan_rekomendasi"
-            app:layout_constraintTop_toBottomOf="@id/wisataShimmeringLoading"
-            app:layout_constraintStart_toStartOf="parent" />
+                <!--            image button local guide-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnLihatPenginapan"
-            style="@style/JelajahinTextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lihat_lainnya"
-            android:textAllCaps="false"
-            android:textColor="@color/green_button"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/txPenginapanRekomendasi"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/txPenginapanRekomendasi" />
+                    <ImageButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/bg_img_btn_style"
+                        android:padding="30dp"
+                        android:src="@drawable/ic_flag" />
 
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/penginapanShimmeringLoading"
-            android:layout_width="match_parent"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi">
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="Local Guide"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                </LinearLayout>
 
-            <include
-                layout="@layout/smh_recommendation"
+                <!--            image button car-->
+                <LinearLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/bg_img_btn_style"
+                        android:padding="30dp"
+                        android:src="@drawable/ic_car" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/for_u"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+                <!--            image button lainnya-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/bg_img_btn_style"
+                        android:padding="30dp"
+                        android:src="@drawable/ic_random" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/for_u"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_top"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="2dp"
+                android:layout_below="@+id/lnr_img_btn_top"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:background="@color/black"
+                android:visibility="visible" />
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPenginapanRecommendation"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/recommendation_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_img_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view_top"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_img_btn_home" />
 
-        <TextView
-            android:id="@+id/txRestaurantRekomendasi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginTop="@dimen/space_double"
-            android:layout_marginStart="16dp"
-            android:text="@string/restaurant_rekomendasi"
-            app:layout_constraintTop_toBottomOf="@id/penginapanShimmeringLoading"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnLihatRestaurant"
-            style="@style/JelajahinTextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_double"
-            android:text="@string/lihat_lainnya"
-            android:textAllCaps="false"
-            android:textColor="@color/green_button"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/txRestaurantRekomendasi"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/penginapanShimmeringLoading" />
-
-        <com.facebook.shimmer.ShimmerFrameLayout
-            android:id="@+id/restaurantShimmeringLoading"
-            android:layout_width="match_parent"
-            android:visibility="invisible"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi">
-
-            <include
-                layout="@layout/smh_recommendation"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rv_img_btn"
+                android:orientation="vertical">
 
-        </com.facebook.shimmer.ShimmerFrameLayout>
+                <View
+                    android:id="@+id/view_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/black"
+                    android:visibility="visible"
+                    tools:ignore="MissingConstraints" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRestaurantRecommendation"
-            android:layout_marginTop="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/recommendation_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi" />
+                <TextView
+                    android:id="@+id/tv_rekomendasi_wisata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/space_double"
+                    android:text="@string/wisata_rekomendasi"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_head" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/btnLihatWisata"
+                    style="@style/JelajahinTextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_double"
+                    android:text="@string/lihat_lainnya"
+                    android:textAllCaps="false"
+                    android:textColor="@color/green_button"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_rekomendasi_wisata"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/view_head" />
 
-</ScrollView>
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/wisataShimmeringLoading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@id/tv_rekomendasi_wisata">
+
+                    <include
+                        layout="@layout/smh_recommendation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWisataRecommendation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tv_rekomendasi_wisata"
+                    tools:listitem="@layout/recommendation_item" />
+
+
+                <TextView
+                    android:id="@+id/txPenginapanRekomendasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/space_double"
+                    android:text="@string/penginapan_rekomendasi"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/wisataShimmeringLoading" />
+
+                <Button
+                    android:id="@+id/btnLihatPenginapan"
+                    style="@style/JelajahinTextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lihat_lainnya"
+                    android:textAllCaps="false"
+                    android:textColor="@color/green_button"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/txPenginapanRekomendasi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/txPenginapanRekomendasi" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/penginapanShimmeringLoading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi">
+
+                    <include
+                        layout="@layout/smh_recommendation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPenginapanRecommendation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/txPenginapanRekomendasi"
+                    tools:listitem="@layout/recommendation_item" />
+
+                <TextView
+                    android:id="@+id/txRestaurantRekomendasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="@dimen/space_double"
+                    android:text="@string/restaurant_rekomendasi"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/penginapanShimmeringLoading" />
+
+                <Button
+                    android:id="@+id/btnLihatRestaurant"
+                    style="@style/JelajahinTextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_double"
+                    android:text="@string/lihat_lainnya"
+                    android:textAllCaps="false"
+                    android:textColor="@color/green_button"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/txRestaurantRekomendasi"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/penginapanShimmeringLoading" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/restaurantShimmeringLoading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi">
+
+                    <include
+                        layout="@layout/smh_recommendation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRestaurantRecommendation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi"
+                    tools:listitem="@layout/recommendation_item" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+</LinearLayout>
