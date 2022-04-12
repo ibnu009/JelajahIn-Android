@@ -61,6 +61,7 @@
     <string name="onboarding_third_title">Seni dan Budaya</string>
     <string name="onboarding_forth_title">Point dan Hadiah</string>
 
+
     <string name="onboarding_first_desc">Pilih tujuan dan rencanakan perjalananmu jelajahi tanah langit yang hidup! .</string>
     <string name="onboarding_second_desc">Pilih tempat terbaik untuk liburanmu dan kunjungilah sudut planet yang menakjubkan! </string>
     <string name="onboarding_third_desc">Hadiri berbagai budaya dan acara menarik di setiap daerah di Indonesia.</string>
@@ -99,12 +100,13 @@
     <string name="restaurant">Restaurant</string>
     <string name="tukarkan_poin">Tukarkan Poin</string>
 
-    <!--    home-->
-    <string name="lokasi_sekarang">Lokasi Sekarang :</string>
+    <string name="lokasi_sekarang">Lokasi Saat Ini</string>
     <string name="nama_lokasi">Kab.Bondowoso</string>
-<!--    <string name="pedia">Pedia</string>-->
-<!--    <string name="jljn_pedia">Jelajahin_Pedia</string>-->
     <string name="for_u">For U</string>
+    <string name="jelajahin_pedia">Jelajahin Pedia</string>
+    <string name="local_guide">Local Guide</string>
+    <string name="rent_vehicle">Rent Vehicle</string>
+    <string name="random">Lainnya</string>
 
 
 </resources>

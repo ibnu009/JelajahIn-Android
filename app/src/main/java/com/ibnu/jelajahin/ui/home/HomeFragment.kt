@@ -69,8 +69,8 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        showBannerLoading(true)
+//
+//        showBannerLoading(true)
 
         binding.btnLihatWisata.setOnClickListener {
             it.popTap()
@@ -132,18 +132,18 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
-                    showBannerLoading(true)
+//                    showBannerLoading(true)
                 }
                 is ApiResponse.Error -> {
-                    showBannerLoading(false)
+//                    showBannerLoading(false)
                     Timber.d("Error ${response.errorMessage}")
                 }
                 is ApiResponse.Success -> {
-                    showBannerLoading(false)
+//                    showBannerLoading(false)
                     adsAdapter.setData(response.data)
                 }
                 else -> {
-                    showBannerLoading(false)
+//                    showBannerLoading(false)
                     Timber.d("Unknown Error")
                 }
             }
@@ -220,17 +220,17 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
     }
 
 
-    private fun showBannerLoading(isLoading: Boolean) {
-        if (isLoading) {
-            binding.bannerShimmeringLoading.startShimmer()
-            binding.bannerShimmeringLoading.showShimmer(true)
-            binding.bannerShimmeringLoading.visibility = View.VISIBLE
-        } else {
-            binding.bannerShimmeringLoading.stopShimmer()
-            binding.bannerShimmeringLoading.showShimmer(false)
-            binding.bannerShimmeringLoading.visibility = View.GONE
-        }
-    }
+//    private fun showBannerLoading(isLoading: Boolean) {
+//        if (isLoading) {
+//            binding.bannerShimmeringLoading.startShimmer()
+//            binding.bannerShimmeringLoading.showShimmer(true)
+//            binding.bannerShimmeringLoading.visibility = View.VISIBLE
+//        } else {
+//            binding.bannerShimmeringLoading.stopShimmer()
+//            binding.bannerShimmeringLoading.showShimmer(false)
+//            binding.bannerShimmeringLoading.visibility = View.GONE
+//        }
+//    }
 
     private fun showWisataLoading(isLoading: Boolean) {
         if (isLoading) {

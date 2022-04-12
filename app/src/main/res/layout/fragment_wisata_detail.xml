@@ -78,7 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/space_double"
                         android:layout_marginTop="@dimen/space"
-                        app:drawableStartCompat="@drawable/ic_location"
+                        app:drawableStartCompat="@drawable/ic_locations"
                         tools:text="Bondowoso, Jawa Timur" />
 
                     <TextView

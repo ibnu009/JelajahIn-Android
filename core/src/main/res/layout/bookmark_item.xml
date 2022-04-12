@@ -47,7 +47,7 @@
             <ImageView
                 android:id="@+id/iconPosition"
                 android:layout_below="@id/tvBookmarName"
-                android:src="@drawable/ic_location"
+                android:src="@drawable/ic_locations"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginStart="@dimen/space"
@@ -112,7 +112,7 @@
                 android:layout_marginTop="@dimen/space"
                 android:layout_marginEnd="@dimen/space"
                 android:layout_marginBottom="@dimen/space"
-                android:background="@drawable/bg_rounded_corner_stroke_red"
+                android:background="@drawable/bg_rounded_corner_stroke_reds"
                 android:clickable="true"
                 android:paddingVertical="@dimen/space_half"
                 android:paddingHorizontal="@dimen/space"

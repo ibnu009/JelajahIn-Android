@@ -112,6 +112,8 @@
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/ulasan_restaurant_item.xml" value="0.5" />
         <entry key="..\:/2. On Going Project/JelajahIn/core/src/main/res/layout/wisata_item.xml" value="0.2" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/bg_img_btn_style.xml" value="0.1365" />
+        <entry key="app/src/main/res/drawable/bg_search_view.xml" value="0.1365" />
         <entry key="app/src/main/res/drawable/bg_searchview.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/customprogress.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.138" />
@@ -122,6 +124,7 @@
         <entry key="app/src/main/res/drawable/ic_compass.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_event.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_event_profile.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_locations.xml" value="0.1295" />
         <entry key="app/src/main/res/drawable/skeleton.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/skeleton_darker.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.138" />
@@ -129,24 +132,40 @@
         <entry key="app/src/main/res/layout/fragment_attend_event.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_detail_wisata.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.19166666666666668" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_homes.xml" value="0.17074275362318841" />
         <entry key="app/src/main/res/layout/fragment_on_boarding_second.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/fragment_penginapan_detail.xml" value="0.20297029702970298" />
+        <entry key="app/src/main/res/layout/fragment_restaurant_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_wisata_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_img_btn.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/liast.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/penginapan_fragment.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/smh_content_detail.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/smh_event_detail.xml" value="0.161231884057971" />
+        <entry key="app/src/main/res/layout/smh_event_list.xml" value="0.17074275362318841" />
         <entry key="app/src/main/res/layout/smh_home_banner.xml" value="0.19166666666666668" />
+        <entry key="app/src/main/res/layout/smh_recommendation.xml" value="0.161231884057971" />
         <entry key="app/src/main/res/layout/toolbar_back_name.xml" value="0.1" />
         <entry key="app/src/main/res/layout/toolbar_logo.xml" value="0.19166666666666668" />
         <entry key="core/src/main/res/drawable/bg_facility.xml" value="0.193" />
         <entry key="core/src/main/res/drawable/bg_img_btn_style.xml" value="0.1175" />
+        <entry key="core/src/main/res/drawable/bg_item_img_btn_style.xml" value="0.1365" />
         <entry key="core/src/main/res/drawable/bg_rounded_corner_solid_red.xml" value="0.193" />
         <entry key="core/src/main/res/drawable/bg_rounded_corner_stroke.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/bg_rounded_corner_stroke_red.xml" value="0.1295" />
+        <entry key="core/src/main/res/drawable/bg_rounded_corner_stroke_reds.xml" value="0.1305" />
+        <entry key="core/src/main/res/drawable/bg_rounded_stroke_reds.xml" value="0.1295" />
         <entry key="core/src/main/res/drawable/ic_bookmark.xml" value="0.193" />
         <entry key="core/src/main/res/drawable/ic_bookmark_outline.xml" value="0.193" />
+        <entry key="core/src/main/res/drawable/ic_location.xml" value="0.1365" />
+        <entry key="core/src/main/res/drawable/ic_locations.xml" value="0.1365" />
         <entry key="core/src/main/res/drawable/searchview_backgraound.xml" value="0.1175" />
         <entry key="core/src/main/res/layout/banner_item.xml" value="0.1" />
         <entry key="core/src/main/res/layout/bookmark_item.xml" value="0.19166666666666668" />
         <entry key="core/src/main/res/layout/category_event_item.xml" value="0.19166666666666668" />
         <entry key="core/src/main/res/layout/component_detail_contact.xml" value="0.19166666666666668" />
-        <entry key="core/src/main/res/layout/event_item.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/event_item.xml" value="0.5" />
         <entry key="core/src/main/res/layout/facility_item.xml" value="0.19166666666666668" />
         <entry key="core/src/main/res/layout/history_point_item.xml" value="0.19166666666666668" />
         <entry key="core/src/main/res/layout/info_window_jelajahin.xml" value="0.19166666666666668" />

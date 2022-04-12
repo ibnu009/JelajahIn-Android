@@ -51,7 +51,7 @@
                 android:layout_below="@id/tvWisataName"
                 android:layout_marginStart="@dimen/space"
                 android:layout_marginTop="6dp"
-                android:src="@drawable/ic_location" />
+                android:src="@drawable/ic_locations" />
 
             <TextView
                 android:id="@+id/tvWisataLocation"
