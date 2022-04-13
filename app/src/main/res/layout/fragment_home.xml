@@ -128,6 +128,176 @@
 
             </com.facebook.shimmer.ShimmerFrameLayout>
 
+            <!--        rltv btn img top-->
+            <RelativeLayout
+                android:id="@+id/rltv_img_btn_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/bannerShimmeringLoading">
+
+                <LinearLayout
+                    android:id="@+id/lnr_img_btn_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="96dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints">
+
+                    <!--            image button star-->
+                    <LinearLayout
+                        android:id="@+id/img_btn_start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/bg_img_btn_style"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_start" />
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/for_u"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <!--            image button jelajahin pedia-->
+                    <LinearLayout
+                        android:id="@+id/img_btn_jljn_pedia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/bg_img_btn_style"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_rack" />
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:text="Jelajahin Pedia"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+
+                    <!--            image button local guide-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/bg_img_btn_style"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_flag" />
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:text="Local Guide"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <!--            image button car-->
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/bg_img_btn_style"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_car" />
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/for_u"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+                    <!--            image button lainnya-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:background="@drawable/bg_img_btn_style"
+                            android:padding="30dp"
+                            android:src="@drawable/ic_random" />
+
+                        <TextView
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/for_u"
+                            android:textAlignment="center"
+                            android:textColor="@color/black" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/lnr_img_btn_top"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/black"
+                    android:visibility="visible"
+                    tools:ignore="MissingConstraints" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_img_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/view_top"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="MissingConstraints"
+                    tools:listitem="@layout/item_img_btn" />
+
+                <View
+                    android:id="@+id/view_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/rv_img_btn"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:background="@color/black"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+
             <TextView
                 android:id="@+id/txWisataRekomendasi"
                 android:layout_width="wrap_content"
@@ -138,7 +308,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvAdvertisement" />
+                app:layout_constraintTop_toBottomOf="@id/rltv_img_btn_top" />
 
             <Button
                 android:id="@+id/btnLihatWisata"
@@ -152,8 +322,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/txWisataRekomendasi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvAdvertisement" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/wisataShimmeringLoading"
@@ -280,6 +449,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@id/txRestaurantRekomendasi"
                 tools:listitem="@layout/recommendation_item" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
