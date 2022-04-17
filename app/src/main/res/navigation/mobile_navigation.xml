@@ -86,13 +86,6 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
-        <action
-            android:id="@+id/action_profileFragment_to_shopFragment"
-            app:destination="@id/shopFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/eventFragment"
@@ -365,28 +358,6 @@
         <action
             android:id="@+id/action_onBoardingFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/shopFragment"
-        android:name="com.ibnu.jelajahin.ui.profile.shop.ShopFragment"
-        android:label="fragment_shop"
-        tools:layout="@layout/fragment_shop" >
-        <action
-            android:id="@+id/action_shopFragment_to_shopDetailFragment"
-            app:destination="@id/shopDetailFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/shopDetailFragment"
-        android:name="com.ibnu.jelajahin.ui.profile.shop.ShopDetailFragment"
-        android:label="fragment_shop_detail"
-        tools:layout="@layout/fragment_shop_detail" >
-        <argument
-            android:name="shop"
-            app:argType="com.ibnu.jelajahin.core.data.model.Shop" />
     </fragment>
 
 </navigation>

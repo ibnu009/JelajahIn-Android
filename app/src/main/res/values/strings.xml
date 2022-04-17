@@ -99,4 +99,14 @@
     <string name="penginapan">Penginapan</string>
     <string name="restaurant">Restaurant</string>
     <string name="tukarkan_poin">Tukarkan Poin</string>
+
+    <string name="lokasi_sekarang">Lokasi Saat Ini</string>
+    <string name="nama_lokasi">Kab.Bondowoso</string>
+    <string name="for_u">For U</string>
+    <string name="jelajahin_pedia">Jelajahin Pedia</string>
+    <string name="local_guide">Local Guide</string>
+    <string name="rent_vehicle">Rent Vehicle</string>
+    <string name="random">Lainnya</string>
+
+
 </resources>
