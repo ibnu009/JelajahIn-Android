@@ -23,6 +23,7 @@ import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
 import com.ibnu.jelajahin.core.ui.adapter.ReviewWisataAdapter
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL_IMAGE
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentWisataDetailBinding
 import com.ibnu.jelajahin.utils.UiConstValue.FAST_ANIMATION_TIME
@@ -170,7 +171,7 @@ class WisataDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(BASE_URL + wisata.imageUrl)
+                .load(BASE_URL_IMAGE + wisata.imageUrl)
                 .into(binding.imgWisata)
         }
 

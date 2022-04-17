@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/appBar"
-        layout="@layout/toolbar_back_name"/>
+        layout="@layout/toolbar_back_name" />
 
     <ScrollView
         android:layout_below="@id/imgProfile"

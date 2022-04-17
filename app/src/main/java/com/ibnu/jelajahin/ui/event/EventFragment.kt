@@ -80,7 +80,7 @@ class EventFragment : Fragment(), RecyclerviewItemClickHandler {
     private fun initiateData(searchQuery: String?) {
         lifecycleScope.launch {
             Timber.d("launch search")
-            viewModel.getEvents(15, 229, searchQuery ?: "").collect { events ->
+            viewModel.getEvents(0, 0, searchQuery ?: "").collect { events ->
                 adapter.submitData(events)
             }
         }

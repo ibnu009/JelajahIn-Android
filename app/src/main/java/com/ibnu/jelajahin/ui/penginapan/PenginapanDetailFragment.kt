@@ -162,7 +162,7 @@ class PenginapanDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(JelajahinConstValues.BASE_URL + penginapan.imageUrl)
+                .load(JelajahinConstValues.BASE_URL_IMAGE + penginapan.imageUrl)
                 .into(binding.imgPenginapan)
         }
 

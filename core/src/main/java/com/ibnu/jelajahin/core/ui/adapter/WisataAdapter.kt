@@ -10,6 +10,7 @@ import com.ibnu.jelajahin.core.data.model.Wisata
 import com.ibnu.jelajahin.core.databinding.WisataItemBinding
 import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 
 class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
@@ -43,7 +44,7 @@ class WisataAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
             }
 
             Glide.with(itemView)
-                .load(BASE_URL+wisata.imageUrl)
+                .load(JelajahinConstValues.BASE_URL_IMAGE +wisata.imageUrl)
                 .into(binding.imvWisata)
         }
     }
