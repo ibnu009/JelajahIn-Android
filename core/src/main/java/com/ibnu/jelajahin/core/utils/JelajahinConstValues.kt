@@ -4,8 +4,14 @@ import android.Manifest
 
 object JelajahinConstValues {
 
-    const val BASE_URL = "https://d982-125-166-119-165.ngrok.io"
-//    const val BASE_URL = "http://192.168.1.6:8000/"
+    //Development
+//    const val BASE_URL = "https://api.jelajahin.xyz/"
+
+    // Local
+    const val BASE_URL = "https://a290-2001-448a-5122-e5f7-a08e-3dec-de95-fa10.ngrok.io/"
+    const val BASE_URL_IMAGE = "https://a290-2001-448a-5122-e5f7-a08e-3dec-de95-fa10.ngrok.io"
+
+
     const val POST_WISATA_ULASAN_URL = "${BASE_URL}api/wisata/add_ulasan"
     const val POST_RESTAURANT_ULASAN_URL = "${BASE_URL}api/restaurant/add_ulasan"
     const val POST_PENGINAPAN_ULASAN_URL = "${BASE_URL}api/penginapan/add_ulasan"

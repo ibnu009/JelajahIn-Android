@@ -6,5 +6,5 @@ object UiConstValue {
     const val LONG_ANIMATION_TIME = 1500L
     const val VERY_LONG_ANIMATION_TIME = 3000L
 
-    const val ERROR_TITLE = "Oops ada kesalahan1"
+    const val ERROR_TITLE = "Oops ada kesalahan!"
 }

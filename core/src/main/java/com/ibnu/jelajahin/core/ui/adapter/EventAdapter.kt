@@ -12,6 +12,7 @@ import com.ibnu.jelajahin.core.databinding.EventItemBinding
 import com.ibnu.jelajahin.core.extention.*
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL_IMAGE
 
 class EventAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Event, EventAdapter.EventViewHolder>(
@@ -43,7 +44,7 @@ class EventAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
             binding.tvEventLocation.text = "${event.cityName}, ${event.provinceName}"
 
             Glide.with(itemView)
-                .load(BASE_URL + event.imageURL)
+                .load(BASE_URL_IMAGE + event.imageURL)
                 .into(binding.imvEvent)
         }
 

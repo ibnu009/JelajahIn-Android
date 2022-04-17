@@ -59,7 +59,7 @@ class RecommendedWisataAdapter(private val onClickAction: RecommendationItemClic
             binding.recommendationRatingTotal.text = "(${wisata.ratingCount})"
 
             Glide.with(binding.root.context)
-                .load("${JelajahinConstValues.BASE_URL}${wisata.imageUrl}")
+                .load("${JelajahinConstValues.BASE_URL_IMAGE}${wisata.imageUrl}")
                 .placeholder(R.color.input_color)
                 .into(binding.imgCover)
         }

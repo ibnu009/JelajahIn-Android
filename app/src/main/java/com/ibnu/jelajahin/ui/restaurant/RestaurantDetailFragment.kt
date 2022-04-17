@@ -23,6 +23,7 @@ import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.extention.showOKDialog
 import com.ibnu.jelajahin.core.extention.toJelajahinAccreditation
 import com.ibnu.jelajahin.core.ui.adapter.ReviewRestaurantAdapter
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
 import com.ibnu.jelajahin.databinding.FragmentRestaurantDetailBinding
@@ -150,7 +151,7 @@ class RestaurantDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(BASE_URL + restaurant.imageUrl)
+                .load(JelajahinConstValues.BASE_URL_IMAGE + restaurant.imageUrl)
                 .into(binding.imgRestaurant)
         }
 

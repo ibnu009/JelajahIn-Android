@@ -5,7 +5,7 @@
 
     <string name="hint_email">Contoh : user@gmail.com</string>
     <string name="hint_name">Contoh : Ibnu Batutah</string>
-    <string name="email_atau_username">Email atau Username</string>
+    <string name="email_atau_username">Email</string>
     <string name="password">Password</string>
     <string name="hint_password">Harus memiliki angka dan karakter</string>
     <string name="login">Masuk</string>

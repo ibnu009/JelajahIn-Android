@@ -11,6 +11,7 @@ import com.ibnu.jelajahin.core.databinding.PenginapanItemBinding
 import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL_IMAGE
 
 class PenginapanAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
     PagingDataAdapter<Penginapan, PenginapanAdapter.PenginapanViewHolder>(DIFF_CALLBACK) {
@@ -48,7 +49,7 @@ class PenginapanAdapter(private val onClickAction: RecyclerviewItemClickHandler)
 
 
             Glide.with(itemView)
-                .load(BASE_URL + penginapan.imageUrl)
+                .load(BASE_URL_IMAGE + penginapan.imageUrl)
                 .into(binding.imvPenginapan)
         }
     }

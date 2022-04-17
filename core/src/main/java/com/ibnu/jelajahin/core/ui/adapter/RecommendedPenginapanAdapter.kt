@@ -60,7 +60,7 @@ class RecommendedPenginapanAdapter(private val onClickAction: RecommendationItem
 
             binding.recommendationRatingTotal.text = if (penginapan.ratingCount == null) "(0)" else "(${penginapan.ratingCount})"
             Glide.with(binding.root.context)
-                .load("${JelajahinConstValues.BASE_URL}${penginapan.imageUrl}")
+                .load("${JelajahinConstValues.BASE_URL_IMAGE}${penginapan.imageUrl}")
                 .placeholder(R.color.input_color)
                 .into(binding.imgCover)
         }

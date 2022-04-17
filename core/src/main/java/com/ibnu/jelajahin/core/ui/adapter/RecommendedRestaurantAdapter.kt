@@ -60,7 +60,7 @@ class RecommendedRestaurantAdapter(private val onClickAction: RecommendationItem
 
             binding.recommendationRatingTotal.text = if (restaurant.ratingCount == null) "(0)" else "(${restaurant.ratingCount})"
             Glide.with(binding.root.context)
-                .load("${JelajahinConstValues.BASE_URL}${restaurant.imageUrl}")
+                .load("${JelajahinConstValues.BASE_URL_IMAGE}${restaurant.imageUrl}")
                 .placeholder(R.color.input_color)
                 .into(binding.imgCover)
         }

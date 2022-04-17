@@ -22,6 +22,7 @@ import com.ibnu.jelajahin.core.data.remote.network.ApiResponse
 import com.ibnu.jelajahin.core.extention.*
 import com.ibnu.jelajahin.core.extention.map.addSingleMarker
 import com.ibnu.jelajahin.core.extention.map.animateCameraToSingleMarker
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.EVENT_MARKER
 import com.ibnu.jelajahin.core.utils.SharedPreferenceManager
@@ -98,6 +99,8 @@ class EventDetailFragment : Fragment() {
         binding.tvEventDescription.text = event.description
         binding.tvEvenTicketPrice.text = event.ticketPrice
 
+        Timber.d("event image is ${JelajahinConstValues.BASE_URL_IMAGE}${event.imageURL}")
+
         setScheduleText(event)
 
         binding.cvReward.tvRewardPoint.text = context?.resources?.getString(
@@ -109,7 +112,7 @@ class EventDetailFragment : Fragment() {
 
         view?.let {
             Glide.with(it)
-                .load(BASE_URL + event.imageURL)
+                .load(JelajahinConstValues.BASE_URL_IMAGE + event.imageURL)
                 .into(binding.imgEvent)
         }
 

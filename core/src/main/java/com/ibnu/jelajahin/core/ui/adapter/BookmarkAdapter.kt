@@ -64,7 +64,7 @@ class BookmarkAdapter(private val handler: BookmarkItemHandler) :
             }
 
             Glide.with(itemView)
-                .load(JelajahinConstValues.BASE_URL + bookmark.imageUrl)
+                .load(JelajahinConstValues.BASE_URL_IMAGE + bookmark.imageUrl)
                 .into(binding.imvBookmark)
         }
     }

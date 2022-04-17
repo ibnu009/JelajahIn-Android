@@ -13,6 +13,7 @@ import com.ibnu.jelajahin.core.databinding.BannerItemBinding
 import com.ibnu.jelajahin.core.extention.popTap
 import com.ibnu.jelajahin.core.ui.adapter.handler.AdsItemHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL_IMAGE
 
 class AdsAdapter(private val itemHandler: AdsItemHandler) :
     RecyclerView.Adapter<AdsAdapter.AdsViewHolder>() {
@@ -51,7 +52,7 @@ class AdsAdapter(private val itemHandler: AdsItemHandler) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(ads: Ads) {
             Glide.with(binding.root.context)
-                .load("${BASE_URL}${ads.imageURL}")
+                .load("${BASE_URL_IMAGE}${ads.imageURL}")
                 .placeholder(R.color.input_color)
                 .into(binding.imvBanner)
         }

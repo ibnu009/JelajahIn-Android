@@ -11,6 +11,7 @@ import com.ibnu.jelajahin.core.databinding.RestaurantItemBinding
 import com.ibnu.jelajahin.core.extention.formatAverageTooLong
 import com.ibnu.jelajahin.core.ui.adapter.handler.RecyclerviewItemClickHandler
 import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL
+import com.ibnu.jelajahin.core.utils.JelajahinConstValues.BASE_URL_IMAGE
 import kotlin.math.min
 
 class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler) :
@@ -48,7 +49,7 @@ class RestaurantAdapter(private val onClickAction: RecyclerviewItemClickHandler)
             }
 
             Glide.with(itemView)
-                .load(BASE_URL+restaurant.imageUrl)
+                .load(BASE_URL_IMAGE+restaurant.imageUrl)
                 .into(binding.imvRestaurant)
         }
     }

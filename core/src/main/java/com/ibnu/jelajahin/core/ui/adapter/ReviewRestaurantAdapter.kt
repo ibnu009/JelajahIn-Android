@@ -48,7 +48,7 @@ class ReviewRestaurantAdapter :
 
 
             Glide.with(binding.root.context)
-                .load("${JelajahinConstValues.BASE_URL}${review.reviewerProfileImage}")
+                .load("${JelajahinConstValues.BASE_URL_IMAGE}${review.reviewerProfileImage}")
                 .placeholder(R.color.input_color)
                 .into(binding.imgPersonUlasan)
 
