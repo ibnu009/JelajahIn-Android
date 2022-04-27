@@ -18,5 +18,17 @@
     </string-array>
 
     <string name="name_item_img_btn">For U</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.liquip ex ea commodo consequat.</string>
+    <string name="jam_buka_tutup">11.00 PM - 04.30 AM</string>
+    <string name="info_tiket">Tiket Mulai dari Rp.</string>
+    <string name="harga_tiket">6000</string>
 
+    <string name="tulis_ulasan">Tulis ulasan</string>
+    <string name="nama_user">John Wick</string>
+    <string name="hari_ulasan">1 hari yang lalu</string>
+    <string name="guide_terbaik">Tempat Guide Terbaik</string>
+
+    <string name="tempat_parkir">Tempat Parkir</string>
 </resources>

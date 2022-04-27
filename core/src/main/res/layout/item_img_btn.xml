@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="60dp"
-    android:layout_height="60dp"
+    android:layout_height="80dp"
     android:layout_margin="5dp"
     android:orientation="horizontal">
     <!--            image button star-->
     <LinearLayout
-        android:id="@+id/img_btn_"
+        android:id="@+id/img_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -14,7 +14,7 @@
         <ImageButton
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:background="@drawable/bg_img_btn_style"
+            android:background="@drawable/border_style"
             android:padding="30dp"
             android:src="@drawable/ic_start" />
 
@@ -22,6 +22,7 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="@string/name_item_img_btn"
+            android:layout_marginStart="5dp"
             android:textAlignment="center"
             android:textColor="@color/black" />
     </LinearLayout>

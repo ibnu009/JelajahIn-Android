@@ -18,16 +18,27 @@ import javax.inject.Singleton
 
 @Singleton
 class EventDataSource @Inject constructor(
-private val eventService: EventService
-)  {
+    private val eventService: EventService
+) {
 
-    fun getStreamEventByProvinceAndCity(provinceId: Int, cityId: Int, searchQuery: String): Flow<PagingData<Event>> {
+    fun getStreamEventByProvinceAndCity(
+        provinceId: Int,
+        cityId: Int,
+        searchQuery: String
+    ): Flow<PagingData<Event>> {
         return Pager(
             config = PagingConfig(
                 pageSize = DEFAULT_PAGE_SIZE,
                 enablePlaceholders = true
             ),
-            pagingSourceFactory = { EventPagingFactory(eventService, provinceId, cityId, searchQuery) }
+            pagingSourceFactory = {
+                EventPagingFactory(
+                    eventService,
+                    provinceId,
+                    cityId,
+                    searchQuery
+                )
+            }
         ).flow
     }
 
@@ -36,12 +47,12 @@ private val eventService: EventService
             try {
                 emit(ApiResponse.Loading)
                 val response = eventService.getEventDetail(eventUuid)
-                if (response.rowCount > 0){
+                if (response.rowCount > 0) {
                     emit(ApiResponse.Success(response.event))
                 } else {
                     emit(ApiResponse.Empty)
                 }
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 emit(ApiResponse.Error(e.message.toString()))
                 Timber.e("Error Event $e")
             }

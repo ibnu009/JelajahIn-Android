@@ -1,13 +1,14 @@
 package com.ibnu.jelajahin.core.data.remote.response
 
 import com.google.gson.annotations.SerializedName
-import com.ibnu.jelajahin.core.data.model.Gem
+import com.ibnu.jelajahin.core.data.model.GalleryWisata
 
-data class GemResponse(
+
+data class GalleryWisataResponse(
     val status: Int,
     @field:SerializedName("row_count")
     val rowCount: Int,
     val message: String,
     @field:SerializedName("data")
-    val gems: List<Gem>
+    val galleryWisata: List<GalleryWisata>
 )

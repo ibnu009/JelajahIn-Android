@@ -55,7 +55,7 @@ class CrashHandlerActivity : AppCompatActivity() {
         binding?.errorPreview?.visibility = View.VISIBLE
 
         val text: String = if (memoryUsage == 0f) {
-          """
+            """
              $errorMessage
              $deviceInformation
              $firmwareInformation
@@ -63,10 +63,8 @@ class CrashHandlerActivity : AppCompatActivity() {
              
              Activity : $activityName
              """.trimIndent()
-                }
-            else
-        {
-          """
+        } else {
+            """
              $errorMessage
              $deviceInformation
              $firmwareInformation

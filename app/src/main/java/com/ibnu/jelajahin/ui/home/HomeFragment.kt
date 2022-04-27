@@ -99,6 +99,13 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
         initiateRecommendedRestaurant()
         initiateRecommendedPenginapan()
 
+        binding.refreshLayout.setOnRefreshListener {
+            initiateAds()
+            initiateRecommendedWisata()
+            initiateRecommendedRestaurant()
+            initiateRecommendedPenginapan()
+        }
+
     }
 
     private fun initiateRecyclerViews() {
@@ -128,7 +135,7 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
     }
 
     private fun initiateAds() {
-        viewModel.getAds(15).observe(viewLifecycleOwner, { response ->
+        viewModel.getAds(15).observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
@@ -147,11 +154,11 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
                     Timber.d("Unknown Error")
                 }
             }
-        })
+        }
     }
 
     private fun initiateRecommendedWisata() {
-        viewModel.getWisataRecommendation().observe(viewLifecycleOwner, { response ->
+        viewModel.getWisataRecommendation().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
@@ -160,21 +167,24 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
                 is ApiResponse.Error -> {
                     showWisataLoading(false)
                     Timber.d("Error ${response.errorMessage}")
+                    binding.refreshLayout.isRefreshing = false
                 }
                 is ApiResponse.Success -> {
                     showWisataLoading(false)
+                    binding.refreshLayout.isRefreshing = false
                     wisataRecommendationAdapter.setData(response.data)
                 }
                 else -> {
                     showWisataLoading(false)
+                    binding.refreshLayout.isRefreshing = false
                     Timber.d("Unknown Error")
                 }
             }
-        })
+        }
     }
 
     private fun initiateRecommendedRestaurant() {
-        viewModel.getRestaurantRecommendation().observe(viewLifecycleOwner, { response ->
+        viewModel.getRestaurantRecommendation().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
@@ -193,11 +203,11 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
                     Timber.d("Unknown Error")
                 }
             }
-        })
+        }
     }
 
     private fun initiateRecommendedPenginapan() {
-        viewModel.getPenginapanRecommendation().observe(viewLifecycleOwner, { response ->
+        viewModel.getPenginapanRecommendation().observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
@@ -216,21 +226,9 @@ class HomeFragment : Fragment(), AdsItemHandler, RecommendationItemClickHandler 
                     Timber.d("Unknown Error")
                 }
             }
-        })
+        }
     }
 
-
-//    private fun showBannerLoading(isLoading: Boolean) {
-//        if (isLoading) {
-//            binding.bannerShimmeringLoading.startShimmer()
-//            binding.bannerShimmeringLoading.showShimmer(true)
-//            binding.bannerShimmeringLoading.visibility = View.VISIBLE
-//        } else {
-//            binding.bannerShimmeringLoading.stopShimmer()
-//            binding.bannerShimmeringLoading.showShimmer(false)
-//            binding.bannerShimmeringLoading.visibility = View.GONE
-//        }
-//    }
 
     private fun showWisataLoading(isLoading: Boolean) {
         if (isLoading) {

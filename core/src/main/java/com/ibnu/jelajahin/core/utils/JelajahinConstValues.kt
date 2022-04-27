@@ -8,8 +8,8 @@ object JelajahinConstValues {
 //    const val BASE_URL = "https://api.jelajahin.xyz/"
 
     // Local
-    const val BASE_URL = "https://a290-2001-448a-5122-e5f7-a08e-3dec-de95-fa10.ngrok.io/"
-    const val BASE_URL_IMAGE = "https://a290-2001-448a-5122-e5f7-a08e-3dec-de95-fa10.ngrok.io"
+    const val BASE_URL = "https://api.jelajahin.com/"
+    const val BASE_URL_IMAGE = "https://api.jelajahin.com"
 
 
     const val POST_WISATA_ULASAN_URL = "${BASE_URL}api/wisata/add_ulasan"
@@ -45,5 +45,8 @@ object JelajahinConstValues {
 
     const val DB_NAME = "jelajahin_room_db"
 
-    val LOCATION_PERMISSION = arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+    val LOCATION_PERMISSION = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
 }

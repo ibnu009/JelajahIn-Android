@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="@dimen/space">
+
+    <RelativeLayout
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/img_hal_menarik"
+            android:layout_width="215dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/cardview_dark_background" />
+
+        <TextView
+            android:id="@+id/tv_title_wisata_menarik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/img_hal_menarik"
+            android:layout_marginHorizontal="@dimen/space"
+            android:layout_marginTop="@dimen/space"
+            android:ellipsize="end"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:singleLine="true"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_hal_menarik"
+            tools:text="Blue Fire Ijen" />
+
+        <LinearLayout
+            android:id="@+id/lnr_lorem_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title_wisata_menarik"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:text="@string/lorem"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lnr_jam_buka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lnr_lorem_top"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_jams" />
+
+            <TextView
+                android:id="@+id/tv_jam_buka_tutup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/jam_buka_tutup"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lnr_jam_buka"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp">
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_tiket" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/info_tiket"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tv_harga_tiket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/harga_tiket"
+                android:textColor="@color/black"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -81,15 +81,15 @@ class PenginapanDetailFragment : Fragment() {
     }
 
     private fun initiateDetailData(uuid: String) {
-        viewModel.isAlreadyFavorite(uuid, email).observe(viewLifecycleOwner, {
+        viewModel.isAlreadyFavorite(uuid, email).observe(viewLifecycleOwner) {
             Timber.d("Favorite is $it")
             isFavorite = it
             getDetailData(uuid)
-        })
+        }
     }
 
     private fun getDetailData(uuid: String) {
-        viewModel.getPenginapanDetail(uuid).observe(viewLifecycleOwner, { response ->
+        viewModel.getPenginapanDetail(uuid).observe(viewLifecycleOwner) { response ->
             when (response) {
                 is ApiResponse.Loading -> {
                     Timber.d("Loading")
@@ -110,7 +110,7 @@ class PenginapanDetailFragment : Fragment() {
                     Timber.d("Unknown Error")
                 }
             }
-        })
+        }
     }
 
     private fun initiateRecyclerViews() {

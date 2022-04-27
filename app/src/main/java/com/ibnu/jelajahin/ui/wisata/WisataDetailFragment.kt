@@ -72,7 +72,7 @@ class WisataDetailFragment : Fragment() {
         initiateDetailData(uuidWisata)
         initiateUlasanData(uuidWisata)
 
-        binding.refresh.setOnRefreshListener {
+        binding.refreshLayout.setOnRefreshListener {
             initiateDetailData(uuidWisata)
         }
     }
@@ -95,13 +95,13 @@ class WisataDetailFragment : Fragment() {
                 is ApiResponse.Error -> {
                     Timber.d("Error ${response.errorMessage}")
                     showLoading(false)
-                    binding.refresh.isRefreshing = false
+                    binding.refreshLayout.isRefreshing = false
                 }
                 is ApiResponse.Success -> {
                     loadUiDetailWisata(response.data)
                     wisata = response.data
                     showLoading(false)
-                    binding.refresh.isRefreshing = false
+                    binding.refreshLayout.isRefreshing = false
                 }
                 else -> {
                     Timber.d("Unknown Error")
@@ -134,45 +134,35 @@ class WisataDetailFragment : Fragment() {
 
     private fun initiateRecyclerViews() {
         reviewAdapter = ReviewWisataAdapter()
-        binding.rvUlasan.layoutManager =
+        binding.rvUserUlasan.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.rvUlasan.adapter = reviewAdapter
+        binding.rvUserUlasan.adapter = reviewAdapter
     }
 
     private fun initiateAppbar() {
-        binding.toolBar.setNavigationOnClickListener {
+        binding.toolBar.imgBack.setOnClickListener() {
             it.popTap()
             findNavController().popBackStack()
         }
-        binding.appBarCoor.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-            binding.refresh.isEnabled = verticalOffset == 0
-        })
     }
 
     private fun loadUiDetailWisata(wisata: Wisata) {
-        binding.tvWisataName.text = wisata.name
-        binding.tvWisataLocation.text = wisata.address
-        binding.tvWisataDescription.text = wisata.description
-        binding.tvTicketPrice.text = wisata.ticketPrice
-        binding.tvTicketPriceWeekend.text = wisata.ticketPrice
-        binding.wisataStar.rating = wisata.ratingAverage.toFloat()
+        binding.tvNamaWisata.text = wisata.name
+        binding.tvLocationKecamatan.text = wisata.address
+        binding.tvDescripsiWisata.text = wisata.description
+//        binding.tvTicketPrice.text = wisata.ticketPrice
+//        binding.tvTicketPriceWeekend.text = wisata.ticketPrice
+        binding.wisataRating.rating = wisata.ratingAverage.toFloat()
         binding.tvWisataAccreditation.text = wisata.ratingAverage.toJelajahinAccreditation()
 
         if (wisata.ratingAverage.toString().length > 3) {
             val maxLength: Int = min(wisata.ratingAverage.toString().length, 3)
-            binding.tvWisataRating.text =
+            binding.tvWisataRatingValue.text =
                 if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
                     .substring(0, maxLength)
         } else {
-            binding.tvWisataRating.text =
+            binding.tvWisataRatingValue.text =
                 if (wisata.ratingAverage == 0.0) "0.0" else wisata.ratingAverage.toString()
-        }
-
-
-        view?.let {
-            Glide.with(it)
-                .load(BASE_URL_IMAGE + wisata.imageUrl)
-                .into(binding.imgWisata)
         }
 
         binding.btnBookmark.setColorFilter(
@@ -182,7 +172,7 @@ class WisataDetailFragment : Fragment() {
             )
         )
 
-        binding.btnTambahUlasan.setOnClickListener {
+        binding.btnTulisUlasan.setOnClickListener {
             it.popTap()
             Handler(Looper.getMainLooper()).postDelayed({
                 if (token.isNotEmpty()) {
@@ -210,6 +200,8 @@ class WisataDetailFragment : Fragment() {
             }, FAST_ANIMATION_TIME)
         }
     }
+
+
 
     private fun initiateBookmarkFunction() {
         if (!isFavorite) {
