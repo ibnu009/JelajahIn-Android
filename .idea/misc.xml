@@ -119,6 +119,7 @@
         <entry key="app/src/main/res/drawable/bg_searchview.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/customprogress.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.138" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.113" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_chevron_right.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.138" />
@@ -127,12 +128,14 @@
         <entry key="app/src/main/res/drawable/ic_event.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_event_profile.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/ic_locations.xml" value="0.1295" />
+        <entry key="app/src/main/res/drawable/ic_notif.xml" value="0.1065" />
+        <entry key="app/src/main/res/drawable/ic_share.xml" value="0.113" />
         <entry key="app/src/main/res/drawable/skeleton.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/skeleton_darker.xml" value="0.138" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.138" />
         <entry key="app/src/main/res/layout/bookmark_fragment.xml" value="0.10126582278481013" />
         <entry key="app/src/main/res/layout/discovery_fragment.xml" value="0.19166666666666668" />
-        <entry key="app/src/main/res/layout/event_detail_fragment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/event_detail_fragment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/event_fragment.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_attend_event.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_bookmark_content.xml" value="0.19166666666666668" />
@@ -140,10 +143,14 @@
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_homes.xml" value="0.17074275362318841" />
+        <entry key="app/src/main/res/layout/fragment_on_boarding.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_on_boarding_second.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/fragment_penginapan_detail.xml" value="0.20297029702970298" />
         <entry key="app/src/main/res/layout/fragment_restaurant_detail.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_ulasan_restaurant.xml" value="0.17255434782608695" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.13405797101449277" />
+        <entry key="app/src/main/res/layout/fragment_ulasan_penginapan.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_ulasan_restaurant.xml" value="0.32139737991266376" />
+        <entry key="app/src/main/res/layout/fragment_ulasan_wisata.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_web_view.xml" value="0.17481884057971014" />
         <entry key="app/src/main/res/layout/fragment_wisata_detail.xml" value="0.15986099044309296" />
         <entry key="app/src/main/res/layout/fragment_wisata_map.xml" value="0.17255434782608695" />
@@ -192,6 +199,7 @@
         <entry key="core/src/main/res/layout/item_image_detail_event.xml" value="0.17481884057971014" />
         <entry key="core/src/main/res/layout/item_img_btn.xml" value="0.25" />
         <entry key="core/src/main/res/layout/item_img_btn_home.xml" value="0.19166666666666668" />
+        <entry key="core/src/main/res/layout/item_img_detail_wisata.xml" value="0.13405797101449277" />
         <entry key="core/src/main/res/layout/item_program_detail_event.xml" value="0.17481884057971014" />
         <entry key="core/src/main/res/layout/item_user_ulasan.xml" value="0.17481884057971014" />
         <entry key="core/src/main/res/layout/penginapan_item.xml" value="0.19166666666666668" />

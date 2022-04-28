@@ -10,4 +10,5 @@ data class WisataResponse(
     val message: String,
     @field:SerializedName( "data")
     val wisata: List<Wisata>
+
 )

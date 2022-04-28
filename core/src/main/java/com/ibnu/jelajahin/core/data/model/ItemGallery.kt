@@ -2,7 +2,7 @@ package com.ibnu.jelajahin.core.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ItemGalleryWisata(
+data class ItemGallery(
     @field:SerializedName("id")
     val id: Int,
     @field:SerializedName("name")

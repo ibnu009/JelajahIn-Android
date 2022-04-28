@@ -25,7 +25,7 @@ data class Wisata(
     val provinceID: Int,
     @field:SerializedName("province_name")
     val provinceName: String,
-    @field:SerializedName( "city_id")
+    @field:SerializedName("city_id")
     val cityID: Int,
     @field:SerializedName("city_name")
     val cityName: String,

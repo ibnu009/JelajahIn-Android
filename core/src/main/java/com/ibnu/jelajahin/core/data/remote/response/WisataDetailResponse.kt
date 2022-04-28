@@ -5,9 +5,9 @@ import com.ibnu.jelajahin.core.data.model.Wisata
 
 data class WisataDetailResponse(
     val status: Int,
-    @field:SerializedName( "row_count")
+    @field:SerializedName("row_count")
     val rowCount: Int,
     val message: String,
-    @field:SerializedName( "data")
+    @field:SerializedName("data")
     val wisata: Wisata
 )

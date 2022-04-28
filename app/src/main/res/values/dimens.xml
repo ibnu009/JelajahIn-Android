@@ -17,6 +17,7 @@
     <dimen name="space_xtra">48dp</dimen>
     <dimen name="space_xxtra">56dp</dimen>
     <dimen name="space_xxxtra">64dp</dimen>
+    <dimen name="space_xxxtra_plus">68dp</dimen>
     <dimen name="space_xtra_minus">-48dp</dimen>
     <dimen name="margintop_xdpi">120dp</dimen>
 

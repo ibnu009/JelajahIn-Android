@@ -1,215 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.penginapan.UlasanPenginapanFragment">
 
-    <RelativeLayout
+    <include
+        android:id="@+id/toolBar"
+        layout="@layout/toolbar_back_name" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolBar"
+        android:layout_marginBottom="@dimen/space_xxxtra_plus">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <ScrollView
+            android:id="@+id/scrollPenginapan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/ivUlasan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="@dimen/space_double"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_double"
-                    android:scaleType="fitXY" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/txStatisUlasan"
+                    <TextView
+                        android:id="@+id/tvNameLocationPenginapan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/locations_review"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_xmedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/lnr_location_top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space"
+                        android:gravity="center">
+
+
+                        <ImageButton
+                            android:id="@+id/img_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_location_green" />
+
+                        <TextView
+                            android:id="@+id/tvLocationKecamatanPengingapan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_half"
+                            android:text="@string/locations_kecamatan"
+                            android:textSize="@dimen/font_medium" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/spacexx"
+                        android:background="@drawable/bg_input">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/review_gunung" />
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="@dimen/space_double"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:background="@color/green" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:text="@string/pengalaman_kamu"
+                        android:textAlignment="center"
+
+                        android:textColor="@color/black" />
+
+                    <RatingBar
+                        android:id="@+id/rbUlasanServiceHotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/space_double" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:text="@string/staff_friendliness"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+                    <RatingBar
+                        android:id="@+id/rbUlasanStaffFriendliness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/space_double" />
+
+                    <TextView
+                        android:id="@+id/tvUlasanResult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/pengalaman_kamu"
+                        android:textColor="@color/dusk_yellow"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:text="@string/room_cleanliness"
+                        android:textAlignment="center"
+                        android:textColor="@color/black" />
+
+                    <RatingBar
+                        android:id="@+id/rbUlasanRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/space_double" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="38dp"
+                        android:text="@string/ulasan_content"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edtUlasanContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="125dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:background="@drawable/bg_input"
+                        android:gravity="top"
+                        android:importantForAutofill="no"
+                        android:padding="16dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="38dp"
+                        android:text="@string/gambar_yang_ingin_anda_bagikan"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:id="@+id/imgUlasan"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/space_double"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/img_add" />
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_triple" />
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space"
-                    android:layout_marginTop="@dimen/space_double"
-                    android:layout_toEndOf="@id/ivUlasan"
-                    android:text="@string/review_for" />
+                    android:layout_centerInParent="true"
+                    android:visibility="invisible" />
 
-                <TextView
-                    android:id="@+id/tvUlasanName"
-                    style="@style/JelajahinTitleText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txStatisUlasan"
-                    android:layout_marginStart="@dimen/space_double"
-                    android:layout_marginTop="@dimen/space_double"
-                    android:layout_toEndOf="@id/ivUlasan"
-                    tools:text="Nama Restaurant" />
+                <View
+                    android:id="@+id/bg_dim"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black_dim"
+                    android:visibility="gone" />
 
             </RelativeLayout>
+        </ScrollView>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_double"
-                android:background="@color/green" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_double"
-                android:textColor="@color/black"
-                android:text="@string/service_in_hotel" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <RatingBar
-                android:id="@+id/rbUlasanService"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/space_double" />
+    <Button
+        android:id="@+id/btnSendUlasan"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-55dp"
+        android:backgroundTint="@color/green_button"
+        android:text="@string/btn_Ulasan"
+        android:textAllCaps="false" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_double"
-                android:textColor="@color/black"
-                android:text="@string/friendly_in_hotel" />
-
-            <RatingBar
-                android:id="@+id/rbUlasanFriendly"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/space_double" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_double"
-                android:textColor="@color/black"
-                android:text="@string/clean_in_hotel" />
-
-            <RatingBar
-                android:id="@+id/rbUlasanClean"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/space_double" />
-
-            <TextView
-                android:id="@+id/tvUlasanResult"
-                android:textColor="@color/dusk_yellow"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/pengalaman_kamu" />
-
-            <TextView
-                android:id="@+id/tvUlasanTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="38dp"
-                android:text="@string/ulasan_title"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/edtUlasanTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/bg_input"
-                android:padding="16dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="38dp"
-                android:text="@string/ulasan_content"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <EditText
-                android:id="@+id/edtUlasanContent"
-                android:layout_width="match_parent"
-                android:layout_height="125dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="top"
-                android:background="@drawable/bg_input"
-                android:padding="16dp"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:importantForAutofill="no" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="38dp"
-                android:text="@string/gambar_yang_ingin_anda_bagikan"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:id="@+id/imgUlasan"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/space_double"
-                android:src="@drawable/img_add"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:contentDescription="" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="32dp"
-                android:textColor="@color/white"
-                android:background="@drawable/bg_button"
-                android:padding="10dp"
-                android:text="@string/send_review"
-                android:textAllCaps="false"
-                android:textSize="16sp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/space_triple"/>
-
-        </LinearLayout>
-
-        <View
-            android:id="@+id/bg_dim"
-            android:visibility="gone"
-            android:background="@color/black_dim"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:visibility="invisible"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-
-</ScrollView>
+</RelativeLayout>

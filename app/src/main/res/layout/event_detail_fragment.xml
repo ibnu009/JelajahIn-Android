@@ -11,6 +11,7 @@
         layout="@layout/toolbar_back_name" />
 
     <ScrollView
+        android:layout_marginBottom="@dimen/space_xxxtra_plus"
         android:id="@+id/scrollEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
