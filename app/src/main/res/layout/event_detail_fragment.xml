@@ -16,213 +16,234 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/appBar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/detailEventContainer"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/space_triple">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imgEvent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDetailFotoEvent"
                 android:layout_width="match_parent"
-                android:layout_height="255dp"
-                android:scaleType="fitXY"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@tools:sample/backgrounds/scenic" />
-
-            <TextView
-                android:id="@+id/tvEventName"
-                style="@style/JelajahinTitleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgEvent"
-                tools:text="NAMA EVENT" />
-
-            <LinearLayout
-                android:id="@+id/llDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="200dp"
                 android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEventName">
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_image_detail_event" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_calendar" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rvDetailFotoEvent"
+                android:layout_marginStart="@dimen/space_xdouble"
+                android:layout_marginTop="@dimen/space_double"
+                android:layout_marginEnd="@dimen/space_xdouble">
 
                 <TextView
-                    android:id="@+id/tvEventDate"
-                    style="@style/JelajahinDescText"
+                    android:id="@+id/tvNameEvnt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    tools:text="1 Desember 2021" />
+                    android:text="@string/program_event"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_big" />
 
-            </LinearLayout>
+                <ImageButton
+                    android:id="@+id/btnBookmarkEvent"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/bg_img_btn_style"
+                    android:padding="30dp"
+                    android:src="@drawable/ic_bookmart_green" />
 
-            <LinearLayout
-                android:id="@+id/llTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toEndOf="@+id/llDate"
-                app:layout_constraintTop_toBottomOf="@+id/tvEventName">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_time" />
-
-                <TextView
-                    android:id="@+id/tvEventTime"
-                    style="@style/JelajahinDescText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    tools:text="19:00 - 23:00" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llTicket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llDate">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_ticket" />
-
-                <TextView
-                    android:id="@+id/tvEvenTicketPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="8dp"
-                    android:textColor="#CA2525"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    tools:text="Rp 20.000 (per orang)" />
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txkamuBerkesempatan"
-                style="@style/JelajahinDescTextBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:text="@string/event_notice_reward"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llTicket" />
-
-            <LinearLayout
-                android:id="@+id/llEventReward"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txkamuBerkesempatan">
-
-                <include
-                    android:id="@+id/cvReward"
-                    layout="@layout/reward_item_layout" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txxx"
-                style="@style/JelajahinDescTextBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="22dp"
-                android:text="@string/deskripsi_event"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llEventReward" />
-
-            <TextView
-                android:id="@+id/tvEventDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:ellipsize="end"
-                android:maxLines="3"
-                app:layout_constraintTop_toBottomOf="@+id/txxx"
-                tools:text="@tools:sample/lorem/random" />
-
-            <TextView
-                android:id="@+id/txStatisLokasi"
-                style="@style/JelajahinDescTextBold"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="22dp"
-                android:text="@string/lokasi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEventDescription" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="match_parent"
-                android:layout_height="225dp"
-                android:layout_margin="@dimen/space_triple"
-                app:cardCornerRadius="@dimen/space"
-                app:layout_constraintTop_toBottomOf="@+id/txStatisLokasi"
-                tools:layout_editor_absoluteX="24dp">
-
-                <fragment
-                    android:id="@+id/containerMap"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                <LinearLayout
+                    android:id="@+id/linearInfovent"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:touchscreenBlocksFocus="true" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnBookmarkEvent"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/touchMap"
+                    <LinearLayout
+                        android:id="@+id/llDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvEventName">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_calendar" />
+
+                        <TextView
+                            android:id="@+id/tvEventDate"
+                            style="@style/JelajahinDescText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            tools:text="1 Desember 2021" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toEndOf="@+id/llDate"
+                        app:layout_constraintTop_toBottomOf="@+id/tvEventName">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_time" />
+
+                        <TextView
+                            android:id="@+id/tvEventTime"
+                            style="@style/JelajahinDescText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            tools:text="19:00 - 23:00" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llTicket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/llDate">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_ticket" />
+
+                        <TextView
+                            android:id="@+id/tvEvenTicketPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="8dp"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            tools:text="Rp 20.000 (per orang)" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txkamuBerkesempatan"
+                    style="@style/JelajahinDescTextBold"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@android:color/transparent" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/linearInfovent"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/event_notice_reward"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearInfovent" />
 
-            </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:id="@+id/allEventReward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txkamuBerkesempatan"
+                    app:layout_constraintTop_toBottomOf="@+id/txkamuBerkesempatan">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnHadiriEvent"
-                style="@style/JelajahinPrimaryButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_double"
-                android:layout_marginTop="@dimen/space_triple"
-                android:text="@string/hadiri_event"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                    <include
+                        android:id="@+id/cvReward"
+                        layout="@layout/reward_item_layout" />
+                </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <TextView
+                    android:id="@+id/txTentangEvent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/allEventReward"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/tentang_event"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txDescripsievent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txTentangEvent"
+                    android:layout_marginTop="@dimen/space"
+                    android:text="@string/lorem"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_lokasi_peta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txDescripsievent"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/lokasi_peta"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_maps"
+                    android:layout_width="match_parent"
+                    android:layout_height="225dp"
+                    android:layout_below="@+id/tv_lokasi_peta"
+                    android:layout_margin="@dimen/space_triple"
+                    app:cardCornerRadius="@dimen/space"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_lokasi_peta"
+                    tools:layout_editor_absoluteX="24dp">
+
+                    <fragment
+                        android:id="@+id/containerMap"
+                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:touchscreenBlocksFocus="true" />
+
+                    <ImageView
+                        android:id="@+id/touchMap"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@android:color/transparent" />
+
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/scrollEvent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-55dp"
+        android:backgroundTint="@color/green_button"
+        android:text="@string/btn_evnt"
+        android:textAllCaps="false" />
 
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmeringEventDetail"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
         <include layout="@layout/smh_event_detail" />
 

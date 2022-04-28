@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="215dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+        android:paddingBottom="@dimen/space_double">
 
         <ImageView
             android:id="@+id/img_hal_menarik"

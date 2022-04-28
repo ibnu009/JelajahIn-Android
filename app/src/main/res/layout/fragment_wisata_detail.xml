@@ -34,7 +34,7 @@
                     android:layout_height="200dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/fragment_item_img_detail_wisata" />
+                    tools:listitem="@layout/item_img_detail_wisata" />
 
                 <Button
                     android:id="@+id/btn_dtl_photo_wisata"
@@ -53,9 +53,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/rv_dtl_photo"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="15dp">
+                    android:layout_marginStart="@dimen/space_xdouble"
+                    android:layout_marginTop="@dimen/space_double"
+                    android:layout_marginEnd="@dimen/space_xdouble">
 
                     <TextView
                         android:id="@+id/tv_nama_wisata"
@@ -100,7 +100,7 @@
                                 android:id="@+id/tv_location_kecamatan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="15dp"
+                                android:layout_marginStart="@dimen/space_double"
                                 android:text="@string/locations_kecamatan"
                                 android:textSize="@dimen/font_medium" />
                         </RelativeLayout>
@@ -111,12 +111,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/lnr_location_top"
-                        android:layout_marginTop="5dp">
+                        android:layout_marginTop="@dimen/space_xhalf">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
+                            android:layout_marginEnd="@dimen/spacex"
                             android:orientation="horizontal">
 
                             <LinearLayout
@@ -128,9 +128,9 @@
                                     android:id="@+id/tv_descripsi_wisata"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginStart="10dp"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginStart="@dimen/spacex"
+                                    android:layout_marginTop="@dimen/space_xhalf"
+                                    android:layout_marginEnd="@dimen/spacex"
                                     android:gravity="center"
                                     android:text="@string/macam_advanture"
                                     android:textAlignment="center"
@@ -406,18 +406,17 @@
 
                     <LinearLayout
                         android:id="@+id/layoutLoading"
-                        android:background="@color/white"
-                        android:visibility="gone"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:visibility="gone">
 
                         <com.facebook.shimmer.ShimmerFrameLayout
                             android:id="@+id/shimmeringDetail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <include
-                                layout="@layout/smh_content_detail"/>
+                            <include layout="@layout/smh_content_detail" />
 
                         </com.facebook.shimmer.ShimmerFrameLayout>
 

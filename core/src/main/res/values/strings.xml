@@ -31,4 +31,7 @@
     <string name="guide_terbaik">Tempat Guide Terbaik</string>
 
     <string name="tempat_parkir">Tempat Parkir</string>
+
+    <!--    detail event-->
+    <string name="date_event">1 Desember 2021</string>
 </resources>

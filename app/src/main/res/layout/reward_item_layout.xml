@@ -2,27 +2,27 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_marginStart="@dimen/spacex"
+    android:layout_marginTop="@dimen/spacex"
+    android:layout_marginEnd="@dimen/spacex"
     android:elevation="@dimen/space"
-    app:cardUseCompatPadding="true"
+    android:orientation="horizontal"
     app:cardCornerRadius="10dp"
-    >
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:paddingVertical="16dp"
-        android:paddingHorizontal="@dimen/space_triple"
-        android:background="@drawable/bg_searchview"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="16dp">
 
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imgPoint"
@@ -34,22 +34,22 @@
 
             <TextView
                 android:id="@+id/tvRewardPoint"
+                style="@style/JelajahinDescTextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/JelajahinDescTextBold"
-                tools:text="500 pts"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/imgPoint"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="500 pts" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginStart="36dp"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/imgXp"
@@ -61,14 +61,14 @@
 
             <TextView
                 android:id="@+id/tvRewardXp"
+                style="@style/JelajahinDescTextBold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/JelajahinDescTextBold"
-                tools:text="1500 xp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/imgPoint"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1500 xp" />
 
         </LinearLayout>
 
